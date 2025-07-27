@@ -1,2 +1,0 @@
-# clutchzone
-a gaming tournaments
