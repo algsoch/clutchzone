@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutchZone - Contact Support</title>
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="contact-redesigned.css">
+    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+</head>
+<body>
+    <!-- Background particles -->
+    <div id="particles-js"></div>
+    
+    <!-- Advanced Navbar -->
+    <nav class="advanced-navbar" id="advancedNavbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../index.html" class="brand-link">
+                    <div class="brand-icon">
+                       <img src="../assets/logo.svg" alt="ClutchZone Logo" style="width: 40px; height: 40px;">
+                    </div>
+                    <span class="brand-text">ClutchZone</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+               
+                <a href="../tournaments/tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i>
+                    <span>Tournaments</span>
+                </a>
+              
+                <a href="contact-redesigned.html" class="nav-link active">
+                    <i class="fas fa-headset"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Battle Themed Hero Section -->
+    <section class="contact-hero">
+        <div class="hero-battle-bg">
+            <canvas id="battleCanvas"></canvas>
+        </div>
+        <div class="hero-content">
+            <div class="hero-icon-container">
+                <div class="hero-icon rotating">
+                    <i class="fas fa-headset"></i>
+                </div>
+            </div>
+            <h1 class="hero-title glitch-effect" data-text="SUPPORT COMMAND CENTER">
+                SUPPORT COMMAND CENTER
+            </h1>
+            <p class="hero-subtitle typing-effect">
+                Your reinforcements are standing by. Deploy assistance now!
+            </p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="247">0</span>
+                    <span class="stat-label">Active Agents</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="99.8">0</span>
+                    <span class="stat-label">Response Rate %</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="15">0</span>
+                    <span class="stat-label">Avg Response (min)</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tactical Quick Actions -->
+    <section class="quick-deploy">
+        <div class="container">
+            <h2 class="section-title warfare-title">
+                <i class="fas fa-rocket"></i>
+                RAPID DEPLOYMENT OPTIONS
+            </h2>
+            <div class="tactical-grid">
+                <div class="tactical-card live-chat" onclick="deployLiveChat()">
+                    <div class="card-header">
+                        <div class="tactical-icon">
+                            <i class="fas fa-comment-dots pulse"></i>
+                        </div>
+                        <div class="status-indicator online">
+                            <span class="status-dot"></span>
+                            <span class="status-text">LIVE</span>
+                        </div>
+                    </div>
+                    <h3>Live Chat Support</h3>
+                    <p>Real-time tactical assistance</p>
+                    <div class="agent-info">
+                        <div class="agent-avatars">
+                            <div class="avatar active">👨‍💻</div>
+                            <div class="avatar active">👩‍💻</div>
+                            <div class="avatar active">👨‍🔧</div>
+                        </div>
+                        <span>3 agents ready</span>
+                    </div>
+                    <button class="deploy-btn">DEPLOY CHAT</button>
+                </div>
+
+                <div class="tactical-card mission-briefing" onclick="openFAQMission()">
+                    <div class="card-header">
+                        <div class="tactical-icon">
+                            <i class="fas fa-book-open rotate"></i>
+                        </div>
+                        <div class="status-indicator ready">
+                            <span class="status-dot"></span>
+                            <span class="status-text">READY</span>
+                        </div>
+                    </div>
+                    <h3>Mission Briefings</h3>
+                    <p>Quick intel & solutions</p>
+                    <div class="mission-stats">
+                        <span>50+ topics covered</span>
+                        <div class="difficulty-bars">
+                            <div class="bar filled"></div>
+                            <div class="bar filled"></div>
+                            <div class="bar filled"></div>
+                            <div class="bar filled"></div>
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                    <button class="deploy-btn">ACCESS INTEL</button>
+                </div>
+
+                <div class="tactical-card emergency-support" onclick="createUrgentTicket()">
+                    <div class="card-header">
+                        <div class="tactical-icon emergency">
+                            <i class="fas fa-exclamation-triangle flash"></i>
+                        </div>
+                        <div class="status-indicator urgent">
+                            <span class="status-dot"></span>
+                            <span class="status-text">URGENT</span>
+                        </div>
+                    </div>
+                    <h3>Emergency Protocol</h3>
+                    <p>Priority support channel</p>
+                    <div class="response-time">
+                        <i class="fas fa-clock"></i>
+                        <span>&lt; 30 min response</span>
+                    </div>
+                    <button class="deploy-btn emergency">EMERGENCY MODE</button>
+                </div>
+
+                <div class="tactical-card voice-comms" onclick="initiateVoiceCall()">
+                    <div class="card-header">
+                        <div class="tactical-icon">
+                            <i class="fas fa-phone bounce"></i>
+                        </div>
+                        <div class="status-indicator available">
+                            <span class="status-dot"></span>
+                            <span class="status-text">AVAILABLE</span>
+                        </div>
+                    </div>
+                    <h3>Voice Communications</h3>
+                    <p>Direct tactical channel</p>
+                    <div class="call-schedule">
+                        <i class="fas fa-calendar"></i>
+                        <span>24/7 Operations</span>
+                    </div>
+                    <button class="deploy-btn">OPEN CHANNEL</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Mission Control -->
+    <section class="mission-control">
+        <div class="container">
+            <div class="control-grid">
+                <!-- Command Terminal (Contact Form) -->
+                <div class="command-terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-lights">
+                            <span class="light red"></span>
+                            <span class="light yellow"></span>
+                            <span class="light green"></span>
+                        </div>
+                        <h2>
+                            <i class="fas fa-terminal"></i>
+                            COMMAND TERMINAL
+                        </h2>
+                        <div class="security-level">
+                            <span class="level-indicator">SEC-LVL: 5</span>
+                        </div>
+                    </div>
+                    
+                    <form id="tacticalForm" class="tactical-form">
+                        <div class="form-section">
+                            <div class="section-header">
+                                <i class="fas fa-user-shield"></i>
+                                <span>OPERATOR IDENTIFICATION</span>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>First Name</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                    <div class="input-scanner"></div>
+                                </div>
+                                <div class="input-group">
+                                    <label>Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                    <div class="input-scanner"></div>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <label>Communication Channel (Email)</label>
+                                <input type="email" id="email" name="email" required>
+                                <div class="input-scanner"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <div class="section-header">
+                                <i class="fas fa-flag"></i>
+                                <span>MISSION PARAMETERS</span>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group">
+                                    <label>Mission Type</label>
+                                    <select id="subject" name="subject" required>
+                                        <option value="">Select Mission Type</option>
+                                        <option value="technical">🔧 Technical Support</option>
+                                        <option value="tournament">🏆 Tournament Operations</option>
+                                        <option value="account">👤 Account Management</option>
+                                        <option value="payment">💳 Payment Systems</option>
+                                        <option value="bug">🐛 Bug Report</option>
+                                        <option value="partnership">🤝 Strategic Alliance</option>
+                                        <option value="feedback">💬 Intel Feedback</option>
+                                        <option value="other">📝 Other Operations</option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <label>Priority Level</label>
+                                    <select id="priority" name="priority" required>
+                                        <option value="low">🟢 Routine - Standard Protocol</option>
+                                        <option value="medium">🟡 Elevated - Needs Attention</option>
+                                        <option value="high">🟠 High Priority - Urgent Response</option>
+                                        <option value="critical">🔴 Critical - Emergency Protocol</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <div class="section-header">
+                                <i class="fas fa-scroll"></i>
+                                <span>MISSION BRIEFING</span>
+                            </div>
+                            <div class="input-group">
+                                <label>Detailed Mission Brief</label>
+                                <textarea id="message" name="message" rows="6" required 
+                                    placeholder="Provide detailed mission parameters, objectives, and any critical intel..."></textarea>
+                                <div class="char-counter">
+                                    <span id="charCount">0</span> / 2000 characters
+                                    <div class="counter-bar"><div class="counter-fill"></div></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <div class="section-header">
+                                <i class="fas fa-paperclip"></i>
+                                <span>INTEL ATTACHMENTS</span>
+                            </div>
+                            <div class="file-drop-zone" id="fileDropZone">
+                                <input type="file" id="attachments" name="attachments" multiple 
+                                    accept="image/*,.pdf,.doc,.docx,.txt,.zip">
+                                <div class="drop-content">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <h4>DROP INTEL FILES HERE</h4>
+                                    <p>or click to browse secure files</p>
+                                    <div class="file-requirements">
+                                        <span>Max: 10MB per file</span>
+                                        <span>Formats: Images, PDF, DOC, TXT, ZIP</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="fileList" class="file-manifest"></div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="clearForm()">
+                                <i class="fas fa-eraser"></i>
+                                CLEAR MISSION
+                            </button>
+                            <button type="submit" class="btn-primary deploy-mission">
+                                <i class="fas fa-rocket"></i>
+                                DEPLOY MISSION
+                                <div class="btn-glow"></div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Intelligence Hub (Contact Info) -->
+                <div class="intelligence-hub">
+                    <div class="hub-header">
+                        <h2>
+                            <i class="fas fa-satellite-dish"></i>
+                            INTELLIGENCE HUB
+                        </h2>
+                        <div class="signal-strength">
+                            <div class="signal-bar"></div>
+                            <div class="signal-bar"></div>
+                            <div class="signal-bar"></div>
+                            <div class="signal-bar"></div>
+                            <span>STRONG SIGNAL</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-channels">
+                        <div class="channel-card primary">
+                            <div class="channel-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="channel-info">
+                                <h3>Electronic Mail</h3>
+                                <p>support@clutchzone.com</p>
+                                <p>partnerships@clutchzone.com</p>
+                                <div class="response-indicator">
+                                    <span class="indicator-dot active"></span>
+                                    <span>Response within 2-4 hours</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="channel-card secure">
+                            <div class="channel-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="channel-info">
+                                <h3>Secure Voice Channel</h3>
+                                <p>+91 9876-543-210</p>
+                                <p>+1 (555) 123-4567</p>
+                                <div class="response-indicator">
+                                    <span class="indicator-dot active"></span>
+                                    <span>Mon-Fri: 9AM-6PM IST</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="channel-card tactical">
+                            <div class="channel-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="channel-info">
+                                <h3>Tactical Operations Center</h3>
+                                <p>ClutchZone Gaming HQ<br>
+                                   Cyber City Complex<br>
+                                   Gurugram, Haryana 122002</p>
+                                <div class="response-indicator">
+                                    <span class="indicator-dot ready"></span>
+                                    <span>Secure facility - By appointment</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Network -->
+                    <div class="social-network">
+                        <h3>
+                            <i class="fas fa-network-wired"></i>
+                            COMMUNICATION NETWORK
+                        </h3>
+                        <div class="social-grid">
+                            <a href="#" class="social-node discord" data-platform="Discord">
+                                <div class="node-icon">
+                                    <i class="fab fa-discord"></i>
+                                </div>
+                                <span class="node-label">Discord HQ</span>
+                                <div class="node-status online">🟢 12.5K members</div>
+                            </a>
+                            <a href="#" class="social-node twitter" data-platform="Twitter">
+                                <div class="node-icon">
+                                    <i class="fab fa-twitter"></i>
+                                </div>
+                                <span class="node-label">Twitter Feed</span>
+                                <div class="node-status active">🔴 Live updates</div>
+                            </a>
+                            <a href="#" class="social-node youtube" data-platform="YouTube">
+                                <div class="node-icon">
+                                    <i class="fab fa-youtube"></i>
+                                </div>
+                                <span class="node-label">YouTube Command</span>
+                                <div class="node-status streaming">📺 250K subscribers</div>
+                            </a>
+                            <a href="#" class="social-node instagram" data-platform="Instagram">
+                                <div class="node-icon">
+                                    <i class="fab fa-instagram"></i>
+                                </div>
+                                <span class="node-label">Instagram Intel</span>
+                                <div class="node-status posting">📸 Daily content</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced FAQ War Room -->
+    <section class="faq-war-room">
+        <div class="container">
+            <div class="war-room-header">
+                <h2 class="warfare-title">
+                    <i class="fas fa-shield-alt"></i>
+                    TACTICAL KNOWLEDGE BASE
+                </h2>
+                <p>Intelligence gathered from the battlefield</p>
+            </div>
+
+            <!-- FAQ Control Panel -->
+            <div class="faq-control-panel">
+                <div class="search-controls">
+                    <div class="search-input-container">
+                        <input type="text" id="faqSearch" placeholder="Search tactical database...">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all">ALL INTEL</button>
+                    <button class="filter-btn" data-category="account">ACCOUNT OPS</button>
+                    <button class="filter-btn" data-category="tournaments">TOURNAMENT TACTICS</button>
+                    <button class="filter-btn" data-category="payments">PAYMENT SYSTEMS</button>
+                    <button class="filter-btn" data-category="technical">TECH SUPPORT</button>
+                </div>
+            </div>
+
+            <!-- FAQ Database -->
+            <div class="faq-database">
+                <div class="faq-entry" data-category="tournaments">
+                    <div class="faq-header" onclick="toggleFAQEntry(this)">
+                        <div class="entry-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>How do I register for tournaments?</h3>
+                        <div class="expansion-control">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="content-body">
+                            <p><strong>Tournament Registration Protocol:</strong></p>
+                            <ol class="tactical-list">
+                                <li>Access the <span class="highlight">Tournament Operations</span> module</li>
+                                <li>Select your target tournament from available missions</li>
+                                <li>Verify entry requirements and tactical fees</li>
+                                <li>Ensure sufficient credits in your account</li>
+                                <li>Execute <span class="highlight">"REGISTER"</span> command and confirm deployment</li>
+                            </ol>
+                            <div class="intel-tip">
+                                <i class="fas fa-lightbulb"></i>
+                                <span><strong>TACTICAL TIP:</strong> Early registration secures priority slots!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-entry" data-category="payments">
+                    <div class="faq-header" onclick="toggleFAQEntry(this)">
+                        <div class="entry-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h3>What payment methods are supported?</h3>
+                        <div class="expansion-control">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="content-body">
+                            <p><strong>Secure Payment Channels:</strong></p>
+                            <div class="payment-grid">
+                                <div class="payment-category">
+                                    <h4>💳 Banking Systems</h4>
+                                    <ul>
+                                        <li>Visa, MasterCard, RuPay</li>
+                                        <li>Debit & Credit Cards</li>
+                                        <li>Net Banking (all major banks)</li>
+                                    </ul>
+                                </div>
+                                <div class="payment-category">
+                                    <h4>📱 Digital Wallets</h4>
+                                    <ul>
+                                        <li>PayPal, UPI, Paytm</li>
+                                        <li>PhonePe, Google Pay</li>
+                                        <li>Apple Pay, Samsung Pay</li>
+                                    </ul>
+                                </div>
+                                <div class="payment-category">
+                                    <h4>🪙 Cryptocurrency</h4>
+                                    <ul>
+                                        <li>Bitcoin (BTC)</li>
+                                        <li>Ethereum (ETH)</li>
+                                        <li>USDC, USDT</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-entry" data-category="account">
+                    <div class="faq-header" onclick="toggleFAQEntry(this)">
+                        <div class="entry-icon">
+                            <i class="fas fa-user-lock"></i>
+                        </div>
+                        <h3>How do I reset my password?</h3>
+                        <div class="expansion-control">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="content-body">
+                            <p><strong>Security Protocol Reset:</strong></p>
+                            <ol class="tactical-list">
+                                <li>Navigate to <span class="highlight">Login Command Center</span></li>
+                                <li>Execute <span class="highlight">"Forgot Password?"</span> protocol</li>
+                                <li>Enter your registered communication channel (email)</li>
+                                <li>Check secure inbox for reset authorization</li>
+                                <li>Follow encrypted link and establish new security key</li>
+                            </ol>
+                            <div class="security-warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span><strong>SECURITY NOTICE:</strong> Reset links expire after 24 hours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-entry" data-category="technical">
+                    <div class="faq-header" onclick="toggleFAQEntry(this)">
+                        <div class="entry-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <h3>How to fix lag issues during battles?</h3>
+                        <div class="expansion-control">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="content-body">
+                            <p><strong>Network Optimization Protocol:</strong></p>
+                            <div class="troubleshooting-grid">
+                                <div class="troubleshoot-section">
+                                    <h4>🌐 Network Optimization</h4>
+                                    <ul>
+                                        <li>Deploy wired ethernet connection</li>
+                                        <li>Ensure 50+ Mbps bandwidth</li>
+                                        <li>Close bandwidth-consuming applications</li>
+                                        <li>Use gaming-optimized DNS (1.1.1.1)</li>
+                                    </ul>
+                                </div>
+                                <div class="troubleshoot-section">
+                                    <h4>💻 System Performance</h4>
+                                    <ul>
+                                        <li>Terminate background processes</li>
+                                        <li>Update graphics drivers</li>
+                                        <li>Optimize graphics settings</li>
+                                        <li>Enable Game Mode (Windows)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-entry" data-category="account">
+                    <div class="faq-header" onclick="toggleFAQEntry(this)">
+                        <div class="entry-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <h3>How do I withdraw my winnings?</h3>
+                        <div class="expansion-control">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                    </div>
+                    <div class="faq-content">
+                        <div class="content-body">
+                            <p><strong>Credit Extraction Protocol:</strong></p>
+                            <ol class="tactical-list">
+                                <li>Complete identity verification (first-time requirement)</li>
+                                <li>Access <span class="highlight">Wallet → Withdraw</span> module</li>
+                                <li>Select extraction method</li>
+                                <li>Enter extraction amount (minimum $10)</li>
+                                <li>Confirm extraction request</li>
+                            </ol>
+                            <div class="processing-times">
+                                <h4>⏱️ Processing Timeline:</h4>
+                                <ul>
+                                    <li><strong>PayPal:</strong> 1-2 business days</li>
+                                    <li><strong>Bank Transfer:</strong> 3-5 business days</li>
+                                    <li><strong>Cryptocurrency:</strong> 1-24 hours</li>
+                                    <li><strong>UPI:</strong> Instant to 1 hour</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Need More Help -->
+            <div class="war-room-footer">
+                <div class="help-request">
+                    <h3>NEED TACTICAL SUPPORT?</h3>
+                    <p>Can't find the intel you need? Deploy direct support.</p>
+                    <button class="btn-primary" onclick="deployLiveChat()">
+                        <i class="fas fa-headset"></i>
+                        DEPLOY LIVE SUPPORT
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Chat Modal -->
+    <div class="modal" id="liveChatModal">
+        <div class="modal-content chat-interface">
+            <div class="chat-header">
+                <div class="agent-info">
+                    <div class="agent-avatar">
+                        <img src="/api/placeholder/40/40" alt="Agent" id="agentAvatar">
+                        <div class="status-indicator online"></div>
+                    </div>
+                    <div class="agent-details">
+                        <h3 id="agentName">Agent Alpha-7</h3>
+                        <span id="agentStatus">Online - Ready to assist</span>
+                    </div>
+                </div>
+                <div class="chat-controls">
+                    <button class="control-btn" title="Minimize">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                    <button class="control-btn close-chat" id="closeChatModal" title="End Session">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message-day">Today</div>
+                <div class="message agent">
+                    <div class="message-avatar">
+                        <img src="/api/placeholder/32/32" alt="Agent">
+                    </div>
+                    <div class="message-content">
+                        <p>Greetings! Agent Alpha-7 reporting for duty. How may I assist you today?</p>
+                        <div class="message-meta">
+                            <span class="message-time">Just now</span>
+                            <span class="message-status">✓</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                <div class="typing-avatar">
+                    <img src="/api/placeholder/24/24" alt="Agent">
+                </div>
+                <div class="typing-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Type your message..." maxlength="500">
+                    <button class="attach-btn" title="Attach file">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <button class="send-btn" id="sendChatBtn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="quick-responses">
+                    <button class="quick-btn" onclick="sendQuickMessage('I need help with my account')">Account Help</button>
+                    <button class="quick-btn" onclick="sendQuickMessage('Tournament registration issue')">Tournament Issue</button>
+                    <button class="quick-btn" onclick="sendQuickMessage('Payment problem')">Payment Help</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer with Contributors -->
+    <footer class="advanced-footer">
+        <div class="footer-content">
+            <div class="footer-section company">
+                <h3>ClutchZone</h3>
+                <p>India's premier esports platform for competitive gaming excellence.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link discord"><i class="fab fa-discord"></i></a>
+                    <a href="#" class="social-link twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../tournaments/tournaments.html">Tournaments</a></li>
+                    <li><a href="../leaderboard/leaderboard.html">Leaderboard</a></li>
+                    <li><a href="../profile/profile.html">Profile</a></li>
+                    <li><a href="../wallet/wallet.html">Wallet</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="../faq/faq.html">FAQ</a></li>
+                    <li><a href="../support/support.html">Help Center</a></li>
+                    <li><a href="../privacy/privacy.html">Privacy Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section contributors">
+                <h4>Development Team</h4>
+                <div class="contributor-list">
+                    <div class="contributor">
+                        <strong>Vicky Kumar</strong>
+                        <span>Full Stack Engineer</span>
+                    </div>
+                    <div class="contributor">
+                        <strong>Sachin</strong>
+                        <span>Co-Founder</span>
+                    </div>
+                    <div class="contributor">
+                        <strong>Aditya</strong>
+                        <span>Co-Founder</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 ClutchZone. All rights reserved. Built for gamers, by gamers.</p>
+            <div class="footer-links">
+                <a href="../privacy/privacy.html">Privacy Policy</a>
+                <a href="../terms/terms.html">Terms of Service</a>
+                <a href="../cookies/cookies.html">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/advancedNavbar.js"></script>
+    <script src="contact-redesigned.js"></script>
+    
+    <!-- Floating Action Button -->
+    <div class="floating-support" id="floatingSupport">
+        <div class="support-icon">
+            <i class="fas fa-headset"></i>
+        </div>
+        <span class="support-text">Need Help?</span>
+    </div>
+
+    <!-- Initialize -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAdvancedNavbar();
+            initializeContactPage();
+        });
+    </script>
+</body>
+</html>

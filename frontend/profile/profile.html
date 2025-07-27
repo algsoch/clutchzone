@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Gaming Profile Arena - ClutchZone</title>
+    <meta name="description" content="Ultra-advanced elite gaming profile with real-time holographic stats, particle effects, and tournament analytics">
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="profile.css">
+    <link rel="icon" href="../assets/logo.svg" type="image/x-icon">
+    
+    <!-- Ultra-Advanced External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js" defer></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
+    
+    <!-- Elite Gaming Fonts & Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Meta Tags for Elite Gaming -->
+    <meta name="theme-color" content="#0a0a0a">
+    <meta name="author" content="ClutchZone Elite Gaming">
+    <meta name="keywords" content="elite gaming, tournaments, esports, competitive gaming, clutchzone">
+</head>
+<body data-performance-monitor="true">
+    <!-- Elite Gaming Canvas Background -->
+    <canvas id="eliteCanvas" class="elite-canvas"></canvas>
+    
+    <!-- Ultra-Advanced Gaming Background Systems -->
+    <div class="mouse-gradient" id="mouseGradient"></div>
+    <div class="background-particles" id="backgroundParticles"></div>
+    <div class="gaming-grid-overlay" id="gamingGrid"></div>
+    <div class="energy-field-overlay" id="energyField"></div>
+    
+    <!-- Performance Monitor HUD -->
+    <div class="performance-hud" id="performanceHUD">
+        <div class="fps-counter">FPS: <span id="fpsCounter">60</span></div>
+        <div class="memory-usage">Memory: <span id="memoryUsage">0%</span></div>
+    </div>
+    
+    <!-- Elite Profile Under Development Notice -->
+    <div class="dev-notice elite-dev-notice" id="devNotice">
+        <div class="dev-content">
+            <div class="dev-hologram">
+                <div class="dev-icon">�</div>
+                <div class="dev-particles"></div>
+            </div>
+            <h3 class="elite-title">Elite Profile System v2.0</h3>
+            <p>Ultra-advanced gaming profiles with holographic displays</p>
+            <div class="dev-progress">
+                <div class="progress-bar elite-progress">
+                    <div class="progress-fill" style="width: 85%"></div>
+                    <div class="progress-spark"></div>
+                    <div class="progress-glow"></div>
+                </div>
+                <span class="progress-text">85% Complete - AI Integration Active</span>
+            </div>
+            <button class="dev-close elite-close" id="closeDevNotice">
+                <i class="fas fa-times"></i>
+                <div class="close-glow"></div>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Advanced Gaming Navigation -->
+    <nav class="advanced-navbar" id="advancedNavbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../index.html" class="brand-link">
+                    <div class="brand-icon">
+                        <span class="brand-logo">🎮</span>
+                        <div class="brand-rings">
+                            <div class="ring ring-1"></div>
+                            <div class="ring ring-2"></div>
+                            <div class="ring ring-3"></div>
+                        </div>
+                    </div>
+                    <span class="brand-text">ClutchZone</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="../tournaments/tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i>
+                    <span>Tournaments</span>
+                    <span class="nav-badge" id="liveTournamentCount">Live</span>
+                </a>
+                <a href="../leaderboard/leaderboard.html" class="nav-link">
+                    <i class="fas fa-crown"></i>
+                    <span>Leaderboard</span>
+                </a>
+                <a href="../match/match.html" class="nav-link auth-required">
+                    <i class="fas fa-crosshairs"></i>
+                    <span>Match Center</span>
+                </a>
+                <a href="../wallet/wallet.html" class="nav-link auth-required">
+                    <i class="fas fa-wallet"></i>
+                    <span>Wallet</span>
+                </a>
+                <a href="../profile/profile.html" class="nav-link auth-required active">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                    <div class="active-indicator"></div>
+                </a>
+                <a href="../contact/contact.html" class="nav-link">
+                    <i class="fas fa-headset"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <!-- <div class="auth-section" id="authSection"> -->
+                    <!-- Guest Section -->
+                    <!-- <div class="guest-actions"> -->
+                        <a href="../login/login.html" class="auth-btn login-btn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            <span>Login</span>
+                        </a>
+                        <a href="../register/register.html" class="auth-btn register-btn">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Register</span>
+                        </a>
+                    </div>
+                    
+                    <!-- Authenticated User Section -->
+                    <div class="user-section hidden" id="userSection">
+                        <div class="user-profile" id="userProfile">
+                            <div class="user-avatar">
+                                <img src="../assets/images/default-avatar.png" alt="User Avatar" id="userAvatarImg">
+                                <div class="status-indicator online"></div>
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name" id="userName">Elite Gamer</span>
+                                <span class="user-level" id="userLevel">Level 1</span>
+                            </div>
+                        </div>
+                        <button class="logout-btn" id="profileLogoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <button class="nav-toggle" id="navToggle" title="Toggle navigation menu" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- AI Gaming Assistant Float -->
+    <div class="ai-chat-float elite-ai-float" id="aiChatFloat">
+        <button class="ai-chat-btn elite-ai-btn" id="aiChatBtn" title="Elite AI Gaming Assistant">
+            <div class="ai-hologram">
+                <span class="ai-icon">🤖</span>
+                <div class="ai-energy-ring"></div>
+                <div class="ai-pulse-wave"></div>
+            </div>
+            <span class="ai-status">AI ONLINE</span>
+        </button>
+    </div>
+
+    <!-- Ultra-Advanced Elite Gaming Profile Arena -->
+    <main class="profile-arena elite-arena" id="profileArena">
+        <!-- Holographic Profile Header -->
+        <section class="elite-profile-header">
+            <div class="profile-background">
+                <canvas id="profileCanvas" class="profile-canvas"></canvas>
+                <div class="profile-energy-field"></div>
+                <div class="profile-holo-grid"></div>
+                <div class="profile-particle-system"></div>
+            </div>
+            
+            <div class="profile-showcase">
+                <div class="elite-avatar-container">
+                    <div class="avatar-hologram">
+                        <div class="avatar-frame">
+                            <img src="../assets/images/default-avatar.png" alt="Elite Gamer Avatar" id="eliteAvatar">
+                            <div class="avatar-glow-ring"></div>
+                            <div class="avatar-energy-burst"></div>
+                            <div class="avatar-scan-lines"></div>
+                        </div>
+                        <div class="avatar-rank-badge legendary">
+                            <i class="fas fa-crown"></i>
+                            <span>LEGENDARY</span>
+                            <div class="badge-sparkle"></div>
+                        </div>
+                    </div>
+                    <button class="avatar-upgrade-btn elite-btn" id="avatarUpgradeBtn">
+                        <i class="fas fa-magic"></i>
+                        <span>Enhance Avatar</span>
+                        <div class="btn-energy"></div>
+                    </button>
+                </div>
+                
+                <div class="elite-player-info">
+                    <div class="player-title">
+                        <h1 class="elite-name" id="eliteName">
+                            <span class="name-text">ELITE GUARDIAN</span>
+                            <div class="name-glitch-effect"></div>
+                            <div class="name-cyber-grid"></div>
+                        </h1>
+                        <div class="player-codename" id="playerCodename">
+                            <span class="codename-prefix">#</span>
+                            <span class="codename-text">CLUTCH_MASTER_9000</span>
+                            <div class="codename-scanner"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="elite-stats-display">
+                        <div class="stat-crystal level-crystal">
+                            <div class="crystal-glow"></div>
+                            <div class="crystal-core"></div>
+                            <div class="stat-content">
+                                <span class="stat-label">LEVEL</span>
+                                <span class="stat-value" id="eliteLevel">99</span>
+                                <div class="stat-progress">
+                                    <div class="progress-ring">
+                                        <svg viewBox="0 0 36 36">
+                                            <path class="progress-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                                            <path class="progress-fill" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="stroke-dasharray: 85, 100"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-crystal xp-crystal">
+                            <div class="crystal-glow"></div>
+                            <div class="crystal-core"></div>
+                            <div class="stat-content">
+                                <span class="stat-label">EXPERIENCE</span>
+                                <span class="stat-value" id="eliteXP">2,847,350</span>
+                                <div class="xp-flow">
+                                    <div class="xp-particle"></div>
+                                    <div class="xp-particle"></div>
+                                    <div class="xp-particle"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-crystal rank-crystal">
+                            <div class="crystal-glow"></div>
+                            <div class="crystal-core"></div>
+                            <div class="stat-content">
+                                <span class="stat-label">GLOBAL RANK</span>
+                                <span class="stat-value" id="eliteRank">#7</span>
+                                <div class="rank-trend">
+                                    <i class="fas fa-arrow-up trend-up"></i>
+                                    <span>+12 this week</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-crystal wins-crystal">
+                            <div class="crystal-glow"></div>
+                            <div class="crystal-core"></div>
+                            <div class="stat-content">
+                                <span class="stat-label">VICTORIES</span>
+                                <span class="stat-value" id="eliteWins">1,337</span>
+                                <div class="wins-streak">
+                                    <div class="streak-indicator">
+                                        <span>STREAK: 47</span>
+                                        <div class="streak-fire">🔥</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="elite-progress-bar">
+                        <div class="progress-container">
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: 85%"></div>
+                                <div class="progress-spark"></div>
+                                <div class="progress-energy-flow"></div>
+                            </div>
+                            <div class="progress-labels">
+                                <span class="current-xp">2,847,350 XP</span>
+                                <span class="next-level">Next Prestige: 3,000,000 XP</span>
+                            </div>
+                            <div class="progress-effects">
+                                <div class="progress-glow"></div>
+                                <div class="progress-pulse"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="elite-actions">
+                    <button class="elite-btn primary-btn" id="editProfileBtn">
+                        <i class="fas fa-cog"></i>
+                        <span>Customize Arena</span>
+                        <div class="btn-energy"></div>
+                        <div class="btn-hologram"></div>
+                    </button>
+                    <button class="elite-btn secondary-btn" id="shareProfileBtn">
+                        <i class="fas fa-share-nodes"></i>
+                        <span>Share Profile</span>
+                        <div class="btn-energy"></div>
+                        <div class="btn-hologram"></div>
+                    </button>
+                    <button class="elite-btn special-btn" id="boostProfileBtn">
+                        <i class="fas fa-rocket"></i>
+                        <span>XP Boost</span>
+                        <div class="btn-energy"></div>
+                        <div class="btn-hologram"></div>
+                        <div class="btn-special-glow"></div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ultra-Advanced Gaming Dashboard -->
+        <section class="gaming-dashboard elite-dashboard">
+            <div class="dashboard-nav">
+                <div class="nav-crystal-tabs">
+                    <button class="crystal-tab active" data-tab="overview">
+                        <div class="tab-hologram">
+                            <i class="fas fa-chart-line"></i>
+                            <span>OVERVIEW</span>
+                            <div class="tab-glow"></div>
+                            <div class="tab-energy-field"></div>
+                        </div>
+                    </button>
+                    <button class="crystal-tab" data-tab="tournaments">
+                        <div class="tab-hologram">
+                            <i class="fas fa-trophy"></i>
+                            <span>TOURNAMENTS</span>
+                            <div class="tab-glow"></div>
+                            <div class="tab-energy-field"></div>
+                        </div>
+                    </button>
+                    <button class="crystal-tab" data-tab="achievements">
+                        <div class="tab-hologram">
+                            <i class="fas fa-medal"></i>
+                            <span>ACHIEVEMENTS</span>
+                            <div class="tab-glow"></div>
+                            <div class="tab-energy-field"></div>
+                        </div>
+                    </button>
+                    <button class="crystal-tab" data-tab="statistics">
+                        <div class="tab-hologram">
+                            <i class="fas fa-analytics"></i>
+                            <span>ANALYTICS</span>
+                            <div class="tab-glow"></div>
+                            <div class="tab-energy-field"></div>
+                        </div>
+                    </button>
+                    <button class="crystal-tab" data-tab="settings">
+                        <div class="tab-hologram">
+                            <i class="fas fa-cogs"></i>
+                            <span>SETTINGS</span>
+                            <div class="tab-glow"></div>
+                            <div class="tab-energy-field"></div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Elite Overview Dashboard -->
+            <div class="dashboard-content active" id="overview">
+                <div class="overview-grid elite-grid">
+                    <!-- Holographic Activity Stream -->
+                    <div class="gaming-card activity-card elite-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-clock"></i> 
+                                <span>RECENT ACTIVITY</span>
+                                <div class="title-scanner"></div>
+                            </h3>
+                            <div class="card-glow"></div>
+                            <div class="card-hologram"></div>
+                        </div>
+                        <div class="activity-stream" id="activityStream">
+                            <div class="activity-item legendary">
+                                <div class="activity-icon victory">
+                                    <i class="fas fa-trophy"></i>
+                                    <div class="icon-energy"></div>
+                                </div>
+                                <div class="activity-content">
+                                    <span class="activity-text">LEGENDARY VICTORY in Elite Championship Finals</span>
+                                    <span class="activity-time">37 minutes ago</span>
+                                </div>
+                                <div class="activity-xp legendary">+5,000 XP</div>
+                            </div>
+                            <div class="activity-item epic">
+                                <div class="activity-icon achievement">
+                                    <i class="fas fa-medal"></i>
+                                    <div class="icon-energy"></div>
+                                </div>
+                                <div class="activity-content">
+                                    <span class="activity-text">Unlocked "Cyber Assassin" achievement</span>
+                                    <span class="activity-time">2 hours ago</span>
+                                </div>
+                                <div class="activity-xp epic">+2,500 XP</div>
+                            </div>
+                            <div class="activity-item rare">
+                                <div class="activity-icon tournament">
+                                    <i class="fas fa-crosshairs"></i>
+                                    <div class="icon-energy"></div>
+                                </div>
+                                <div class="activity-content">
+                                    <span class="activity-text">47-Kill Streak in Ranked Arena</span>
+                                    <span class="activity-time">5 hours ago</span>
+                                </div>
+                                <div class="activity-xp rare">+1,250 XP</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Elite Performance Metrics -->
+                    <div class="gaming-card metrics-card elite-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-bar"></i> 
+                                <span>PERFORMANCE MATRIX</span>
+                                <div class="title-scanner"></div>
+                            </h3>
+                            <div class="card-glow"></div>
+                            <div class="card-hologram"></div>
+                        </div>
+                        <div class="metrics-grid elite-metrics">
+                            <div class="metric-item legendary">
+                                <div class="metric-hologram">
+                                    <div class="metric-icon">🎯</div>
+                                    <div class="metric-energy"></div>
+                                </div>
+                                <div class="metric-value">98.7%</div>
+                                <div class="metric-label">WIN RATE</div>
+                                <div class="metric-trend up legendary">+12.3%</div>
+                            </div>
+                            <div class="metric-item epic">
+                                <div class="metric-hologram">
+                                    <div class="metric-icon">�</div>
+                                    <div class="metric-energy"></div>
+                                </div>
+                                <div class="metric-value">₹1,24,750</div>
+                                <div class="metric-label">EARNINGS</div>
+                                <div class="metric-trend up epic">+47%</div>
+                            </div>
+                            <div class="metric-item rare">
+                                <div class="metric-hologram">
+                                    <div class="metric-icon">⚡</div>
+                                    <div class="metric-energy"></div>
+                                </div>
+                                <div class="metric-value">23.4</div>
+                                <div class="metric-label">AVG K/D</div>
+                                <div class="metric-trend up rare">+5.7</div>
+                            </div>
+                            <div class="metric-item mythic">
+                                <div class="metric-hologram">
+                                    <div class="metric-icon">👑</div>
+                                    <div class="metric-energy"></div>
+                                </div>
+                                <div class="metric-value">1,337</div>
+                                <div class="metric-label">VICTORIES</div>
+                                <div class="metric-trend up mythic">+89</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Elite Achievement Showcase -->
+                    <div class="gaming-card achievements-preview elite-card">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-award"></i> 
+                                <span>ELITE ACHIEVEMENTS</span>
+                                <div class="title-scanner"></div>
+                            </h3>
+                            <div class="card-glow"></div>
+                            <div class="card-hologram"></div>
+                        </div>
+                        <div class="achievements-showcase elite-showcase">
+                            <div class="achievement-badge legendary">
+                                <div class="badge-hologram">
+                                    <div class="badge-glow"></div>
+                                    <i class="fas fa-crown"></i>
+                                    <div class="badge-energy"></div>
+                                </div>
+                                <span class="badge-title">LEGEND SLAYER</span>
+                                <div class="badge-rarity">LEGENDARY</div>
+                            </div>
+                            <div class="achievement-badge mythic">
+                                <div class="badge-hologram">
+                                    <div class="badge-glow"></div>
+                                    <i class="fas fa-fire"></i>
+                                    <div class="badge-energy"></div>
+                                </div>
+                                <span class="badge-title">CYBER DEMON</span>
+                                <div class="badge-rarity">MYTHIC</div>
+                            </div>
+                            <div class="achievement-badge epic">
+                                <div class="badge-hologram">
+                                    <div class="badge-glow"></div>
+                                    <i class="fas fa-bolt"></i>
+                                    <div class="badge-energy"></div>
+                                </div>
+                                <span class="badge-title">SPEED DEMON</span>
+                                <div class="badge-rarity">EPIC</div>
+                            </div>
+                        </div>
+                        <button class="view-all-btn elite-btn">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>View All Achievements</span>
+                            <div class="btn-energy"></div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Elite Tournament History -->
+            <div class="dashboard-content" id="tournaments">
+                <div class="elite-coming-soon">
+                    <div class="hologram-container">
+                        <div class="coming-soon-hologram">
+                            <div class="hologram-icon">🏆</div>
+                            <div class="hologram-rings">
+                                <div class="ring ring-1"></div>
+                                <div class="ring ring-2"></div>
+                                <div class="ring ring-3"></div>
+                            </div>
+                        </div>
+                        <h3 class="elite-title">TOURNAMENT MATRIX</h3>
+                        <p class="elite-subtitle">Advanced tournament analytics with AI predictions</p>
+                        <div class="coming-soon-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                            <span>Neural Network Training: 60%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Elite Achievement System -->
+            <div class="dashboard-content" id="achievements">
+                <div class="elite-coming-soon">
+                    <div class="hologram-container">
+                        <div class="coming-soon-hologram">
+                            <div class="hologram-icon">🎖️</div>
+                            <div class="hologram-rings">
+                                <div class="ring ring-1"></div>
+                                <div class="ring ring-2"></div>
+                                <div class="ring ring-3"></div>
+                            </div>
+                        </div>
+                        <h3 class="elite-title">ACHIEVEMENT NEXUS</h3>
+                        <p class="elite-subtitle">Dynamic achievement tracking with holographic displays</p>
+                        <div class="coming-soon-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
+                            <span>Hologram Renderer: 75%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Elite Statistics -->
+            <div class="dashboard-content" id="statistics">
+                <div class="elite-coming-soon">
+                    <div class="hologram-container">
+                        <div class="coming-soon-hologram">
+                            <div class="hologram-icon">📊</div>
+                            <div class="hologram-rings">
+                                <div class="ring ring-1"></div>
+                                <div class="ring ring-2"></div>
+                                <div class="ring ring-3"></div>
+                            </div>
+                        </div>
+                        <h3 class="elite-title">ANALYTICS ENGINE</h3>
+                        <p class="elite-subtitle">Real-time performance analytics with quantum computing</p>
+                        <div class="coming-soon-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 90%"></div>
+                            </div>
+                            <span>Quantum Processor: 90%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Elite Settings -->
+            <div class="dashboard-content" id="settings">
+                <div class="elite-coming-soon">
+                    <div class="hologram-container">
+                        <div class="coming-soon-hologram">
+                            <div class="hologram-icon">⚙️</div>
+                            <div class="hologram-rings">
+                                <div class="ring ring-1"></div>
+                                <div class="ring ring-2"></div>
+                                <div class="ring ring-3"></div>
+                            </div>
+                        </div>
+                        <h3 class="elite-title">CONTROL MATRIX</h3>
+                        <p class="elite-subtitle">Advanced customization with neural interface</p>
+                        <div class="coming-soon-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 45%"></div>
+                            </div>
+                            <span>Neural Interface: 45%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Elite Gaming Particles -->
+    <div class="gaming-particles elite-particles">
+        <div class="particle particle-1 quantum"></div>
+        <div class="particle particle-2 energy"></div>
+        <div class="particle particle-3 cyber"></div>
+        <div class="particle particle-4 quantum"></div>
+        <div class="particle particle-5 energy"></div>
+        <div class="particle particle-6 cyber"></div>
+        <div class="particle particle-7 quantum"></div>
+        <div class="particle particle-8 energy"></div>
+        <div class="particle particle-9 cyber"></div>
+        <div class="particle particle-10 quantum"></div>
+        <div class="particle particle-11 energy"></div>
+        <div class="particle particle-12 cyber"></div>
+    </div>
+
+    <!-- Elite Profile Enhancement Modal -->
+    <div class="enhancement-modal elite-modal" id="enhancementModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content elite-modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-magic"></i>
+                    <span>ELITE PROFILE ENHANCEMENT</span>
+                    <div class="title-glow"></div>
+                </h3>
+                <button class="modal-close elite-close" id="closeModal">
+                    <i class="fas fa-times"></i>
+                    <div class="close-energy"></div>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="enhancement-preview">
+                    <div class="preview-hologram">
+                        <div class="hologram-icon">🚀</div>
+                        <div class="hologram-energy"></div>
+                    </div>
+                    <p class="enhancement-description">
+                        Elite Gaming Profile v2.0 - Neural Interface Ready!
+                    </p>
+                    <div class="feature-preview elite-features">
+                        <div class="feature-item legendary">
+                            <i class="fas fa-brain"></i>
+                            <span>AI-Powered Performance Analysis</span>
+                            <div class="feature-glow"></div>
+                        </div>
+                        <div class="feature-item epic">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Real-time Holographic Statistics</span>
+                            <div class="feature-glow"></div>
+                        </div>
+                        <div class="feature-item rare">
+                            <i class="fas fa-trophy"></i>
+                            <span>Elite Tournament Predictions</span>
+                            <div class="feature-glow"></div>
+                        </div>
+                        <div class="feature-item mythic">
+                            <i class="fas fa-rocket"></i>
+                            <span>Quantum Achievement System</span>
+                            <div class="feature-glow"></div>
+                        </div>
+                    </div>
+                    <div class="enhancement-progress">
+                        <div class="progress-label">Neural Network Integration</div>
+                        <div class="progress-bar elite-progress">
+                            <div class="progress-fill" style="width: 88%"></div>
+                            <div class="progress-spark"></div>
+                        </div>
+                        <div class="progress-text">88% Complete - Quantum Ready</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="elite-btn secondary-btn" id="closeEnhancementModal">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Return to Arena</span>
+                    <div class="btn-energy"></div>
+                </button>
+                <button class="elite-btn primary-btn" id="activateEnhancement">
+                    <i class="fas fa-bolt"></i>
+                    <span>Activate Enhancement</span>
+                    <div class="btn-energy"></div>
+                    <div class="btn-special-glow"></div>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elite Scripts -->
+    <script src="../js/utils.js" defer></script>
+    <script src="../js/advancedNavbar.js" defer></script>
+    <script src="profile.js" defer></script>
+    
+    <!-- Elite Gaming Analytics -->
+    <script>
+        // Performance Analytics
+        window.addEventListener('load', () => {
+            console.log('🎮 Elite Gaming Profile Arena Initialized');
+            console.log('🚀 Neural Interface: ONLINE');
+            console.log('⚡ Quantum Processor: READY');
+            console.log('🏆 Achievement Engine: ACTIVE');
+        });
+    </script>
+</body>
+</html>
+                        </div>
+                        <button class="view-all-btn">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>View All Achievements</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Placeholder for other tabs -->
+            <div class="dashboard-content" id="tournaments">
+                <div class="coming-soon-container">
+                    <div class="coming-soon-icon">🏆</div>
+                    <h3>Tournament History</h3>
+                    <p>Advanced tournament analytics coming soon...</p>
+                </div>
+            </div>
+
+            <div class="dashboard-content" id="achievements">
+                <div class="coming-soon-container">
+                    <div class="coming-soon-icon">🎖️</div>
+                    <h3>Achievement System</h3>
+                    <p>Elite achievement tracking coming soon...</p>
+                </div>
+            </div>
+
+            <div class="dashboard-content" id="stats">
+                <div class="coming-soon-container">
+                    <div class="coming-soon-icon">📊</div>
+                    <h3>Advanced Statistics</h3>
+                    <p>Detailed gaming analytics coming soon...</p>
+                </div>
+            </div>
+
+            <div class="dashboard-content" id="settings">
+                <div class="coming-soon-container">
+                    <div class="coming-soon-icon">⚙️</div>
+                    <h3>Profile Settings</h3>
+                    <p>Customization options coming soon...</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

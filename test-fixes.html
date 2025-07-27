@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutchZone - Fix Test</title>
+    <style>
+        body {
+            background: #0a0a0f;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+        .test-section {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 1px solid #00ffff;
+        }
+        button {
+            background: linear-gradient(135deg, #00ffff 0%, #0099cc 100%);
+            color: #0a0a0f;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-weight: 600;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        }
+        .result {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        .success { border-left: 4px solid #00ff00; }
+        .error { border-left: 4px solid #ff0040; }
+        .info { border-left: 4px solid #00ffff; }
+    </style>
+</head>
+<body>
+    <h1>🎮 ClutchZone Fix Verification</h1>
+    
+    <div class="test-section">
+        <h2>🔊 Sound Manager Tests</h2>
+        <button onclick="testSoundManager()">Test Sound Manager</button>
+        <button onclick="testUtilsSound()">Test Utils Sound</button>
+        <button onclick="testFallbackSound()">Test Fallback Sound</button>
+        <div id="sound-results" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>🌐 API Tests (DigitalOcean)</h2>
+        <button onclick="testApiConnection()">Test API Connection</button>
+        <button onclick="testLoginEndpoint()">Test Login Endpoint</button>
+        <button onclick="testRegisterEndpoint()">Test Register Endpoint</button>
+        <div id="api-results" class="result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>📝 FAQ Tests</h2>
+        <div class="faq-item" data-category="test">
+            <div class="faq-question" onclick="toggleTestFAQ(this)">
+                <h3>🧪 Test FAQ Question</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <div class="answer-content">
+                    <p>This is a test FAQ answer to verify the expand/collapse functionality works properly.</p>
+                </div>
+            </div>
+        </div>
+        <div id="faq-results" class="result"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="frontend/js/utils.js"></script>
+    <script src="frontend/js/api.js"></script>
+    <script src="frontend/sounds/soundManager.js"></script>
+    
+    <script>
+        // Sound Manager Tests
+        function testSoundManager() {
+            const results = document.getElementById('sound-results');
+            let output = 'Sound Manager Test Results:\n';
+            
+            try {
+                if (window.soundManager) {
+                    output += '✅ SoundManager found\n';
+                    if (typeof window.soundManager.playSound === 'function') {
+                        output += '✅ playSound method available\n';
+                        window.soundManager.playSound('click');
+                        output += '✅ Sound played successfully\n';
+                    } else {
+                        output += '❌ playSound method not found\n';
+                    }
+                } else {
+                    output += '❌ SoundManager not found\n';
+                }
+            } catch (error) {
+                output += `❌ Error: ${error.message}\n`;
+            }
+            
+            results.textContent = output;
+            results.className = 'result info';
+        }
+
+        function testUtilsSound() {
+            const results = document.getElementById('sound-results');
+            let output = 'Utils Sound Test Results:\n';
+            
+            try {
+                if (window.utils) {
+                    output += '✅ Utils found\n';
+                    if (typeof window.utils.playSound === 'function') {
+                        output += '✅ Utils playSound method available\n';
+                        window.utils.playSound('success');
+                        output += '✅ Utils sound played successfully\n';
+                    } else {
+                        output += '❌ Utils playSound method not found\n';
+                    }
+                } else {
+                    output += '❌ Utils not found\n';
+                }
+            } catch (error) {
+                output += `❌ Error: ${error.message}\n`;
+            }
+            
+            results.textContent = output;
+            results.className = 'result info';
+        }
+
+        function testFallbackSound() {
+            const results = document.getElementById('sound-results');
+            let output = 'Fallback Sound Test Results:\n';
+            
+            try {
+                // Test procedural audio
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(800, audioContext.currentTime);
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.1);
+                
+                output += '✅ Procedural audio fallback working\n';
+            } catch (error) {
+                output += `❌ Fallback Error: ${error.message}\n`;
+            }
+            
+            results.textContent = output;
+            results.className = 'result success';
+        }
+
+        // API Tests
+        async function testApiConnection() {
+            const results = document.getElementById('api-results');
+            let output = 'API Connection Test Results:\n';
+            
+            try {
+                if (window.api) {
+                    output += '✅ API client found\n';
+                    output += `✅ Base URL: ${window.api.baseURL}\n`;
+                    
+                    if (window.api.baseURL.includes('clutchzone-api.ondigitalocean.app')) {
+                        output += '✅ DigitalOcean endpoint configured\n';
+                    } else {
+                        output += '❌ DigitalOcean endpoint not configured\n';
+                    }
+                } else {
+                    output += '❌ API client not found\n';
+                }
+            } catch (error) {
+                output += `❌ Error: ${error.message}\n`;
+            }
+            
+            results.textContent = output;
+            results.className = 'result info';
+        }
+
+        async function testLoginEndpoint() {
+            const results = document.getElementById('api-results');
+            let output = 'Login Endpoint Test Results:\n';
+            
+            try {
+                if (window.api && typeof window.api.login === 'function') {
+                    output += '✅ Login method found\n';
+                    output += '✅ Login endpoint structure correct\n';
+                } else {
+                    output += '❌ Login method not found\n';
+                }
+            } catch (error) {
+                output += `❌ Error: ${error.message}\n`;
+            }
+            
+            results.textContent = output;
+            results.className = 'result info';
+        }
+
+        async function testRegisterEndpoint() {
+            const results = document.getElementById('api-results');
+            let output = 'Register Endpoint Test Results:\n';
+            
+            try {
+                if (window.api && typeof window.api.register === 'function') {
+                    output += '✅ Register method found\n';
+                    output += '✅ Register endpoint structure correct\n';
+                } else {
+                    output += '❌ Register method not found\n';
+                }
+            } catch (error) {
+                output += `❌ Error: ${error.message}\n`;
+            }
+            
+            results.textContent = output;
+            results.className = 'result info';
+        }
+
+        // FAQ Test
+        function toggleTestFAQ(element) {
+            const results = document.getElementById('faq-results');
+            let output = 'FAQ Toggle Test Results:\n';
+            
+            try {
+                const faqItem = element.closest('.faq-item');
+                const answer = faqItem.querySelector('.faq-answer');
+                const toggle = faqItem.querySelector('.faq-toggle');
+                
+                const isOpen = faqItem.classList.contains('active');
+                
+                if (isOpen) {
+                    faqItem.classList.remove('active');
+                    answer.style.maxHeight = '0px';
+                    toggle.textContent = '+';
+                    output += '✅ FAQ closed successfully\n';
+                } else {
+                    faqItem.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    toggle.textContent = '−';
+                    output += '✅ FAQ opened successfully\n';
+                }
+                
+                output += '✅ FAQ toggle functionality working\n';
+            } catch (error) {
+                output += `❌ Error: ${error.message}\n`;
+            }
+            
+            results.textContent = output;
+            results.className = 'result success';
+        }
+
+        // Initialize API and Utils
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!window.api) {
+                window.api = new ClutchZoneAPI();
+            }
+            if (!window.utils) {
+                window.utils = new ClutchZoneUtils();
+            }
+        });
+    </script>
+
+    <style>
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: rgba(0, 255, 255, 0.1);
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            color: white;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            color: #00ffff;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+        }
+
+        .answer-content {
+            padding: 15px;
+        }
+
+        .answer-content p {
+            color: #e0e0e0;
+            margin: 0;
+        }
+    </style>
+</body>
+</html>

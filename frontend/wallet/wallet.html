@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutchZone - Wallet</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="wallet.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Advanced Gaming Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo">ClutchZone</a>
+                
+                <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="../tournaments/tournaments.html" class="nav-link">🏆 Tournaments</a></li>
+                    <li><a href="../leaderboard/leaderboard.html" class="nav-link">🏅 Leaderboard</a></li>
+                    <li><a href="../match/match.html" class="nav-link">⚔️ Match Center</a></li>
+                    <li><a href="../replays/replays.html" class="nav-link">📹 Replays</a></li>
+                    <li><a href="../ai/ai.html" class="nav-link">🤖 AI Assistant</a></li>
+                    <li class="auth-only"><a href="../wallet/wallet.html" class="nav-link active">💰 Wallet</a></li>
+                    <li class="auth-only"><a href="../profile/profile.html" class="nav-link">👤 Profile</a></li>
+                    <li class="auth-only"><a href="../admin/admin.html" class="nav-link admin-only">⚙️ Admin</a></li>
+                    <li><a href="../contact/contact.html" class="nav-link">📞 Contact</a></li>
+                </ul>
+                
+                <div class="user-section">
+                    <!-- Content will be populated by JavaScript based on auth state -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- AI Chat Bot Float Button -->
+    <div class="ai-chat-float" id="aiChatFloat">
+        <button class="ai-chat-btn" id="aiChatBtn" title="AI Assistant">
+            <span class="ai-icon">🤖</span>
+            <span class="ai-pulse"></span>
+        </button>
+    </div>
+
+    <div class="main-container">
+        <!-- Wallet Header -->
+        <section class="wallet-header">
+            <div class="wallet-hero">
+                <div class="hero-content">
+                    <h1>💳 Digital Wallet</h1>
+                    <p>Manage your gaming funds and transactions</p>
+                    <div class="balance-display">
+                        <div class="balance-card">
+                            <div class="balance-icon">💰</div>
+                            <div class="balance-info">
+                                <span class="balance-label">Available Balance</span>
+                                <span class="balance-amount" id="mainBalance">₹0.00</span>
+                            </div>
+                        </div>
+                        <div class="balance-actions">
+                            <button class="btn-primary" id="addMoneyBtn">Add Money</button>
+                            <button class="btn-secondary" id="withdrawBtn">Withdraw</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wallet Navigation -->
+        <section class="wallet-nav">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="overview">Overview</button>
+                <button class="nav-tab" data-tab="transactions">Transactions</button>
+                <button class="nav-tab" data-tab="payments">Payment Methods</button>
+                <button class="nav-tab" data-tab="earnings">Earnings</button>
+            </div>
+        </section>
+
+        <!-- Overview Tab -->
+        <section class="tab-content active" id="overview">
+            <div class="overview-grid">
+                <div class="overview-card">
+                    <h3>📊 Quick Stats</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-icon">💵</span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="totalDeposits">₹0.00</span>
+                                <span class="stat-label">Total Deposits</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">🏆</span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="totalEarnings">₹0.00</span>
+                                <span class="stat-label">Total Earnings</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">💸</span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="totalWithdrawn">₹0.00</span>
+                                <span class="stat-label">Total Withdrawn</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">📈</span>
+                            <div class="stat-info">
+                                <span class="stat-value" id="monthlyEarnings">₹0.00</span>
+                                <span class="stat-label">This Month</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <h3>🎮 Tournament Earnings</h3>
+                    <div class="earnings-chart" id="earningsChart">
+                        <!-- Chart will be rendered here -->
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <h3>💳 Payment Methods</h3>
+                    <div class="payment-methods" id="paymentMethods">
+                        <!-- Payment methods will be populated here -->
+                    </div>
+                    <button class="btn-secondary add-payment-btn" id="addPaymentMethodBtn">Add Payment Method</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transactions Tab -->
+        <section class="tab-content" id="transactions">
+            <div class="transactions-header">
+                <h2>💰 Transaction History</h2>
+                <div class="transaction-filters">
+                    <select id="transactionFilter">
+                        <option value="all">All Transactions</option>
+                        <option value="deposit">Deposits</option>
+                        <option value="withdrawal">Withdrawals</option>
+                        <option value="earning">Earnings</option>
+                        <option value="fee">Fees</option>
+                    </select>
+                    <input type="date" id="fromDate" placeholder="From Date">
+                    <input type="date" id="toDate" placeholder="To Date">
+                    <button class="btn-secondary" id="filterBtn">Filter</button>
+                </div>
+            </div>
+            <div class="transactions-list" id="transactionsList">
+                <!-- Transactions will be populated here -->
+            </div>
+        </section>
+
+        <!-- Payment Methods Tab -->
+        <section class="tab-content" id="payments">
+            <div class="payments-header">
+                <h2>💳 Payment Methods</h2>
+                <button class="btn-primary" id="addNewPaymentBtn">Add New Method</button>
+            </div>
+            <div class="payment-methods-grid" id="paymentMethodsGrid">
+                <!-- Payment methods will be populated here -->
+            </div>
+        </section>
+
+        <!-- Earnings Tab -->
+        <section class="tab-content" id="earnings">
+            <div class="earnings-header">
+                <h2>🏆 Tournament Earnings</h2>
+                <div class="earnings-filters">
+                    <select id="earningsFilter">
+                        <option value="all">All Tournaments</option>
+                        <option value="won">Won</option>
+                        <option value="participated">Participated</option>
+                    </select>
+                    <select id="gameFilter">
+                        <option value="all">All Games</option>
+                        <option value="bgmi">BGMI</option>
+                        <option value="valorant">Valorant</option>
+                        <option value="csgo">CS:GO</option>
+                    </select>
+                </div>
+            </div>
+            <div class="earnings-list" id="earningsList">
+                <!-- Earnings will be populated here -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Add Money Modal -->
+    <div class="modal" id="addMoneyModal">
+        <div class="modal-content">
+            <span class="close" id="closeAddMoneyModal">&times;</span>
+            <h2>💰 Add Money</h2>
+            <form id="addMoneyForm">
+                <div class="form-group">
+                    <label for="amount">Amount (₹)</label>
+                    <input type="number" id="amount" min="100" max="50000" step="1" required>
+                    <div class="amount-suggestions">
+                        <button type="button" class="amount-btn" data-amount="500">₹500</button>
+                        <button type="button" class="amount-btn" data-amount="1000">₹1000</button>
+                        <button type="button" class="amount-btn" data-amount="2000">₹2000</button>
+                        <button type="button" class="amount-btn" data-amount="5000">₹5000</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod">Payment Method</label>
+                    <select id="paymentMethod" required>
+                        <option value="">Select Payment Method</option>
+                        <option value="upi">UPI</option>
+                        <option value="card">Credit/Debit Card</option>
+                        <option value="netbanking">Net Banking</option>
+                        <option value="wallet">Digital Wallet</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelAddMoneyBtn">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Money</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Withdraw Modal -->
+    <div class="modal" id="withdrawModal">
+        <div class="modal-content">
+            <span class="close" id="closeWithdrawModal">&times;</span>
+            <h2>💸 Withdraw Money</h2>
+            <form id="withdrawForm">
+                <div class="form-group">
+                    <label for="withdrawAmount">Amount (₹)</label>
+                    <input type="number" id="withdrawAmount" min="100" step="1" required>
+                    <div class="available-balance">
+                        Available: <span id="availableBalance">₹0.00</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="bankAccount">Bank Account</label>
+                    <select id="bankAccount" required>
+                        <option value="">Select Bank Account</option>
+                        <!-- Bank accounts will be populated here -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="withdrawalReason">Reason (Optional)</label>
+                    <textarea id="withdrawalReason" rows="3" placeholder="Enter reason for withdrawal..."></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelWithdrawBtn">Cancel</button>
+                    <button type="submit" class="btn-primary">Withdraw</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Payment Method Modal -->
+    <div class="modal" id="addPaymentMethodModal">
+        <div class="modal-content">
+            <span class="close" id="closeAddPaymentModal">&times;</span>
+            <h2>💳 Add Payment Method</h2>
+            <form id="addPaymentMethodForm">
+                <div class="form-group">
+                    <label for="methodType">Method Type</label>
+                    <select id="methodType" required>
+                        <option value="">Select Method Type</option>
+                        <option value="bank">Bank Account</option>
+                        <option value="upi">UPI ID</option>
+                        <option value="card">Credit/Debit Card</option>
+                    </select>
+                </div>
+                <div class="form-group" id="bankFields" style="display: none;">
+                    <label for="bankName">Bank Name</label>
+                    <input type="text" id="bankName" placeholder="Enter bank name">
+                    <label for="accountNumber">Account Number</label>
+                    <input type="text" id="accountNumber" placeholder="Enter account number">
+                    <label for="ifscCode">IFSC Code</label>
+                    <input type="text" id="ifscCode" placeholder="Enter IFSC code">
+                </div>
+                <div class="form-group" id="upiFields" style="display: none;">
+                    <label for="upiId">UPI ID</label>
+                    <input type="text" id="upiId" placeholder="Enter UPI ID">
+                </div>
+                <div class="form-group" id="cardFields" style="display: none;">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" placeholder="Enter card number">
+                    <label for="expiryDate">Expiry Date</label>
+                    <input type="text" id="expiryDate" placeholder="MM/YY">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="Enter CVV">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelAddPaymentMethodBtn">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Method</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Advanced Footer -->
+    <footer class="advanced-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ClutchZone</h3>
+                <p>India's premier esports platform for competitive gaming.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">💬</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../tournaments/tournaments.html">Tournaments</a></li>
+                    <li><a href="../leaderboard/leaderboard.html">Leaderboard</a></li>
+                    <li><a href="../profile/profile.html">Profile</a></li>
+                    <li><a href="../replays/replays.html">Replays</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="../contact/contact.html">Contact Us</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Games</h4>
+                <ul>
+                    <li><a href="#">BGMI</a></li>
+                    <li><a href="#">Valorant</a></li>
+                    <li><a href="#">CS:GO</a></li>
+                    <li><a href="#">Call of Duty</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ClutchZone. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/advancedNavbar.js"></script>
+    <script src="wallet.js"></script>
+</body>
+</html>

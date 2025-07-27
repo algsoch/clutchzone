@@ -1,0 +1,1639 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutchZone - Elite Gaming Tournament Platform</title>
+    <meta name="description" content="Join the ultimate gaming tournament platform. Compete in real-time esports tournaments, earn XP, climb leaderboards, and win prizes.">
+    <link rel="stylesheet" href="global.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/welcome.css">
+    <link rel="icon" href="assets/logo.svg" type="image/x-icon">
+    
+    <!-- Advanced PWA Features -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Advanced Meta Tags -->
+    <meta property="og:title" content="ClutchZone - Elite Gaming Tournament Platform">
+    <meta property="og:description" content="Compete in real-time esports tournaments, earn XP, climb leaderboards, and win prizes.">
+    <meta property="og:image" content="assets/og-image.jpg">
+    <meta property="og:url" content="https://clutchzone.com">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: wss: data: blob:;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- Preconnect to Digital Ocean -->
+    <link rel="preconnect" href="https://clutchzone.app">
+    <link rel="dns-prefetch" href="https://clutchzone.app">
+</head>
+<body>
+    <!-- Advanced Gaming Navigation -->
+    <nav class="advanced-navbar" id="advancedNavbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html" class="brand-link">
+                    <div class="brand-icon">
+                        <img src="assets/logo.svg" alt="ClutchZone Logo" class="brand-logo">
+                    </div>
+                    <span class="brand-text">ClutchZone</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link active">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="tournaments/tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i>
+                    <span>Tournaments</span>
+                    <span class="nav-badge" id="liveTournamentCount">0</span>
+                </a>
+                <a href="leaderboard/leaderboard.html" class="nav-link">
+                    <i class="fas fa-crown"></i>
+                    <span>Leaderboard</span>
+                </a>
+                <a href="match/match.html" class="nav-link auth-required">
+                    <i class="fas fa-crosshairs"></i>
+                    <span>Match Center</span>
+                </a>
+                <a href="wallet/wallet.html" class="nav-link auth-required">
+                    <i class="fas fa-wallet"></i>
+                    <span>Wallet</span>
+                </a>
+                <a href="profile/profile.html" class="nav-link auth-required">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </a>
+                <a href="contact/contact-redesigned.html" class="nav-link">
+                    <i class="fas fa-headset"></i>
+                    <span>Contact</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="auth-section" id="authSection">
+                    <!-- Content populated by JavaScript -->
+                </div>
+                <button class="nav-toggle" id="navToggle" title="Toggle navigation menu" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+  
+    
+    <!-- Real-time Status Bar -->
+    <div class="status-bar collapsed" id="statusBar">
+        <div class="status-container">
+            <div class="status-header">
+                <h3>Live Server Status</h3>
+                <button class="status-close" id="statusClose" title="Close Status Panel" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="status-content">
+                <div class="status-item">
+                    <div class="status-left">
+                        <i class="fas fa-circle status-online"></i>
+                        <span class="status-label">Server Status</span>
+                    </div>
+                    <span class="status-value">Online</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-left">
+                        <i class="fas fa-users"></i>
+                        <span class="status-label">Online Players</span>
+                    </div>
+                    <span class="status-value" id="onlineUsers">Loading...</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-left">
+                        <i class="fas fa-trophy"></i>
+                        <span class="status-label">Live Tournaments</span>
+                    </div>
+                    <span class="status-value" id="activeTournaments">Loading...</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-left">
+                        <i class="fas fa-gamepad"></i>
+                        <span class="status-label">Active Matches</span>
+                    </div>
+                    <span class="status-value" id="activeMatches">Loading...</span>
+                </div>
+                <div class="status-item">
+                    <div class="status-left">
+                        <i class="fas fa-server"></i>
+                        <span class="status-label">Server Ping</span>
+                    </div>
+                    <span class="status-value">12ms</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat Bot Float Button -->
+    <div class="ai-chat-float" id="aiChatFloat">
+        <button class="ai-chat-btn" id="aiChatBtn" title="AI Assistant - Click to chat" aria-label="Open AI Assistant">
+            <span class="ai-icon">🤖</span>
+            <span class="ai-pulse"></span>
+        </button>
+    </div>
+<!-- 
+    Live Updates Notification
+    <div class="live-updates" id="liveUpdates">
+        <div class="update-content">
+            <i class="fas fa-broadcast-tower"></i>
+            <span id="updateText">Welcome to ClutchZone!</span>
+        </div>
+        <button class="close-update" id="closeUpdate">×</button>
+    </div> -->
+
+  
+
+    <!-- Hero Section -->
+    <section class="hero" id="heroSection">
+        <div class="hero-background">
+            <canvas id="hero-canvas"></canvas>
+            <div class="particles-overlay"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge" id="heroBadge">
+                    <span class="badge-text">🏆 #1 Gaming Platform</span>
+                    <span class="badge-glow"></span>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="gradient-text glitch-effect" data-text="ClutchZone">ClutchZone</span>
+                    <span class="subtitle typewriter-effect" data-text="Elite Gaming Arena">Elite Gaming Arena</span>
+                </h1>
+                
+                <p class="hero-description fade-in-up">
+                    Compete in real-time esports tournaments, climb the leaderboards, 
+                    and earn your place among the gaming elite. Your clutch moments start here.
+                </p>
+                
+                <div class="hero-stats" id="heroStats">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+                        <span class="stat-number" data-target="5247">0</span>
+                        <span class="stat-label">Active Players</span>
+                        <div class="stat-icon">👥</div>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                        <span class="stat-number" data-target="156">0</span>
+                        <span class="stat-label">Live Tournaments</span>
+                        <div class="stat-icon">🏆</div>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
+                        <span class="stat-number" data-target="89500">0</span>
+                        <span class="stat-label">Prize Pool (₹)</span>
+                        <div class="stat-icon">💰</div>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                        <span class="stat-number" data-target="24">0</span>
+                        <span class="stat-label">Games Supported</span>
+                        <div class="stat-icon">🎮</div>
+                    </div>
+                </div>
+                
+                <!-- Tournament Details Float Panel -->
+                <div class="tournament-details-float" id="tournamentDetailsFloat">
+                    <div class="tournament-details-content">
+                        <div class="tournament-header">
+                            <h3>Live Tournaments</h3>
+                            <!-- <button class="close-btn" id="closeTournamentDetails">×</button> -->
+                        </div>
+                        <div class="tournament-list" id="liveTournamentsList">
+                            <!-- Will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-actions" data-aos="fade-up" data-aos-delay="500">
+                    <a href="register/register.html" class="btn btn-primary hero-cta" id="startJourneyBtn">
+                        <span class="btn-text">Start Your Journey</span>
+                        <span class="btn-icon">🚀</span>
+                        <div class="btn-glow"></div>
+                    </a>
+                    <a href="tournaments/tournaments.html" class="btn btn-secondary" id="browseTournamentsBtn">
+                        <span class="btn-text">Browse Tournaments</span>
+                        <span class="btn-icon">🏆</span>
+                    </a>
+                    <button class="btn btn-outline" id="watchDemoBtn">
+                        <span class="btn-text">Watch Demo</span>
+                        <span class="btn-icon">▶️</span>
+                    </button>
+                </div>
+                
+                <div class="hero-features" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-pill">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Anti-Cheat Protected</span>
+                    </div>
+                    <div class="feature-pill">
+                        <i class="fas fa-clock"></i>
+                        <span>24/7 Live Support</span>
+                    </div>
+                    <div class="feature-pill">
+                        <i class="fas fa-medal"></i>
+                        <span>Verified Results</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual" data-aos="fade-left" data-aos-delay="300">
+                <div class="gaming-battlefield">
+                    <!-- Main Gaming Monitor -->
+                    <div class="monitor-frame">
+                        <div class="screen-content">
+                            <canvas id="game-preview"></canvas>
+                            <div class="game-overlay">
+                                <div class="game-hud">
+                                    <div class="hud-element crosshair">+</div>
+                                    <div class="hud-element status">LIVE</div>
+                                    <div class="hud-element fps">FPS: 144</div>
+                                    <div class="hud-element ping">PING: 12ms</div>
+                                    <div class="hud-element score">SCORE: 13-10</div>
+                                </div>
+                                <div class="weapon-display">
+                                    <div class="weapon-icon">🔫</div>
+                                    <div class="ammo-counter">30/90</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="monitor-stand"></div>
+                    </div>
+                    
+                    <!-- Gaming Setup Accessories -->
+                    <div class="gaming-accessories">
+                        <div class="keyboard">
+                            <div class="key active" style="--delay: 0.1s"></div>
+                            <div class="key active" style="--delay: 0.2s"></div>
+                            <div class="key active" style="--delay: 0.3s"></div>
+                            <div class="key active" style="--delay: 0.4s"></div>
+                        </div>
+                        <div class="mouse">
+                            <div class="mouse-light"></div>
+                        </div>
+                        <div class="headset">
+                            <div class="headset-glow"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Enhanced Battlefield Effects -->
+                    <div class="battlefield-effects">
+                        <div class="muzzle-flash"></div>
+                        <div class="explosion-effect"></div>
+                        <div class="smoke-grenade"></div>
+                        <div class="bullet-trail"></div>
+                        <div class="war-particles"></div>
+                        <div class="gunfire-effects">
+                            <div class="gunshot-spark"></div>
+                            <div class="gunshot-spark"></div>
+                            <div class="gunshot-spark"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="setup-glow"></div>
+                </div>
+                
+                <!-- Enhanced Floating Cards -->
+                <div class="floating-elements">
+                    <div class="floating-card tournament-card">
+                        <div class="card-header">
+                            <span class="live-indicator pulse"></span>
+                            <span>Live Tournament</span>
+                        </div>
+                        <div class="card-content">
+                            <strong>🎯 Valorant Championship</strong>
+                            <div class="prize-pool">💰 ₹50,000 Prize Pool</div>
+                            <div class="participants">👥 128/256 Players</div>
+                        </div>
+                    </div>
+                    
+                    <div class="floating-card leaderboard-card">
+                        <div class="card-header">
+                            <i class="fas fa-crown"></i>
+                            <span>Top Player</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="player-rank">#1 ProGamer_2024</div>
+                            <div class="xp-bar">
+                                <div class="xp-fill" style="width: 85%"></div>
+                                <span class="xp-text">8,540 XP</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="floating-card stats-card">
+                        <div class="card-header">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Live Stats</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="stat-row">
+                                <span>K/D Ratio:</span>
+                                <span class="stat-value">2.3</span>
+                            </div>
+                            <div class="stat-row">
+                                <span>Win Rate:</span>
+                                <span class="stat-value">78%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="player-rank">#1 ProGamer_2024</div>
+                            <div class="xp-bar">
+                                <div class="xp-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content-box">
+                <div class="cta-box-inner">
+                    <div class="cta-icon">🚀</div>
+                    <h2 class="cta-title">Ready to Dominate?</h2>
+                    <p class="cta-description">
+                        Join thousands of players competing for glory and prizes. 
+                        Your next clutch moment is just one click away.
+                    </p>
+                    <div class="cta-actions">
+                        <a href="register/register.html" class="btn btn-primary cta-btn">
+                            <span class="btn-text">Join ClutchZone</span>
+                            <span class="btn-glow"></span>
+                        </a>
+                        <button class="btn btn-secondary cta-btn" id="learnMoreBtn">
+                            <span class="btn-text">Learn More</span>
+                        </button>
+                    </div>
+                    <div class="cta-features">
+                        <div class="cta-feature">
+                            <i class="fas fa-bolt"></i>
+                            <span>Instant Registration</span>
+                        </div>
+                        <div class="cta-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secure Platform</span>
+                        </div>
+                        <div class="cta-feature">
+                            <i class="fas fa-trophy"></i>
+                            <span>Real Prizes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Tournaments Section -->
+    <section class="live-tournaments">
+        <div class="container">
+            <div class="tournaments-box">
+                <div class="tournaments-header">
+                    <div class="tournaments-header-content">
+                        <h2 class="section-title">
+                            <span class="title-icon">🏆</span>
+                            Live Tournaments
+                        </h2>
+                        <div class="tournaments-stats">
+                            <div class="stat-badge">
+                                <span class="stat-number" id="liveTournamentCounter">12</span>
+                                <span class="stat-label">Active</span>
+                            </div>
+                            <div class="stat-badge">
+                                <span class="stat-number" id="totalPlayersCounter">5,247</span>
+                                <span class="stat-label">Players</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tournaments-content">
+                    <div class="tournaments-grid" id="live-tournaments-grid">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    <div class="tournaments-footer">
+                        <a href="tournaments/tournaments.html" class="btn btn-primary tournaments-view-all">
+                            <span class="btn-text">View All Tournaments</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose ClutchZone?</h2>
+            <div class="features-grid">
+                <div class="feature-card card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Multi-Game Tournaments</h3>
+                    <p>Compete across multiple popular games including Valorant, CS:GO, PUBG, and more.</p>
+                </div>
+                <div class="feature-card card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Real Prize Pools</h3>
+                    <p>Win actual money and rewards. Every tournament has real prizes for top performers.</p>
+                </div>
+                <div class="feature-card card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Advanced Analytics</h3>
+                    <p>Track your performance, XP growth, and ranking progression with detailed statistics.</p>
+                </div>
+                <div class="feature-card card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Ranking System</h3>
+                    <p>Climb the leaderboards, earn XP, level up, and unlock exclusive achievements.</p>
+                </div>
+                <div class="feature-card card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Real-Time Matches</h3>
+                    <p>Join live tournaments with instant matchmaking and real-time result tracking.</p>
+                </div>
+                <div class="feature-card card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Platform</h3>
+                    <p>Safe payments, verified results, and anti-cheat protection for fair competition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Preview -->
+    <section class="leaderboard-preview">
+        <div class="container">
+            <h2 class="section-title">Top Players</h2>
+            <div class="leaderboard-table" id="leaderboard-preview">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            <div class="text-center">
+                <a href="leaderboard/leaderboard.html" class="btn btn-primary">View Full Leaderboard</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section brand-section">
+                    <div class="footer-brand">
+                        <div class="brand-icon">
+                            <img src="assets/logo.svg" alt="ClutchZone Logo" class="footer-logo">
+                        </div>
+                        <h3>ClutchZone</h3>
+                    </div>
+                    <p>The ultimate gaming tournament platform for competitive players. Join millions of gamers competing for glory and prizes.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link discord" title="Join our Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="#" class="social-link twitter" title="Follow us on Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link youtube" title="Subscribe to our YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="social-link twitch" title="Watch us on Twitch">
+                            <i class="fab fa-twitch"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Platform</h4>
+                    <ul>
+                        <li><a href="tournaments/tournaments.html">
+                            <i class="fas fa-trophy"></i>
+                            Tournaments
+                        </a></li>
+                        <li class="auth-required"><a href="leaderboard/leaderboard.html">
+                            <i class="fas fa-crown"></i>
+                            Leaderboard
+                        </a></li>
+                        <li class="auth-required"><a href="profile/profile.html">
+                            <i class="fas fa-user"></i>
+                            Profile
+                        </a></li>
+                        <li class="auth-required"><a href="wallet/wallet.html">
+                            <i class="fas fa-wallet"></i>
+                            Wallet
+                        </a></li>
+                        <li><a href="about.html">
+                            <i class="fas fa-info-circle"></i>
+                            About Platform
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact/contact.html">
+                            <i class="fas fa-headset"></i>
+                            Contact Us
+                        </a></li>
+                        <li><a href="help/help.html" class="footer-link">
+                            <i class="fas fa-question-circle"></i>
+                            Help Center
+                        </a></li>
+                        <li><a href="terms/terms.html" class="footer-link">
+                            <i class="fas fa-file-contract"></i>
+    <!-- Scripts -->
+    <script src="js/clutchzone-api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/advancedNavbar.js"></script>
+    <script src="js/welcome.js"></script>
+    <script src="js/index.js"></script>
+                    </ul>
+                </div>
+                
+                <div class="footer-section auth-required">
+                    <h4>Games</h4>
+                    <ul>
+                        <li><a href="games/valorant.html" class="footer-link game-link" data-game="valorant">
+                            <span class="game-icon valorant-icon">🎯</span>
+                            <span>Valorant</span>
+                        </a></li>
+                        <li><a href="games/csgo.html" class="footer-link game-link" data-game="csgo">
+                            <span class="game-icon csgo-icon">🔫</span>
+                            <span>CS:GO</span>
+                        </a></li>
+                        <li><a href="games/pubg.html" class="footer-link game-link" data-game="pubg">
+                            <span class="game-icon pubg-icon">🏹</span>
+                            <span>PUBG</span>
+                        </a></li>
+                        <li><a href="games/cod.html" class="footer-link game-link" data-game="cod">
+                            <span class="game-icon cod-icon">💥</span>
+                            <span>Call of Duty</span>
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Live Status</h4>
+                    <div class="footer-status">
+                        <div class="status-item">
+                            <span class="status-indicator online"></span>
+                            <span>Server Online</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-value" id="footerOnlineUsers">1,247</span>
+                            <span>Players Online</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-value" id="footerActiveTournaments">12</span>
+                            <span>Live Tournaments</span>
+                        </div>
+                        <button class="status-toggle-btn" id="statusBarToggle" title="Toggle Detailed Status Panel">
+                            <i class="fas fa-chart-line"></i>
+                            <span class="toggle-text">Detailed Status</span>
+                            <i class="fas fa-chevron-up toggle-arrow"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="footer-left">
+                        <p>&copy; 2024 ClutchZone. All rights reserved.</p>
+                        <span class="footer-version">Version 2.1.0</span>
+                    </div>
+                    <div class="footer-right">
+                        <div class="footer-badges">
+                            <span class="badge secure">🔒 Secure</span>
+                            <span class="badge verified">✅ Verified</span>
+                            <span class="badge award">🏆 Award Winning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/clutchzone-api.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/advancedNavbar.js"></script>
+    <script src="js/welcome.js"></script>
+    <script src="js/index.js"></script>
+    
+    <script>
+        // Initialize ClutchZone API and UI
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('🎮 ClutchZone Loading...');
+            
+            // Initialize enhanced loading system
+            updateStatusBar();
+            loadTournaments();
+            
+            // Wait for API to initialize
+            if (window.clutchAPI) {
+                // Check for Discord replies
+                if (clutchAPI.isAuthenticated) {
+                    const reply = await clutchAPI.checkDiscordReply();
+                    if (reply) {
+                        clutchAPI.handleAdminReply(reply);
+                    }
+                }
+                
+                // Set up real-time stats animation
+                animateHeroStats();
+                
+                // Initialize feature visibility based on auth state
+                updateFeatureVisibility();
+                
+                // Listen for tournament updates
+                clutchAPI.addEventListener('tournament_update', (data) => {
+                    updateTournamentDisplay(data);
+                });
+                
+                // Start periodic Discord reply checks
+                if (clutchAPI.isAuthenticated) {
+                    setInterval(async () => {
+                        const reply = await clutchAPI.checkDiscordReply();
+                        if (reply) {
+                            clutchAPI.handleAdminReply(reply);
+                        }
+                    }, 30000); // Check every 30 seconds
+                }
+            }
+            
+            // Initialize leaderboard click handler with login check
+            const leaderboardLinks = document.querySelectorAll('a[href*="leaderboard"]');
+            leaderboardLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (!clutchAPI || !clutchAPI.isAuthenticated) {
+                        e.preventDefault();
+                        clutchAPI.showNotification('Please login to view the leaderboard', 'warning');
+                        setTimeout(() => {
+                            window.location.href = 'login/login.html?redirect=leaderboard/leaderboard.html';
+                        }, 1500);
+                    }
+                });
+            });
+            
+            // Enhanced Mobile Navigation Toggle
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navbar = document.getElementById('advancedNavbar');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                    navbar.classList.toggle('menu-open');
+                    
+                    // Animate toggle button with improved animation
+                    if (navMenu.classList.contains('active')) {
+                        navToggle.style.transform = 'rotate(90deg)';
+                        document.body.style.overflow = 'hidden'; // Prevent scroll when menu is open
+                    } else {
+                        navToggle.style.transform = 'rotate(0deg)';
+                        document.body.style.overflow = '';
+                    }
+                });
+                
+                // Close mobile menu when clicking on links
+                navMenu.addEventListener('click', function(e) {
+                    if (e.target.tagName === 'A' || e.target.closest('a')) {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                        navbar.classList.remove('menu-open');
+                        navToggle.style.transform = 'rotate(0deg)';
+                        document.body.style.overflow = '';
+                    }
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navbar.contains(e.target) && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                        navbar.classList.remove('menu-open');
+                        navToggle.style.transform = 'rotate(0deg)';
+                        document.body.style.overflow = '';
+                    }
+                });
+                
+                // Handle window resize
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                        navbar.classList.remove('menu-open');
+                        navToggle.style.transform = 'rotate(0deg)';
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+            
+            // Status Bar Toggle Functionality
+            const statusBarToggle = document.getElementById('statusBarToggle');
+            const statusBar = document.getElementById('statusBar');
+            const statusClose = document.getElementById('statusClose');
+            const toggleArrow = statusBarToggle?.querySelector('.toggle-arrow');
+            
+            if (statusBarToggle && statusBar) {
+                statusBarToggle.addEventListener('click', function() {
+                    statusBar.classList.toggle('collapsed');
+                    const isCollapsed = statusBar.classList.contains('collapsed');
+                    
+                    if (toggleArrow) {
+                        toggleArrow.style.transform = isCollapsed ? 'rotate(0deg)' : 'rotate(180deg)';
+                    }
+                    
+                    // Add slide animation
+                    if (!isCollapsed) {
+                        statusBar.style.animation = 'slideDown 0.3s ease-out';
+                    }
+                });
+                
+                if (statusClose) {
+                    statusClose.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        statusBar.classList.add('collapsed');
+                        if (toggleArrow) {
+                            toggleArrow.style.transform = 'rotate(0deg)';
+                        }
+                    });
+                }
+            }
+            
+            // AI Chat Button - Open in same page with modal
+            const aiChatBtn = document.getElementById('aiChatBtn');
+            if (aiChatBtn) {
+                aiChatBtn.addEventListener('click', function() {
+                    if (clutchAPI && clutchAPI.isAuthenticated) {
+                        // Open AI chat modal in same page
+                        openAIChatModal();
+                    } else {
+                        clutchAPI.showNotification('Please login to use AI Assistant', 'warning');
+                    }
+                });
+            }
+            
+            // Hero action buttons
+            const startJourneyBtn = document.getElementById('startJourneyBtn');
+            if (startJourneyBtn) {
+                startJourneyBtn.addEventListener('click', function(e) {
+                    if (clutchAPI.isAuthenticated) {
+                        // Redirect to tournaments
+                        window.location.href = '/tournaments/tournaments.html';
+                        e.preventDefault();
+                    }
+                    // If not authenticated, the link will work normally to registration
+                });
+            }
+            
+            // Contact form integration
+            const contactForms = document.querySelectorAll('.contact-form');
+            contactForms.forEach(form => {
+                form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(form);
+                    const messageData = {
+                        name: formData.get('name'),
+                        email: formData.get('email'),
+                        subject: formData.get('subject') || 'Contact Form Submission',
+                        message: formData.get('message'),
+                        contact_method: formData.get('contact_method') || 'email'
+                    };
+                    
+                    try {
+                        await clutchAPI.sendUserMessage(messageData);
+                        form.reset();
+                    } catch (error) {
+                        console.error('Contact form submission failed:', error);
+                    }
+                });
+            });
+            
+            console.log('✅ ClutchZone Initialized Successfully!');
+        });
+        
+        // Animate hero statistics with real data
+        function animateHeroStats() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            statNumbers.forEach((stat, index) => {
+                const target = parseInt(stat.dataset.target);
+                const increment = target / 100;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = target.toLocaleString();
+                        clearInterval(timer);
+                    } else {
+                        stat.textContent = Math.floor(current).toLocaleString();
+                    }
+                }, 20 + (index * 10)); // Stagger the animations
+            });
+            
+            // Update with real-time data if available
+            if (clutchAPI && clutchAPI.realTimeStats) {
+                const stats = clutchAPI.realTimeStats;
+                
+                // Update online users
+                const onlineUsersEl = document.querySelector('[data-target="5247"]');
+                if (onlineUsersEl && stats.online_users) {
+                    onlineUsersEl.dataset.target = stats.online_users;
+                }
+                
+                // Update active tournaments
+                const tournamentsEl = document.querySelector('[data-target="156"]');
+                if (tournamentsEl && stats.active_tournaments) {
+                    tournamentsEl.dataset.target = stats.active_tournaments;
+                }
+            }
+        }
+        
+        // Update feature visibility based on authentication state
+        function updateFeatureVisibility() {
+            const authElements = document.querySelectorAll('.auth-required, .auth-only');
+            const adminElements = document.querySelectorAll('.admin-only');
+            const leaderboardLinks = document.querySelectorAll('a[href*="leaderboard"]');
+            
+            if (clutchAPI && clutchAPI.isAuthenticated) {
+                authElements.forEach(el => el.style.display = '');
+                
+                if (clutchAPI.currentUser && clutchAPI.currentUser.is_admin) {
+                    adminElements.forEach(el => el.style.display = '');
+                }
+                
+                // Enable leaderboard access for authenticated users
+                leaderboardLinks.forEach(link => {
+                    link.style.opacity = '1';
+                    link.style.pointerEvents = 'auto';
+                });
+            } else {
+                authElements.forEach(el => el.style.display = 'none');
+                adminElements.forEach(el => el.style.display = 'none');
+                
+                // Disable leaderboard access for non-authenticated users
+                leaderboardLinks.forEach(link => {
+                    link.style.opacity = '0.6';
+                    link.style.pointerEvents = 'none';
+                });
+            }
+        }
+        
+        // Update tournament displays with enhanced real-time features
+        function updateTournamentDisplay(tournamentData) {
+            const tournamentCards = document.querySelectorAll(`[data-tournament-id="${tournamentData.id}"]`);
+            
+            tournamentCards.forEach(card => {
+                // Update status with animation
+                const statusEl = card.querySelector('.tournament-status');
+                if (statusEl) {
+                    statusEl.textContent = tournamentData.status.toUpperCase();
+                    statusEl.className = `tournament-status status-${tournamentData.status}`;
+                    
+                    // Add animation for status change
+                    statusEl.style.animation = 'none';
+                    statusEl.offsetHeight; // Trigger reflow
+                    statusEl.style.animation = 'statusUpdate 0.5s ease-in-out';
+                }
+                
+                // Update participant count with progress bar
+                const participantsEl = card.querySelector('.tournament-detail-value');
+                if (participantsEl && tournamentData.participants !== undefined) {
+                    participantsEl.textContent = `${tournamentData.participants}/${tournamentData.max_participants || 256}`;
+                    
+                    // Add visual indicator for nearly full tournaments
+                    const participationRate = tournamentData.participants / (tournamentData.max_participants || 256);
+                    if (participationRate > 0.8) {
+                        participantsEl.style.color = 'var(--warning-color)';
+                    } else if (participationRate > 0.9) {
+                        participantsEl.style.color = 'var(--error-color)';
+                    }
+                }
+                
+                // Add live indicator for active tournaments
+                if (tournamentData.status === 'live') {
+                    let liveIndicator = card.querySelector('.live-indicator');
+                    if (!liveIndicator) {
+                        liveIndicator = document.createElement('div');
+                        liveIndicator.className = 'live-indicator';
+                        liveIndicator.innerHTML = '<i class="fas fa-circle"></i> LIVE';
+                        card.querySelector('.tournament-banner').appendChild(liveIndicator);
+                    }
+                }
+                
+                // Update join button based on tournament status
+                const joinBtn = card.querySelector('.btn-join');
+                if (joinBtn) {
+                    switch (tournamentData.status) {
+                        case 'live':
+                            joinBtn.textContent = 'Join Now';
+                            joinBtn.disabled = false;
+                            break;
+                        case 'upcoming':
+                            joinBtn.textContent = 'Register';
+                            joinBtn.disabled = false;
+                            break;
+                        case 'completed':
+                            joinBtn.textContent = 'View Results';
+                            joinBtn.disabled = false;
+                            break;
+                        case 'full':
+                            joinBtn.textContent = 'Tournament Full';
+                            joinBtn.disabled = true;
+                            break;
+                    }
+                }
+            });
+        }
+        
+        // Enhanced loading states with better messages
+        function showLoadingState(element, message = 'Loading...') {
+            if (!element) return;
+            
+            element.innerHTML = `
+                <div class="loading-content">
+                    <div class="loading-spinner"></div>
+                    <span class="loading-text">${message}</span>
+                </div>
+            `;
+            element.classList.add('loading-state');
+        }
+        
+        function hideLoadingState(element) {
+            if (!element) return;
+            element.classList.remove('loading-state');
+        }
+        
+        // Enhanced status bar updates with specific loading messages
+        function updateStatusBar() {
+            const onlineUsersEl = document.getElementById('onlineUsers');
+            const activeTournamentsEl = document.getElementById('activeTournaments');
+            const activeMatchesEl = document.getElementById('activeMatches');
+            
+            // Show specific loading messages
+            if (onlineUsersEl) onlineUsersEl.innerHTML = '<span class="loading-text">Connecting to server...</span>';
+            if (activeTournamentsEl) activeTournamentsEl.innerHTML = '<span class="loading-text">Loading tournaments...</span>';
+            if (activeMatchesEl) activeMatchesEl.innerHTML = '<span class="loading-text">Loading matches...</span>';
+            
+            // Simulate real-time updates with better messaging
+            setTimeout(() => {
+                if (clutchAPI && clutchAPI.realTimeStats) {
+                    const stats = clutchAPI.realTimeStats;
+                    if (onlineUsersEl) onlineUsersEl.innerHTML = `<span>${stats.online_users || '1,247'} online</span>`;
+                    if (activeTournamentsEl) activeTournamentsEl.innerHTML = `<span>${stats.active_tournaments || '12'} live tournaments</span>`;
+                    if (activeMatchesEl) activeMatchesEl.innerHTML = `<span>${stats.active_matches || '156'} active matches</span>`;
+                } else {
+                    if (onlineUsersEl) onlineUsersEl.innerHTML = '<span>1,247 online</span>';
+                    if (activeTournamentsEl) activeTournamentsEl.innerHTML = '<span>12 live tournaments</span>';
+                    if (activeMatchesEl) activeMatchesEl.innerHTML = '<span>156 active matches</span>';
+                }
+            }, 1500); // Simulated network delay
+        }
+        
+        // Enhanced tournament grid loading with advanced UI
+        async function loadTournaments() {
+            const tournamentsGrid = document.getElementById('live-tournaments-grid');
+            if (!tournamentsGrid) return;
+            
+            // Show enhanced loading state
+            showLoadingState(tournamentsGrid, 'Loading live tournaments...');
+            
+            try {
+                let tournaments = [];
+                
+                if (clutchAPI && clutchAPI.getTournaments) {
+                    tournaments = await clutchAPI.getTournaments();
+                } else {
+                    // Fallback to mock data with loading delay
+                    await new Promise(resolve => setTimeout(resolve, 1200));
+                    tournaments = [
+                        {
+                            id: 1,
+                            title: "Valorant Champions League",
+                            game: "Valorant",
+                            status: "live",
+                            prize_pool: "₹50,000",
+                            participants: 128,
+                            max_participants: 256,
+                            start_time: "Now",
+                            duration: "3 hours",
+                            game_icon: "🎯"
+                        },
+                        {
+                            id: 2,
+                            title: "CSGO Masters Cup",
+                            game: "Counter-Strike",
+                            status: "upcoming",
+                            prize_pool: "₹75,000",
+                            participants: 64,
+                            max_participants: 128,
+                            start_time: "2 hours",
+                            duration: "4 hours",
+                            game_icon: "🔫"
+                        },
+                        {
+                            id: 3,
+                            title: "PUBG Royal Rumble",
+                            game: "PUBG Mobile",
+                            status: "live",
+                            prize_pool: "₹30,000",
+                            participants: 200,
+                            max_participants: 300,
+                            start_time: "Now",
+                            duration: "2 hours",
+                            game_icon: "🏹"
+                        },
+                        {
+                            id: 4,
+                            title: "Call of Duty Pro League",
+                            game: "Call of Duty",
+                            status: "upcoming",
+                            prize_pool: "₹90,000",
+                            participants: 96,
+                            max_participants: 128,
+                            start_time: "4 hours",
+                            duration: "5 hours",
+                            game_icon: "💥"
+                        },
+                        {
+                            id: 5,
+                            title: "Valorant Newbie Cup",
+                            game: "Valorant",
+                            status: "live",
+                            prize_pool: "₹15,000",
+                            participants: 45,
+                            max_participants: 64,
+                            start_time: "Now",
+                            duration: "2 hours",
+                            game_icon: "🎯"
+                        },
+                        {
+                            id: 6,
+                            title: "CSGO Weekend Warriors",
+                            game: "Counter-Strike",
+                            status: "upcoming",
+                            prize_pool: "₹25,000",
+                            participants: 28,
+                            max_participants: 64,
+                            start_time: "6 hours",
+                            duration: "3 hours",
+                            game_icon: "🔫"
+                        },
+                        {
+                            id: 7,
+                            title: "Free Fire Community Cup",
+                            game: "Free Fire",
+                            status: "live",
+                            prize_pool: "Free Entry",
+                            participants: 150,
+                            max_participants: 200,
+                            start_time: "Now",
+                            duration: "2 hours",
+                            game_icon: "🔥"
+                        },
+                        {
+                            id: 8,
+                            title: "Valorant Beginner's League",
+                            game: "Valorant",
+                            status: "upcoming",
+                            prize_pool: "Free Entry",
+                            participants: 32,
+                            max_participants: 64,
+                            start_time: "3 hours",
+                            duration: "2 hours",
+                            game_icon: "🎯"
+                        },
+                        {
+                            id: 9,
+                            title: "Mobile Legends Championship",
+                            game: "Mobile Legends",
+                            status: "live",
+                            prize_pool: "₹40,000",
+                            participants: 88,
+                            max_participants: 128,
+                            start_time: "Now",
+                            duration: "4 hours",
+                            game_icon: "⚔️"
+                        },
+                        {
+                            id: 10,
+                            title: "Among Us Fun Tournament",
+                            game: "Among Us",
+                            status: "upcoming",
+                            prize_pool: "Free Entry",
+                            participants: 20,
+                            max_participants: 50,
+                            start_time: "1 hour",
+                            duration: "1.5 hours",
+                            game_icon: "🚀"
+                        },
+                        {
+                            id: 11,
+                            title: "Rocket League Championship",
+                            game: "Rocket League",
+                            status: "live",
+                            prize_pool: "₹35,000",
+                            participants: 72,
+                            max_participants: 96,
+                            start_time: "Now",
+                            duration: "3 hours",
+                            game_icon: "🚗"
+                        },
+                        {
+                            id: 12,
+                            title: "Fall Guys Fun Run",
+                            game: "Fall Guys",
+                            status: "upcoming",
+                            prize_pool: "Free Entry",
+                            participants: 15,
+                            max_participants: 60,
+                            start_time: "5 hours",
+                            duration: "1 hour",
+                            game_icon: "🏃"
+                        }
+                    ];
+                }
+                
+                hideLoadingState(tournamentsGrid);
+                renderAdvancedTournaments(tournaments);
+                
+            } catch (error) {
+                console.error('Failed to load tournaments:', error);
+                tournamentsGrid.innerHTML = `
+                    <div class="error-state">
+                        <div class="error-icon">⚠️</div>
+                        <div class="error-message">Failed to load tournaments</div>
+                        <button class="btn btn-outline" onclick="loadTournaments()">Try Again</button>
+                    </div>
+                `;
+            }
+        }
+        
+        // Advanced tournament card rendering
+        function renderAdvancedTournaments(tournaments) {
+            const tournamentsGrid = document.getElementById('live-tournaments-grid');
+            if (!tournamentsGrid) return;
+            
+            if (tournaments.length === 0) {
+                tournamentsGrid.innerHTML = `
+                    <div class="no-tournaments">
+                        <div class="no-tournaments-icon">🏆</div>
+                        <div class="no-tournaments-message">No live tournaments at the moment</div>
+                        <div class="no-tournaments-subtext">Check back soon for exciting competitions!</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            tournamentsGrid.innerHTML = tournaments.map(tournament => `
+                <div class="tournament-card" data-tournament-id="${tournament.id}">
+                    <div class="tournament-banner">
+                        <div class="tournament-game-icon">${tournament.game_icon || '🎮'}</div>
+                        <div class="tournament-status status-${tournament.status}">
+                            ${tournament.status}
+                        </div>
+                    </div>
+                    
+                    <div class="tournament-meta">
+                        <h3 class="tournament-title">${tournament.title}</h3>
+                        <p class="tournament-game">${tournament.game}</p>
+                        
+                        <div class="tournament-info">
+                            <div class="tournament-detail">
+                                <div class="tournament-detail-label">Prize Pool</div>
+                                <div class="tournament-detail-value prize-value">${tournament.prize_pool}</div>
+                            </div>
+                            <div class="tournament-detail">
+                                <div class="tournament-detail-label">Players</div>
+                                <div class="tournament-detail-value">${tournament.participants}/${tournament.max_participants}</div>
+                            </div>
+                            <div class="tournament-detail">
+                                <div class="tournament-detail-label">${tournament.status === 'live' ? 'Duration' : 'Starts In'}</div>
+                                <div class="tournament-detail-value">${tournament.status === 'live' ? tournament.duration : tournament.start_time}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tournament-actions">
+                        <button class="btn-tournament btn-join" ${tournament.status === 'completed' ? 'disabled' : ''}>
+                            ${tournament.status === 'live' ? 'Join Now' : tournament.status === 'upcoming' ? 'Register' : 'View Results'}
+                        </button>
+                        <button class="btn-tournament btn-view">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Add click handlers for tournament cards
+            document.querySelectorAll('.tournament-card').forEach(card => {
+                const tournamentId = card.dataset.tournamentId;
+                
+                card.querySelector('.btn-join')?.addEventListener('click', () => {
+                    handleTournamentJoin(tournamentId);
+                });
+                
+                card.querySelector('.btn-view')?.addEventListener('click', () => {
+                    // Open tournament details modal instead of navigating to missing page
+                    openTournamentDetailsModal(tournamentId);
+                });
+            });
+        }
+        
+        // Tournament join handler with authentication check
+        function handleTournamentJoin(tournamentId) {
+            if (!clutchAPI || !clutchAPI.isAuthenticated) {
+                clutchAPI.showNotification('Please login to join tournaments', 'warning');
+                setTimeout(() => {
+                    window.location.href = 'login/login.html';
+                }, 1500);
+                return;
+            }
+            
+            // Show loading state on button
+            const button = document.querySelector(`[data-tournament-id="${tournamentId}"] .btn-join`);
+            if (button) {
+                const originalText = button.textContent;
+                button.innerHTML = '<div class="loading-spinner"></div> Joining...';
+                button.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    button.textContent = 'Joined!';
+                    button.classList.add('btn-success');
+                    clutchAPI.showNotification('Successfully joined tournament!', 'success');
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.disabled = false;
+                        button.classList.remove('btn-success');
+                    }, 2000);
+                }, 1500);
+            }
+        }
+        
+        // AI Chat Modal Function
+        function openAIChatModal() {
+            const modal = document.createElement('div');
+            modal.className = 'ai-chat-modal';
+            modal.innerHTML = `
+                <div class="ai-chat-container">
+                    <div class="ai-chat-header">
+                        <h3>🤖 AI Assistant</h3>
+                        <button class="close-modal" onclick="closeAIChatModal()">×</button>
+                    </div>
+                    <div class="ai-chat-content">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="ai-message">
+                                <div class="message-avatar">🤖</div>
+                                <div class="message-content">
+                                    <p>Hello! I'm your ClutchZone AI Assistant. How can I help you today?</p>
+                                    <div class="quick-actions">
+                                        <button class="quick-btn" onclick="sendQuickMessage('tournament help')">Tournament Help</button>
+                                        <button class="quick-btn" onclick="sendQuickMessage('account support')">Account Support</button>
+                                        <button class="quick-btn" onclick="sendQuickMessage('game tips')">Game Tips</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="chat-input-container">
+                            <input type="text" id="chatInput" placeholder="Type your message..." />
+                            <button onclick="sendChatMessage()" class="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-backdrop" onclick="closeAIChatModal()"></div>
+            `;
+            
+            document.body.appendChild(modal);
+            document.getElementById('chatInput').focus();
+            
+            // Add enter key listener
+            document.getElementById('chatInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendChatMessage();
+                }
+            });
+        }
+        
+        function closeAIChatModal() {
+            const modal = document.querySelector('.ai-chat-modal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            const messagesContainer = document.getElementById('chatMessages');
+            
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'user-message';
+            userMessage.innerHTML = `
+                <div class="message-content">
+                    <p>${message}</p>
+                </div>
+                <div class="message-avatar">👤</div>
+            `;
+            messagesContainer.appendChild(userMessage);
+            
+            // Clear input
+            input.value = '';
+            
+            // Simulate AI response
+            setTimeout(() => {
+                const aiResponse = document.createElement('div');
+                aiResponse.className = 'ai-message';
+                aiResponse.innerHTML = `
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <p>I understand you're asking about "${message}". Let me help you with that! For detailed assistance, please contact our support team.</p>
+                    </div>
+                `;
+                messagesContainer.appendChild(aiResponse);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 1000);
+            
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        function sendQuickMessage(type) {
+            const input = document.getElementById('chatInput');
+            input.value = `Help me with ${type}`;
+            sendChatMessage();
+        }
+        
+        // Tournament Details Modal Function
+        function openTournamentDetailsModal(tournamentId) {
+            const modal = document.createElement('div');
+            modal.className = 'tournament-details-modal';
+            modal.innerHTML = `
+                <div class="tournament-modal-container">
+                    <div class="tournament-modal-header">
+                        <h3>🏆 Tournament Details</h3>
+                        <button class="close-modal" onclick="closeTournamentDetailsModal()">×</button>
+                    </div>
+                    <div class="tournament-modal-content">
+                        <div class="tournament-info-section">
+                            <h4>Valorant Championship League</h4>
+                            <div class="tournament-details-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">Prize Pool:</span>
+                                    <span class="detail-value">₹50,000</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Players:</span>
+                                    <span class="detail-value">128/256</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Entry Fee:</span>
+                                    <span class="detail-value">₹100</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Format:</span>
+                                    <span class="detail-value">Single Elimination</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Duration:</span>
+                                    <span class="detail-value">3 hours</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Status:</span>
+                                    <span class="detail-value status-live">LIVE</span>
+                                </div>
+                            </div>
+                            <div class="tournament-description">
+                                <h5>Description:</h5>
+                                <p>Join the ultimate Valorant tournament featuring the best players from across the region. Compete in intense matches with professional rules and real-time spectating. Winner takes all in this high-stakes competition!</p>
+                            </div>
+                            <div class="tournament-rules">
+                                <h5>Rules:</h5>
+                                <ul>
+                                    <li>All matches are Bo3 (Best of 3)</li>
+                                    <li>Standard competitive rules apply</li>
+                                    <li>No cheating or exploiting allowed</li>
+                                    <li>Be respectful to other players</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tournament-actions">
+                            <button class="btn btn-primary">Join Tournament</button>
+                            <button class="btn btn-secondary">Watch Live</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-backdrop" onclick="closeTournamentDetailsModal()"></div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+        
+        function closeTournamentDetailsModal() {
+            const modal = document.querySelector('.tournament-details-modal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        // Add about platform button functionality
+        const watchDemoBtn = document.getElementById('watchDemoBtn');
+        if (watchDemoBtn) {
+            watchDemoBtn.addEventListener('click', function() {
+                // Open about platform modal instead of demo
+                openAboutPlatformModal();
+            });
+        }
+        
+        // Add Learn More button functionality
+        const learnMoreBtn = document.getElementById('learnMoreBtn');
+        if (learnMoreBtn) {
+            learnMoreBtn.addEventListener('click', function() {
+                openAboutPlatformModal();
+            });
+        }
+        
+        function openAboutPlatformModal() {
+            const modal = document.createElement('div');
+            modal.className = 'about-platform-modal';
+            modal.innerHTML = `
+                <div class="about-modal-container">
+                    <div class="about-modal-header">
+                        <h3>🎮 About ClutchZone Platform</h3>
+                        <button class="close-modal" onclick="closeAboutPlatformModal()">×</button>
+                    </div>
+                    <div class="about-modal-content">
+                        <div class="about-section">
+                            <h4>🏆 What is ClutchZone?</h4>
+                            <p>ClutchZone is the premier esports tournament platform designed for competitive gamers who want to test their skills, earn prizes, and climb the ranks in their favorite games.</p>
+                        </div>
+                        
+                        <div class="about-section">
+                            <h4>🎯 Features</h4>
+                            <div class="features-list">
+                                <div class="feature-item">
+                                    <i class="fas fa-trophy"></i>
+                                    <div>
+                                        <strong>Real Tournaments</strong>
+                                        <p>Join live tournaments with real prize pools and competitive gameplay</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-crown"></i>
+                                    <div>
+                                        <strong>Ranking System</strong>
+                                        <p>Climb leaderboards, earn XP, and unlock achievements</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <div>
+                                        <strong>Anti-Cheat Protection</strong>
+                                        <p>Fair play guaranteed with advanced cheat detection</p>
+                                    </div>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-wallet"></i>
+                                    <div>
+                                        <strong>Secure Payments</strong>
+                                        <p>Safe and instant prize distributions</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="about-section">
+                            <h4>🎮 Supported Games</h4>
+                            <div class="games-grid">
+                                <div class="game-item">🎯 Valorant</div>
+                                <div class="game-item">🔫 CS:GO</div>
+                                <div class="game-item">🏹 PUBG</div>
+                                <div class="game-item">💥 Call of Duty</div>
+                            </div>
+                        </div>
+                        
+                        <div class="about-section">
+                            <h4>📊 Platform Stats</h4>
+                            <div class="stats-grid">
+                                <div class="stat">
+                                    <strong>50,000+</strong>
+                                    <span>Active Players</span>
+                                </div>
+                                <div class="stat">
+                                    <strong>₹10M+</strong>
+                                    <span>Prize Pool Distributed</span>
+                                </div>
+                                <div class="stat">
+                                    <strong>1,000+</strong>
+                                    <span>Tournaments Hosted</span>
+                                </div>
+                                <div class="stat">
+                                    <strong>24/7</strong>
+                                    <span>Live Support</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="about-actions">
+                            <a href="register/register.html" class="btn btn-primary">Join Now</a>
+                            <a href="contact/contact.html" class="btn btn-secondary">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-backdrop" onclick="closeAboutPlatformModal()"></div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+        
+        function closeAboutPlatformModal() {
+            const modal = document.querySelector('.about-platform-modal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+    </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>

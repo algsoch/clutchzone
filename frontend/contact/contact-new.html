@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ClutchZone</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Advanced Navbar -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Container -->
+    <main class="contact-main">
+        <!-- Hero Section with War Game Theme -->
+        <section class="contact-hero">
+            <div class="hero-bg"></div>
+            <div class="battle-particles"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>COMMAND CENTER</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="title-line">TACTICAL</span>
+                        <span class="title-line highlight">COMMUNICATION</span>
+                        <span class="title-line">NETWORK</span>
+                    </h1>
+                    <p class="hero-subtitle">Deploy your message. We're standing by for immediate response.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support Active</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">&lt;2min</div>
+                            <div class="stat-label">Response Time</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Mission Success</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Methods Section -->
+        <section class="contact-methods">
+            <div class="container">
+                <div class="methods-grid">
+                    <!-- Live Chat -->
+                    <div class="method-card live-chat-card" data-method="chat">
+                        <div class="method-icon">
+                            <i class="fas fa-comments"></i>
+                            <div class="online-indicator"></div>
+                        </div>
+                        <h3>Live Tactical Chat</h3>
+                        <p>Instant support from our command team</p>
+                        <div class="method-status">
+                            <span class="status-dot online"></span>
+                            <span>3 Agents Ready</span>
+                        </div>
+                        <button class="method-btn" onclick="openLiveChat()">
+                            <span>DEPLOY CHAT</span>
+                            <i class="fas fa-rocket"></i>
+                        </button>
+                    </div>
+
+                    <!-- Email Support -->
+                    <div class="method-card email-card" data-method="email">
+                        <div class="method-icon">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <h3>Secure Channel</h3>
+                        <p>Detailed mission briefings and complex queries</p>
+                        <div class="method-info">
+                            <span>support@clutchzone.com</span>
+                        </div>
+                        <button class="method-btn" onclick="scrollToForm()">
+                            <span>SEND MESSAGE</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+
+                    <!-- Phone Support -->
+                    <div class="method-card phone-card" data-method="phone">
+                        <div class="method-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Direct Command Line</h3>
+                        <p>Voice communication for urgent operations</p>
+                        <div class="method-info">
+                            <span>+1 (555) 123-GAME</span>
+                        </div>
+                        <button class="method-btn" onclick="callSupport()">
+                            <span>ESTABLISH COMMS</span>
+                            <i class="fas fa-phone"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="contact-form-section" id="contact-form-section">
+            <div class="container">
+                <div class="form-header">
+                    <h2>
+                        <i class="fas fa-satellite-dish"></i>
+                        TRANSMIT MESSAGE
+                    </h2>
+                    <p>Send us your tactical report. All communications are encrypted and secure.</p>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="operatorName">
+                                <i class="fas fa-user-shield"></i>
+                                Operator Name *
+                            </label>
+                            <input type="text" id="operatorName" name="name" required 
+                                   placeholder="Enter your callsign">
+                            <div class="form-validation"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope"></i>
+                                Secure Channel *
+                            </label>
+                            <input type="email" id="email" name="email" required 
+                                   placeholder="your.email@domain.com">
+                            <div class="form-validation"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">
+                                <i class="fas fa-flag"></i>
+                                Mission Type *
+                            </label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select mission category</option>
+                                <option value="tournament">Tournament Operations</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="account">Account Issues</option>
+                                <option value="payment">Payment & Billing</option>
+                                <option value="partnership">Strategic Partnerships</option>
+                                <option value="feedback">Intel & Feedback</option>
+                                <option value="other">Other Operations</option>
+                            </select>
+                            <div class="form-validation"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="priority">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Priority Level
+                            </label>
+                            <select id="priority" name="priority">
+                                <option value="low">Standard - Non-urgent</option>
+                                <option value="medium" selected>High - Requires attention</option>
+                                <option value="high">Critical - Immediate response</option>
+                                <option value="urgent">Emergency - Mission critical</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="message">
+                                <i class="fas fa-file-alt"></i>
+                                Mission Brief *
+                            </label>
+                            <textarea id="message" name="message" required rows="6" 
+                                      placeholder="Provide detailed information about your request or issue..."></textarea>
+                            <div class="form-validation"></div>
+                            <div class="character-count">
+                                <span id="charCount">0</span>/1000 characters
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="attachment">
+                                <i class="fas fa-paperclip"></i>
+                                Tactical Attachments
+                            </label>
+                            <div class="file-upload-area" id="fileUploadArea">
+                                <input type="file" id="attachment" name="attachment" 
+                                       accept=".jpg,.jpeg,.png,.gif,.pdf,.txt,.doc,.docx" multiple>
+                                <div class="upload-content">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Drag & drop files here or <span class="upload-link">browse</span></p>
+                                    <small>Max 5MB per file. Images, PDFs, and documents allowed.</small>
+                                </div>
+                            </div>
+                            <div class="file-preview" id="filePreview"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span class="btn-text">DEPLOY MESSAGE</span>
+                            <span class="btn-loading">
+                                <i class="fas fa-spinner fa-spin"></i>
+                                TRANSMITTING...
+                            </span>
+                            <i class="fas fa-rocket"></i>
+                        </button>
+                        <button type="reset" class="reset-btn">
+                            <i class="fas fa-undo"></i>
+                            RESET FORM
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- FAQ Section with Advanced Design -->
+        <section class="faq-section" id="faq-section">
+            <div class="container">
+                <div class="faq-header">
+                    <h2>
+                        <i class="fas fa-question-circle"></i>
+                        TACTICAL BRIEFINGS
+                    </h2>
+                    <p>Intelligence database for common operations and procedures</p>
+                </div>
+
+                <div class="faq-controls">
+                    <div class="faq-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="faqSearch" placeholder="Search briefings...">
+                    </div>
+                    <div class="faq-categories">
+                        <button class="category-btn active" data-category="all">
+                            <i class="fas fa-globe"></i>
+                            ALL INTEL
+                        </button>
+                        <button class="category-btn" data-category="account">
+                            <i class="fas fa-user-cog"></i>
+                            ACCOUNT
+                        </button>
+                        <button class="category-btn" data-category="tournaments">
+                            <i class="fas fa-trophy"></i>
+                            TOURNAMENTS
+                        </button>
+                        <button class="category-btn" data-category="technical">
+                            <i class="fas fa-wrench"></i>
+                            TECHNICAL
+                        </button>
+                        <button class="category-btn" data-category="payments">
+                            <i class="fas fa-credit-card"></i>
+                            PAYMENTS
+                        </button>
+                    </div>
+                </div>
+
+                <div class="faq-container" id="faqContainer">
+                    <!-- Tournament FAQ -->
+                    <div class="faq-item" data-category="tournaments">
+                        <div class="faq-question">
+                            <div class="question-content">
+                                <div class="question-icon">
+                                    <i class="fas fa-trophy"></i>
+                                </div>
+                                <h3>How do I register for combat tournaments?</h3>
+                            </div>
+                            <div class="faq-toggle">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <div class="tactical-steps">
+                                    <h4>Mission Protocol:</h4>
+                                    <div class="step">
+                                        <div class="step-number">01</div>
+                                        <div class="step-content">
+                                            <h5>Access Tournament Command</h5>
+                                            <p>Navigate to the Tournaments section from the main tactical display</p>
+                                        </div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">02</div>
+                                        <div class="step-content">
+                                            <h5>Select Combat Operation</h5>
+                                            <p>Choose your preferred tournament and review mission parameters</p>
+                                        </div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">03</div>
+                                        <div class="step-content">
+                                            <h5>Confirm Deployment</h5>
+                                            <p>Verify your wallet has sufficient funds and confirm registration</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="intel-tip">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Tactical Advantage:</strong> Register early to secure your position. Tournament slots are limited and fill quickly!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment FAQ -->
+                    <div class="faq-item" data-category="payments">
+                        <div class="faq-question">
+                            <div class="question-content">
+                                <div class="question-icon">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <h3>What payment methods are accepted for operations?</h3>
+                            </div>
+                            <div class="faq-toggle">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <div class="payment-arsenal">
+                                    <h4>Available Payment Arsenal:</h4>
+                                    <div class="payment-categories">
+                                        <div class="payment-category">
+                                            <div class="category-header">
+                                                <i class="fas fa-credit-card"></i>
+                                                <h5>Credit Operations</h5>
+                                            </div>
+                                            <ul>
+                                                <li>Visa, MasterCard, RuPay</li>
+                                                <li>Debit & Credit Cards</li>
+                                                <li>International cards accepted</li>
+                                            </ul>
+                                        </div>
+                                        <div class="payment-category">
+                                            <div class="category-header">
+                                                <i class="fas fa-mobile-alt"></i>
+                                                <h5>Digital Wallets</h5>
+                                            </div>
+                                            <ul>
+                                                <li>PayPal, Paytm, PhonePe</li>
+                                                <li>Google Pay, Apple Pay</li>
+                                                <li>UPI payments</li>
+                                            </ul>
+                                        </div>
+                                        <div class="payment-category">
+                                            <div class="category-header">
+                                                <i class="fab fa-bitcoin"></i>
+                                                <h5>Crypto Assets</h5>
+                                            </div>
+                                            <ul>
+                                                <li>Bitcoin (BTC)</li>
+                                                <li>Ethereum (ETH)</li>
+                                                <li>More coming soon</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Account FAQ -->
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question">
+                            <div class="question-content">
+                                <div class="question-icon">
+                                    <i class="fas fa-user-shield"></i>
+                                </div>
+                                <h3>How do I secure my operator credentials?</h3>
+                            </div>
+                            <div class="faq-toggle">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <div class="security-protocol">
+                                    <h4>Security Protocol:</h4>
+                                    <div class="security-steps">
+                                        <div class="security-step">
+                                            <i class="fas fa-key"></i>
+                                            <div>
+                                                <h5>Strong Authentication</h5>
+                                                <p>Use a unique password with uppercase, lowercase, numbers, and symbols</p>
+                                            </div>
+                                        </div>
+                                        <div class="security-step">
+                                            <i class="fas fa-shield-alt"></i>
+                                            <div>
+                                                <h5>Enable 2FA</h5>
+                                                <p>Activate two-factor authentication for maximum account protection</p>
+                                            </div>
+                                        </div>
+                                        <div class="security-step">
+                                            <i class="fas fa-eye"></i>
+                                            <div>
+                                                <h5>Monitor Activity</h5>
+                                                <p>Regularly check your account activity and login history</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technical FAQ -->
+                    <div class="faq-item" data-category="technical">
+                        <div class="faq-question">
+                            <div class="question-content">
+                                <div class="question-icon">
+                                    <i class="fas fa-wifi"></i>
+                                </div>
+                                <h3>Combat lag detected. How to optimize performance?</h3>
+                            </div>
+                            <div class="faq-toggle">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <div class="troubleshooting-guide">
+                                    <h4>Performance Optimization Protocol:</h4>
+                                    <div class="optimization-categories">
+                                        <div class="optimization-category">
+                                            <h5><i class="fas fa-network-wired"></i> Network Optimization</h5>
+                                            <ul>
+                                                <li>Use wired connection instead of WiFi</li>
+                                                <li>Close bandwidth-heavy applications</li>
+                                                <li>Check for ISP throttling</li>
+                                                <li>Use gaming VPN if needed</li>
+                                            </ul>
+                                        </div>
+                                        <div class="optimization-category">
+                                            <h5><i class="fas fa-microchip"></i> System Performance</h5>
+                                            <ul>
+                                                <li>Close unnecessary background programs</li>
+                                                <li>Update graphics drivers</li>
+                                                <li>Lower in-game graphics settings</li>
+                                                <li>Ensure adequate cooling</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Connect Section -->
+        <section class="social-connect">
+            <div class="container">
+                <div class="social-header">
+                    <h2>
+                        <i class="fas fa-users"></i>
+                        JOIN THE ALLIANCE
+                    </h2>
+                    <p>Connect with fellow warriors across all combat zones</p>
+                </div>
+                <div class="social-grid">
+                    <a href="#" class="social-card discord" data-platform="discord">
+                        <div class="social-icon">
+                            <i class="fab fa-discord"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>Discord Command</h3>
+                            <p>Join our tactical communication server</p>
+                            <div class="social-stats">
+                                <span>50K+ Warriors</span>
+                            </div>
+                        </div>
+                        <div class="social-action">
+                            <span>JOIN NOW</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </a>
+
+                    <a href="#" class="social-card twitter" data-platform="twitter">
+                        <div class="social-icon">
+                            <i class="fab fa-twitter"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>Intel Updates</h3>
+                            <p>Latest tactical news and announcements</p>
+                            <div class="social-stats">
+                                <span>25K+ Followers</span>
+                            </div>
+                        </div>
+                        <div class="social-action">
+                            <span>FOLLOW</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </a>
+
+                    <a href="#" class="social-card youtube" data-platform="youtube">
+                        <div class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>Combat Archives</h3>
+                            <p>Tournament highlights and training guides</p>
+                            <div class="social-stats">
+                                <span>100K+ Views</span>
+                            </div>
+                        </div>
+                        <div class="social-action">
+                            <span>WATCH</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </a>
+
+                    <a href="#" class="social-card instagram" data-platform="instagram">
+                        <div class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div class="social-content">
+                            <h3>Battle Moments</h3>
+                            <p>Behind-the-scenes and community showcases</p>
+                            <div class="social-stats">
+                                <span>15K+ Followers</span>
+                            </div>
+                        </div>
+                        <div class="social-action">
+                            <span>FOLLOW</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Live Chat Modal -->
+    <div class="live-chat-modal" id="liveChatModal">
+        <div class="chat-container">
+            <div class="chat-header">
+                <div class="chat-title">
+                    <i class="fas fa-headset"></i>
+                    <span>Live Tactical Support</span>
+                </div>
+                <div class="chat-status">
+                    <span class="status-dot online"></span>
+                    <span>Agent Online</span>
+                </div>
+                <button class="chat-close" onclick="closeLiveChat()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message agent-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="message-author">Agent Alpha</span>
+                            <span class="message-time">Just now</span>
+                        </div>
+                        <div class="message-text">
+                            Welcome to ClutchZone tactical support! How can I assist you today?
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <div class="chat-input-container">
+                    <input type="text" id="chatInput" placeholder="Type your message..." 
+                           onkeypress="handleChatKeyPress(event)">
+                    <button class="chat-send" onclick="sendChatMessage()">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+                <div class="chat-typing" id="chatTyping" style="display: none;">
+                    <span>Agent is typing...</span>
+                    <div class="typing-indicator">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ClutchZone Command</h3>
+                    <p>Elite gaming platform engineered for competitive warfare.</p>
+                    <div class="contributors">
+                        <h4>Development Team</h4>
+                        <div class="contributor">
+                            <i class="fas fa-code"></i>
+                            <span><strong>Vicky Kumar</strong> - Lead Full Stack Engineer</span>
+                        </div>
+                        <div class="contributor">
+                            <i class="fas fa-rocket"></i>
+                            <span><strong>Sachin & Aditya</strong> - Strategic Founders</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Access</h4>
+                    <ul>
+                        <li><a href="../support/support.html">Support Center</a></li>
+                        <li><a href="../help/help.html">Help Documentation</a></li>
+                        <li><a href="../faq/faq.html">FAQ Database</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal Protocols</h4>
+                    <ul>
+                        <li><a href="../privacy/privacy.html">Privacy Policy</a></li>
+                        <li><a href="../terms/terms.html">Terms of Service</a></li>
+                        <li><a href="../cookies/cookies.html">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ClutchZone. All tactical operations secured.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/advancedNavbar.js"></script>
+    <script src="contact.js"></script>
+</body>
+</html>

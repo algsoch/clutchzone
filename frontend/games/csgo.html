@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS:GO Tournaments - ClutchZone</title>
+    <meta name="description" content="Join competitive CS:GO tournaments on ClutchZone. Master the classics like Dust2 and compete for substantial prizes.">
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="css/game-pages.css">
+    <link rel="icon" href="../assets/logo.svg" type="image/x-icon">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="game-page csgo-theme">
+    <!-- Navigation -->
+    <nav class="advanced-navbar" id="advancedNavbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../index.html" class="brand-link">
+                    <div class="brand-icon">
+                        <img src="../assets/logo.svg" alt="ClutchZone Logo" class="brand-logo">
+                    </div>
+                    <span class="brand-text">ClutchZone</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="../tournaments/tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i>
+                    <span>Tournaments</span>
+                </a>
+                <a href="../leaderboard/leaderboard.html" class="nav-link auth-required">
+                    <i class="fas fa-crown"></i>
+                    <span>Leaderboard</span>
+                </a>
+                <a href="../profile/profile.html" class="nav-link auth-required">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="auth-section" id="authSection">
+                    <!-- Content populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Game Hero Section -->
+    <section class="game-hero csgo-hero">
+        <div class="hero-background">
+            <div class="game-particles"></div>
+            <div class="hero-glow"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="game-badge">
+                    <span class="game-icon">🔫</span>
+                    <span class="badge-text">LEGENDARY SHOOTER</span>
+                </div>
+                
+                <h1 class="game-title">
+                    <span class="game-name gradient-text">CS:GO</span>
+                    <span class="game-subtitle">Skill. Teamwork. Legend.</span>
+                </h1>
+                
+                <p class="game-description">
+                    Prove your mastery in the world's most competitive FPS. 
+                    From dust2 classics to modern warfare, show your aim and strategy.
+                </p>
+                
+                <div class="game-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="1247">0</span>
+                        <span class="stat-label">Active Players</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="18">0</span>
+                        <span class="stat-label">Live Tournaments</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="65000">0</span>
+                        <span class="stat-label">Prize Pool (₹)</span>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <a href="../tournaments/tournaments.html?game=csgo" class="btn btn-primary">
+                        <span class="btn-icon">💥</span>
+                        <span class="btn-text">Join Tournament</span>
+                    </a>
+                    <a href="#csgo-tournaments" class="btn btn-outline">
+                        <span class="btn-icon">📊</span>
+                        <span class="btn-text">View Statistics</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="game-showcase">
+                    <div class="weapon-display">
+                        <div class="weapon-icon">🔫</div>
+                        <div class="weapon-glow"></div>
+                    </div>
+                    <div class="ability-orbs">
+                        <div class="orb orb-1"></div>
+                        <div class="orb orb-2"></div>
+                        <div class="orb orb-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Features -->
+    <section class="game-features">
+        <div class="container">
+            <h2 class="section-title">CS:GO Competition Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Classic Maps</h3>
+                    <p>Compete on legendary maps like Dust2, Mirage, and Inferno with skilled players.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💣</div>
+                    <h3>Bomb Defusal</h3>
+                    <p>Master the art of strategic bomb planting and defusing in high-stakes matches.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Major Tournaments</h3>
+                    <p>Participate in major-level tournaments with substantial prize pools and prestige.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Rank System</h3>
+                    <p>Climb from Silver to Global Elite with our comprehensive ranking system.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Active Tournaments -->
+    <section class="game-tournaments" id="csgo-tournaments">
+        <div class="container">
+            <div class="tournaments-header">
+                <h2 class="section-title">Active CS:GO Tournaments</h2>
+                <div class="tournament-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="beginner">Beginner</button>
+                    <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+                    <button class="filter-btn" data-filter="pro">Professional</button>
+                </div>
+            </div>
+            
+            <div class="tournaments-grid" id="csgo-tournaments-grid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Statistics -->
+    <section class="game-statistics">
+        <div class="container">
+            <h2 class="section-title">Platform Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <span class="stat-number">3,247</span>
+                        <span class="stat-label">Registered Players</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎮</div>
+                    <div class="stat-content">
+                        <span class="stat-number">2,156</span>
+                        <span class="stat-label">Matches Played</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <span class="stat-number">₹3,75,000</span>
+                        <span class="stat-label">Total Prizes</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-content">
+                        <span class="stat-number">4.8/5</span>
+                        <span class="stat-label">Player Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="game-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Go Pro?</h2>
+                <p>Join the CS:GO competitive scene and become a legend</p>
+                <div class="cta-actions">
+                    <a href="../register/register.html" class="btn btn-primary">
+                        <span>Start Competing</span>
+                    </a>
+                    <a href="../contact/contact.html" class="btn btn-outline">
+                        <span>Get Support</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ClutchZone</h3>
+                    <p>Elite gaming tournament platform</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Games</h4>
+                    <ul>
+                        <li><a href="valorant.html">Valorant</a></li>
+                        <li><a href="csgo.html" class="active">CS:GO</a></li>
+                        <li><a href="pubg.html">PUBG</a></li>
+                        <li><a href="cod.html">Call of Duty</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="../contact/contact.html">Contact Us</a></li>
+                        <li><a href="../help/help.html">Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ClutchZone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/clutchzone-api.js"></script>
+    <script src="js/game-pages.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeGamePage('csgo');
+            animateCounters();
+            loadGameTournaments('csgo');
+            initializeTournamentFilters();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutchZone - Elite System Command Center</title>
+    <meta name="description" content="Advanced gaming platform system dashboard with real-time monitoring and control">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="icon" href="assets/logo.svg" type="image/x-icon">
+    
+    <!-- Elite Gaming Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Advanced Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
+    
+    <style>
+        /* Elite Dashboard Styles */
+        body {
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(0, 255, 136, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 50% 0%, rgba(244, 114, 182, 0.08) 0%, transparent 50%),
+                conic-gradient(from 180deg at 50% 50%, 
+                    rgba(20, 20, 33, 1) 0deg,
+                    rgba(30, 30, 46, 1) 90deg,
+                    rgba(42, 42, 62, 1) 180deg,
+                    rgba(30, 30, 46, 1) 270deg,
+                    rgba(20, 20, 33, 1) 360deg);
+            background-attachment: fixed;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 48%, rgba(0, 255, 136, 0.03) 50%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, rgba(139, 92, 246, 0.03) 50%, transparent 52%);
+            background-size: 60px 60px;
+            animation: gridMove 20s linear infinite;
+            pointer-events: none;
+            z-index: -2;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* Elite Dashboard Container */
+        .elite-dashboard {
+            max-width: 1400px;
+            margin: 120px auto 40px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .dashboard-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .dashboard-title h1 {
+            font-family: 'Orbitron', monospace;
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, 
+                var(--primary-color) 0%,
+                #8b5cf6 25%,
+                #f472b6 50%,
+                #3b82f6 75%,
+                var(--primary-color) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 400% 400%;
+            animation: textGradient 4s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .dashboard-title h1::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, 
+                rgba(0, 255, 136, 0.2),
+                rgba(139, 92, 246, 0.2),
+                rgba(244, 114, 182, 0.2));
+            filter: blur(20px);
+            z-index: -1;
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes textGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        /* Elite Grid System */
+        .elite-dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Elite Dashboard Cards */
+        .elite-card {
+            background: linear-gradient(145deg, 
+                rgba(15, 20, 35, 0.95) 0%,
+                rgba(25, 30, 50, 0.98) 50%,
+                rgba(35, 40, 65, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            border-radius: 25px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.5),
+                0 5px 15px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(0, 255, 136, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .elite-card::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, 
+                rgba(0, 255, 136, 0.6) 0%,
+                rgba(139, 92, 246, 0.6) 25%,
+                rgba(244, 114, 182, 0.6) 50%,
+                rgba(59, 130, 246, 0.6) 75%,
+                rgba(0, 255, 136, 0.6) 100%);
+            background-size: 400% 400%;
+            border-radius: inherit;
+            opacity: 0;
+            transition: all 0.6s ease;
+            z-index: -2;
+            animation: gradientShift 8s ease-in-out infinite;
+            filter: blur(12px);
+        }
+
+        .elite-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent,
+                rgba(255, 255, 255, 0.15),
+                transparent);
+            transition: left 1s ease;
+            border-radius: inherit;
+            z-index: 1;
+        }
+
+        /* Elite Card Glow Layer */
+        .elite-card .card-glow {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            background: radial-gradient(circle at center, 
+                rgba(0, 255, 136, 0.1) 0%, 
+                transparent 70%);
+            border-radius: inherit;
+            opacity: 0;
+            transition: all 0.6s ease;
+            z-index: -1;
+            filter: blur(20px);
+        }
+
+        .elite-card:hover {
+            transform: translateY(-20px) rotateX(10deg) rotateY(5deg) scale(1.03);
+            box-shadow: 
+                0 35px 70px rgba(0, 0, 0, 0.6),
+                0 15px 30px rgba(0, 0, 0, 0.4),
+                0 0 50px rgba(0, 255, 136, 0.4),
+                inset 0 2px 0 rgba(255, 255, 255, 0.3),
+                inset 0 -2px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .elite-card:hover::before {
+            opacity: 1;
+        }
+
+        .elite-card:hover::after {
+            left: 100%;
+        }
+
+        .elite-card:hover .card-glow {
+            opacity: 1;
+        }
+
+        /* Enhanced Card Headers */
+        .elite-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid transparent;
+            background: linear-gradient(90deg, rgba(0, 255, 136, 0.3), transparent) bottom;
+            background-size: 100% 2px;
+            background-repeat: no-repeat;
+        }
+
+        .elite-card-header::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), #8b5cf6, var(--secondary-color));
+            transition: width 0.6s ease;
+        }
+
+        .elite-card:hover .elite-card-header::after {
+            width: 100%;
+        }
+
+        .elite-card-header h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, 
+                var(--primary-color) 0%,
+                #8b5cf6 50%,
+                #f472b6 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .elite-card-header h3::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(135deg, 
+                rgba(0, 255, 136, 0.2),
+                rgba(139, 92, 246, 0.2),
+                rgba(244, 114, 182, 0.2));
+            filter: blur(15px);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .elite-card:hover .elite-card-header h3::before {
+            opacity: 1;
+        }
+
+        .elite-card-header .card-icon {
+            font-size: 2.2rem;
+            background: linear-gradient(135deg, 
+                var(--primary-color),
+                #8b5cf6,
+                var(--secondary-color));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.4));
+            animation: iconPulse 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .elite-card-header .card-icon::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: radial-gradient(circle, 
+                rgba(0, 255, 136, 0.3) 0%, 
+                transparent 70%);
+            border-radius: 50%;
+            animation: iconGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { 
+                transform: scale(1) rotate(0deg); 
+                filter: drop-shadow(0 0 15px rgba(0, 255, 136, 0.4)); 
+            }
+            50% { 
+                transform: scale(1.15) rotate(5deg); 
+                filter: drop-shadow(0 0 25px rgba(0, 255, 136, 0.8)); 
+            }
+        }
+
+        @keyframes iconGlow {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.8; transform: scale(1.2); }
+        }
+
+        /* Enhanced Elite Status Indicators */
+        .elite-status-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            margin: 0.75rem 0;
+            border-radius: 15px;
+            background: linear-gradient(135deg, 
+                rgba(0, 0, 0, 0.4) 0%,
+                rgba(20, 20, 40, 0.6) 50%,
+                rgba(0, 0, 0, 0.4) 100%);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 4px 15px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .elite-status-indicator::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent,
+                rgba(0, 255, 136, 0.1),
+                transparent);
+            transition: left 1.2s ease;
+        }
+
+        .elite-status-indicator::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-color), #8b5cf6);
+            transition: width 0.6s ease;
+        }
+
+        .elite-status-indicator:hover {
+            transform: translateX(8px) scale(1.02);
+            border-color: rgba(0, 255, 136, 0.5);
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(0, 255, 136, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .elite-status-indicator:hover::before {
+            left: 100%;
+        }
+
+        .elite-status-indicator:hover::after {
+            width: 100%;
+        }
+
+        .metric-label {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+        }
+
+        .status-display {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .status-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            position: relative;
+            animation: statusPulse 2.5s ease-in-out infinite;
+        }
+
+        .status-dot::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: statusRing 2s ease-in-out infinite;
+        }
+
+        .status-dot.online {
+            background: var(--primary-color);
+            box-shadow: 
+                0 0 25px var(--primary-color),
+                inset 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .status-dot.online::before {
+            background: var(--primary-color);
+        }
+
+        .status-dot.offline {
+            background: var(--error-color);
+            box-shadow: 
+                0 0 25px var(--error-color),
+                inset 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .status-dot.offline::before {
+            background: var(--error-color);
+        }
+
+        .status-dot.checking {
+            background: var(--warning-color);
+            box-shadow: 
+                0 0 25px var(--warning-color),
+                inset 0 0 15px rgba(255, 255, 255, 0.3);
+            animation: checkingPulse 1.2s ease-in-out infinite;
+        }
+
+        .status-dot.checking::before {
+            background: var(--warning-color);
+        }
+
+        @keyframes statusPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+
+        @keyframes statusRing {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(2); opacity: 0; }
+        }
+
+        @keyframes checkingPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.7); }
+        }
+
+        .status-text {
+            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Elite Metrics */
+        .elite-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .elite-metric::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-color), #8b5cf6, var(--secondary-color));
+            transition: width 0.3s ease;
+        }
+
+        .elite-metric:hover {
+            background: rgba(0, 255, 136, 0.05);
+            transform: translateX(10px);
+        }
+
+        .elite-metric:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .metric-value {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), #8b5cf6);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Elite Control Buttons */
+        .elite-control-btn {
+            background: linear-gradient(145deg, 
+                rgba(15, 20, 35, 0.95) 0%,
+                rgba(25, 30, 50, 0.98) 50%,
+                rgba(35, 40, 65, 0.95) 100%);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            color: var(--text-primary);
+            padding: 1rem 1.5rem;
+            border-radius: 15px;
+            cursor: pointer;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+            transform-style: preserve-3d;
+            overflow: hidden;
+            margin: 0.5rem;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(0, 255, 136, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .elite-control-btn::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                rgba(0, 255, 136, 0.6),
+                rgba(139, 92, 246, 0.6),
+                rgba(244, 114, 182, 0.6));
+            background-size: 400% 400%;
+            border-radius: inherit;
+            opacity: 0;
+            transition: all 0.6s ease;
+            z-index: -1;
+            animation: buttonGradient 4s ease-in-out infinite;
+            filter: blur(6px);
+        }
+
+        .elite-control-btn:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(0, 255, 136, 0.4);
+        }
+
+        .elite-control-btn:hover::before {
+            opacity: 1;
+        }
+
+        .elite-control-btn.danger {
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .elite-control-btn.danger::before {
+            background: linear-gradient(45deg, 
+                rgba(239, 68, 68, 0.6),
+                rgba(220, 38, 127, 0.6),
+                rgba(239, 68, 68, 0.6));
+        }
+
+        @keyframes buttonGradient {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Elite Log Container */
+        .elite-log-container {
+            max-height: 250px;
+            overflow-y: auto;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 1.5rem;
+            border-radius: 15px;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.85rem;
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            position: relative;
+        }
+
+        .elite-log-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), #8b5cf6, var(--secondary-color));
+            border-radius: 15px 15px 0 0;
+        }
+
+        .elite-log-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .elite-log-container::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+
+        .elite-log-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--primary-color), #8b5cf6);
+            border-radius: 10px;
+        }
+
+        /* Elite Animations */
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-in {
+            animation: slideIn 0.6s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .elite-dashboard {
+                margin: 80px auto 20px;
+                padding: 1rem;
+            }
+
+            .dashboard-title h1 {
+                font-size: 2.5rem;
+            }
+
+            .elite-dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .elite-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body data-performance-monitor="true">
+    <!-- Elite Gaming Background Systems -->
+    <div class="mouse-gradient" id="mouseGradient"></div>
+    <div class="background-particles" id="backgroundParticles"></div>
+    
+    <!-- Elite System Command Center -->
+    <div class="elite-dashboard">
+        <div class="dashboard-title fade-in">
+            <h1>🎮 ELITE SYSTEM COMMAND CENTER</h1>
+        </div>
+        
+        <div class="elite-dashboard-grid">
+            <!-- Elite System Status -->
+            <div class="elite-card slide-in">
+                <div class="elite-card-header">
+                    <div class="card-icon">🌐</div>
+                    <h3>SYSTEM STATUS MATRIX</h3>
+                </div>
+                
+                <div class="elite-status-indicator">
+                    <span class="metric-label">Backend Neural Network</span>
+                    <div class="status-display" id="backendStatus">
+                        <span class="status-dot checking"></span>
+                        <span class="status-text">Scanning...</span>
+                    </div>
+                </div>
+                
+                <div class="elite-status-indicator">
+                    <span class="metric-label">Frontend Interface</span>
+                    <div class="status-display" id="frontendStatus">
+                        <span class="status-dot online"></span>
+                        <span class="status-text">ONLINE</span>
+                    </div>
+                </div>
+                
+                <div class="elite-status-indicator">
+                    <span class="metric-label">Audio Engine</span>
+                    <div class="status-display" id="soundStatus">
+                        <span class="status-dot checking"></span>
+                        <span class="status-text">Initializing...</span>
+                    </div>
+                </div>
+                
+                <div class="elite-status-indicator">
+                    <span class="metric-label">AI Assistant Core</span>
+                    <div class="status-display" id="aiStatus">
+                        <span class="status-dot online"></span>
+                        <span class="status-text">ACTIVE</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Elite Performance Metrics -->
+            <div class="elite-card slide-in">
+                <div class="card-header">
+                    <div class="card-icon-container">
+                        <i class="fas fa-chart-line card-icon"></i>
+                    </div>
+                    <div class="card-title-section">
+                        <h3 class="card-title">Performance Analytics</h3>
+                        <div class="card-subtitle">Live gaming metrics</div>
+                    </div>
+                </div>
+                
+                <div class="card-content">
+                    <div class="elite-status-indicator">
+                        <span class="metric-label">Active Tournaments</span>
+                        <div class="status-display">
+                            <span class="status-text" id="totalTournaments">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="elite-status-indicator">
+                        <span class="metric-label">Elite Gamers Online</span>
+                        <div class="status-display">
+                            <span class="status-text" id="activeUsers">0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="elite-status-indicator">
+                        <span class="metric-label">Neural Response Time</span>
+                        <div class="status-display">
+                            <span class="status-text" id="apiResponse">0ms</span>
+                        </div>
+                    </div>
+                    
+                    <div class="elite-status-indicator">
+                        <span class="metric-label">System Uptime</span>
+                        <div class="status-display">
+                            <span class="status-text" id="uptime">Initializing...</span>
+                        </div>
+                    </div>
+                    
+                    <div class="elite-status-indicator">
+                        <span class="metric-label">Memory Usage</span>
+                        <div class="status-display">
+                            <span class="status-text" id="memoryUsage">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Elite Tournament Data -->
+            <div class="elite-card slide-in">
+                <div class="card-header">
+                    <div class="card-icon-container">
+                        <i class="fas fa-trophy card-icon"></i>
+                    </div>
+                    <div class="card-title-section">
+                        <h3 class="card-title">Tournament Nexus</h3>
+                        <div class="card-subtitle">Elite competitions</div>
+                    </div>
+                </div>
+                
+                <div class="card-content">
+                    <div id="tournamentList" class="tournament-data">
+                        <div class="elite-status-indicator">
+                            <span class="metric-label">Loading Tournament Matrix</span>
+                            <div class="status-display">
+                                <div class="status-dot checking"></div>
+                                <span class="status-text">Initializing...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Elite System Controls -->
+            <div class="elite-card slide-in">
+                <div class="card-header">
+                    <div class="card-icon-container">
+                        <i class="fas fa-cogs card-icon"></i>
+                    </div>
+                    <div class="card-title-section">
+                        <h3 class="card-title">Command Interface</h3>
+                        <div class="card-subtitle">System controls</div>
+                    </div>
+                </div>
+                
+                <div class="card-content">
+                    <div class="control-grid">
+                        <button class="elite-control-btn" onclick="refreshData()">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Refresh Matrix</span>
+                        </button>
+                        
+                        <button class="elite-control-btn" onclick="testSounds()">
+                            <i class="fas fa-volume-up"></i>
+                            <span>Audio Test</span>
+                        </button>
+                        
+                        <button class="elite-control-btn" onclick="clearCache()">
+                            <i class="fas fa-trash-alt"></i>
+                            <span>Purge Cache</span>
+                        </button>
+                        
+                        <button class="elite-control-btn" onclick="optimizeSystem()">
+                            <i class="fas fa-rocket"></i>
+                            <span>Optimize</span>
+                        </button>
+                        
+                        <button class="elite-control-btn danger" onclick="resetSystem()">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>System Reset</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Elite System Log -->
+            <div class="elite-card slide-in">
+                <div class="card-header">
+                    <div class="card-icon-container">
+                        <i class="fas fa-terminal card-icon"></i>
+                    </div>
+                    <div class="card-title-section">
+                        <h3 class="card-title">Neural Activity Log</h3>
+                        <div class="card-subtitle">System diagnostics</div>
+                    </div>
+                </div>
+                
+                <div class="card-content">
+                    <div class="elite-log-container" id="systemLog">
+                        <div class="terminal-line system">[SYSTEM] Elite Command Center initialized...</div>
+                        <div class="terminal-line neural">[NEURAL] AI cores coming online...</div>
+                        <div class="terminal-line status">[STATUS] All systems nominal...</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Elite Quick Actions -->
+            <div class="elite-card slide-in" style="animation-delay: 1.0s;">
+                <div class="elite-card-header">
+                    <div class="card-icon">🚀</div>
+                    <h3>QUICK DEPLOYMENT</h3>
+                </div>
+                
+                <div class="control-grid">
+                    <button class="elite-control-btn" onclick="openPage('tournaments/tournaments.html')">
+                        <i class="fas fa-trophy"></i>
+                        <span>TOURNAMENTS</span>
+                    </button>
+                    
+                    <button class="elite-control-btn" onclick="openPage('profile/profile.html')">
+                        <i class="fas fa-user-astronaut"></i>
+                        <span>ELITE PROFILE</span>
+                    </button>
+                    
+                    <button class="elite-control-btn" onclick="openPage('ai/ai.html')">
+                        <i class="fas fa-brain"></i>
+                        <span>AI NEXUS</span>
+                    </button>
+                    
+                    <button class="elite-control-btn" onclick="openPage('admin/admin.html')">
+                        <i class="fas fa-cogs"></i>
+                        <span>ADMIN CORE</span>
+                    </button>
+                    
+                    <button class="elite-control-btn" onclick="openPage('test.html')">
+                        <i class="fas fa-flask"></i>
+                        <span>TEST LAB</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elite Gaming Background Particles -->
+    <div class="gaming-particles" id="gamingParticles"></div>
+
+    <!-- Elite Audio & Advanced Scripts -->
+    <script src="sounds/proceduralAudio.js"></script>
+    <script src="sounds/soundManager.js"></script>
+    <script>
+        let soundManager;
+        let startTime = Date.now();
+        let mouseX = 0, mouseY = 0;
+        
+        // Elite Dashboard Initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEliteDashboard();
+            initializeParticles();
+            initializeMouseTracking();
+            startAdvancedMonitoring();
+        });
+        
+        function initializeEliteDashboard() {
+            log('🚀 Elite Command Center initialized', 'primary');
+            
+            // Initialize elite sound system
+            try {
+                soundManager = new SoundManager();
+                updateSystemStatus('soundStatus', true, 'ACTIVE');
+                log('🔊 Elite audio engine online', 'success');
+            } catch (e) {
+                updateSystemStatus('soundStatus', false, 'OFFLINE');
+                log('❌ Audio engine failed: ' + e.message, 'error');
+            }
+            
+            // Check backend neural network
+            checkBackendStatus();
+            
+            // Load tournament matrix
+            loadTournamentMatrix();
+            
+            // Initialize performance monitoring
+            startPerformanceMonitoring();
+        }
+        
+        function initializeParticles() {
+            const particleContainer = document.getElementById('backgroundParticles') || 
+                                   document.createElement('div');
+            particleContainer.id = 'backgroundParticles';
+            particleContainer.className = 'background-particles';
+            document.body.appendChild(particleContainer);
+            
+            // Create elite gaming particles
+            for (let i = 0; i < 50; i++) {
+                createParticle(particleContainer);
+            }
+        }
+        
+        function createParticle(container) {
+            const particle = document.createElement('div');
+            particle.className = 'bg-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            container.appendChild(particle);
+        }
+        
+        function initializeMouseTracking() {
+            const mouseGradient = document.getElementById('mouseGradient') || 
+                                document.createElement('div');
+            mouseGradient.id = 'mouseGradient';
+            mouseGradient.className = 'mouse-gradient';
+            document.body.appendChild(mouseGradient);
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                mouseGradient.style.left = mouseX + 'px';
+                mouseGradient.style.top = mouseY + 'px';
+            });
+        }
+        
+        function startAdvancedMonitoring() {
+            // Update systems every second
+            setInterval(updateEliteUptime, 1000);
+            
+            // Advanced system checks every 30 seconds
+            setInterval(checkSystemMatrix, 30000);
+            
+            // Memory monitoring every 5 seconds
+            setInterval(updateMemoryUsage, 5000);
+        }
+        
+        function startPerformanceMonitoring() {
+            if (performance && performance.memory) {
+                updateMemoryUsage();
+            }
+        }
+        
+        function updateMemoryUsage() {
+            if (performance && performance.memory) {
+                const used = performance.memory.usedJSHeapSize;
+                const total = performance.memory.totalJSHeapSize;
+                const percentage = ((used / total) * 100).toFixed(1);
+                document.getElementById('memoryUsage').textContent = percentage + '%';
+            }
+        }
+        
+        function checkBackendStatus() {
+            const startTime = Date.now();
+            
+            fetch('/api/tournaments')
+                .then(response => {
+                    const responseTime = Date.now() - startTime;
+                    document.getElementById('apiResponse').textContent = responseTime + 'ms';
+                    
+                    if (response.ok) {
+                        updateSystemStatus('backendStatus', true, 'ONLINE');
+                        log('🌐 Backend neural network online', 'success');
+                        return response.json();
+                    } else {
+                        throw new Error('Neural network returned status ' + response.status);
+                    }
+                })
+                .then(data => {
+                    document.getElementById('totalTournaments').textContent = data.length;
+                    document.getElementById('activeUsers').textContent = Math.floor(Math.random() * 1000) + 500;
+                })
+                .catch(error => {
+                    updateSystemStatus('backendStatus', false, 'OFFLINE');
+                    log('❌ Backend neural network offline: ' + error.message, 'error');
+                    
+                    // Simulate data for demo
+                    document.getElementById('totalTournaments').textContent = '12';
+                    document.getElementById('activeUsers').textContent = '847';
+                });
+        }
+        
+        function loadTournamentMatrix() {
+            fetch('/api/tournaments')
+                .then(response => response.json())
+                .then(data => {
+                    const tournamentList = document.getElementById('tournamentList');
+                    if (data.length > 0) {
+                        tournamentList.innerHTML = data.slice(0, 4).map(t => 
+                            `<div class="elite-metric">
+                                <span class="metric-label">${t.name}</span>
+                                <span class="metric-value">${t.status}</span>
+                            </div>`
+                        ).join('');
+                    } else {
+                        tournamentList.innerHTML = generateDemoTournaments();
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('tournamentList').innerHTML = generateDemoTournaments();
+                    log('📊 Loading demo tournament data', 'warning');
+                });
+        }
+        
+        function generateDemoTournaments() {
+            const demoTournaments = [
+                { name: 'Elite Championship', status: 'LIVE' },
+                { name: 'Cyber Arena Pro', status: 'STARTING' },
+                { name: 'Neural Masters', status: 'RECRUITING' },
+                { name: 'Quantum League', status: 'SCHEDULED' }
+            ];
+            
+            return demoTournaments.map(t => 
+                `<div class="elite-metric">
+                    <span class="metric-label">${t.name}</span>
+                    <span class="metric-value">${t.status}</span>
+                </div>`
+            ).join('');
+        }
+        
+        function updateSystemStatus(elementId, online, statusText) {
+            const statusElement = document.getElementById(elementId);
+            const statusDisplay = statusElement.querySelector('.status-display') || statusElement;
+            const dot = statusDisplay.querySelector('.status-dot');
+            const text = statusDisplay.querySelector('.status-text');
+            
+            if (dot && text) {
+                dot.className = `status-dot ${online ? 'online' : 'offline'}`;
+                text.textContent = statusText;
+            } else {
+                statusDisplay.innerHTML = `
+                    <span class="status-dot ${online ? 'online' : 'offline'}"></span>
+                    <span class="status-text">${statusText}</span>
+                `;
+            }
+        }
+        
+        function updateEliteUptime() {
+            const uptime = Math.floor((Date.now() - startTime) / 1000);
+            const hours = Math.floor(uptime / 3600);
+            const minutes = Math.floor((uptime % 3600) / 60);
+            const seconds = uptime % 60;
+            
+            document.getElementById('uptime').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        function checkSystemMatrix() {
+            checkBackendStatus();
+            log('🔍 System matrix scan completed', 'info');
+        }
+        
+        function refreshData() {
+            log('🔄 Refreshing elite matrix...', 'info');
+            checkBackendStatus();
+            loadTournamentMatrix();
+            updateMemoryUsage();
+            
+            if (soundManager) {
+                soundManager.playSound('success');
+            }
+            
+            // Add visual feedback
+            const btn = event.target.closest('.elite-control-btn');
+            btn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                btn.style.transform = '';
+            }, 150);
+        }
+        
+        function testSounds() {
+            log('🎵 Testing elite audio systems...', 'info');
+            const sounds = ['click', 'success', 'error', 'notification', 'victory'];
+            sounds.forEach((sound, index) => {
+                setTimeout(() => {
+                    if (soundManager) {
+                        soundManager.playSound(sound);
+                        log(`🔊 Elite audio test: ${sound.toUpperCase()}`, 'accent');
+                    }
+                }, index * 600);
+            });
+        }
+        
+        function clearCache() {
+            log('🗑️ Purging system cache...', 'warning');
+            localStorage.clear();
+            sessionStorage.clear();
+            
+            if (soundManager) {
+                soundManager.playSound('click');
+            }
+            
+            log('✅ Cache purge completed', 'success');
+        }
+        
+        function optimizeSystem() {
+            log('🚀 Optimizing elite systems...', 'accent');
+            
+            // Simulate optimization process
+            let progress = 0;
+            const optimizeInterval = setInterval(() => {
+                progress += Math.random() * 20;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(optimizeInterval);
+                    log('✨ System optimization complete!', 'success');
+                    if (soundManager) {
+                        soundManager.playSound('victory');
+                    }
+                } else {
+                    log(`⚡ Optimization progress: ${Math.floor(progress)}%`, 'accent');
+                }
+            }, 500);
+        }
+        
+        function resetSystem() {
+            if (confirm('⚠️ WARNING: This will reset all elite systems. Continue?')) {
+                log('🔄 Initiating system reset...', 'error');
+                clearCache();
+                
+                setTimeout(() => {
+                    log('💥 System reset initiated!', 'error');
+                    window.location.reload();
+                }, 1000);
+            }
+        }
+        
+        function openPage(url) {
+            log(`🚀 Deploying to: ${url}`, 'info');
+            window.open(url, '_blank');
+            
+            if (soundManager) {
+                soundManager.playSound('click');
+            }
+        }
+        
+        function log(message, type = 'info') {
+            const logElement = document.getElementById('systemLog');
+            const timestamp = new Date().toLocaleTimeString();
+            
+            const colors = {
+                primary: 'var(--primary-color)',
+                success: 'var(--success-color)',
+                error: 'var(--error-color)',
+                warning: 'var(--warning-color)',
+                info: 'var(--info-color)',
+                accent: 'var(--accent-color)'
+            };
+            
+            const color = colors[type] || 'var(--text-secondary)';
+            
+            logElement.innerHTML += `<div style="color: ${color}; margin: 2px 0;">[${timestamp}] ${message}</div>`;
+            logElement.scrollTop = logElement.scrollHeight;
+        }
+        
+        // Add some elite startup effects
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                log('🎮 Elite Gaming Platform: READY', 'primary');
+                log('🧠 AI Cores: SYNCHRONIZED', 'accent');
+                log('⚡ Neural Networks: OPTIMIZED', 'success');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

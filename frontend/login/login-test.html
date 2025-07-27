@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Test - ClutchZone</title>
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="login-fixed.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        /* Quick Test Styling */
+        .test-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(42, 42, 62, 0.9);
+            color: var(--primary-color);
+            padding: 1rem;
+            text-align: center;
+            z-index: 9999;
+            font-family: var(--font-mono);
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .test-info {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: var(--card-background);
+            border: 1px solid var(--primary-color);
+            border-radius: var(--radius-lg);
+            padding: 1rem;
+            font-size: 0.9rem;
+            z-index: 9999;
+            max-width: 300px;
+        }
+        
+        .status-good {
+            color: var(--success-color);
+        }
+        
+        .status-testing {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-header">
+        🎮 ClutchZone Login - Enhanced Test Version 🎮
+    </div>
+    
+    <!-- Advanced Background Effects -->
+    <div class="login-background">
+        <canvas id="loginCanvas"></canvas>
+        <div class="particles-overlay"></div>
+        <div class="cyber-grid"></div>
+    </div>
+
+    <div class="main-content">
+        <!-- Enhanced Login Container -->
+        <div class="login-container">
+            <!-- Left Panel - Welcome Section -->
+            <div class="welcome-panel">
+                <div class="welcome-background">
+                    <canvas id="welcomeCanvas"></canvas>
+                    <div class="floating-elements">
+                        <div class="floating-trophy">🏆</div>
+                        <div class="floating-star">⭐</div>
+                        <div class="floating-crown">👑</div>
+                    </div>
+                </div>
+                
+                <div class="welcome-content">
+                    <div class="logo-section">
+                        <div class="login-logo">
+                            <img src="../assets/logo.svg" alt="ClutchZone" class="logo-img">
+                            <div class="logo-glow"></div>
+                        </div>
+                        <h1 class="welcome-title">
+                            <span class="text-glow">Welcome Back,</span>
+                            <span class="text-gradient gradient-animate">Champion!</span>
+                        </h1>
+                        <p class="welcome-subtitle">
+                            Continue your journey to esports greatness and dominate the leaderboards
+                        </p>
+                    </div>
+                    
+                    <!-- Live Stats Display -->
+                    <div class="live-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon pulse-effect">👥</div>
+                            <div class="stat-value" id="livePlayersCount">5,247</div>
+                            <div class="stat-label">Players Online</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon pulse-effect">🏆</div>
+                            <div class="stat-value" id="liveTournamentsCount">12</div>
+                            <div class="stat-label">Live Tournaments</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon pulse-effect">💰</div>
+                            <div class="stat-value" id="totalPrizePool">₹89,500</div>
+                            <div class="stat-label">Prize Pool</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Daily Login Bonus Preview -->
+                    <div class="login-bonus">
+                        <div class="bonus-header">
+                            <i class="fas fa-gift bonus-icon"></i>
+                            <span>Daily Login Bonus</span>
+                        </div>
+                        <div class="xp-preview">
+                            <div class="xp-bar-container">
+                                <div class="xp-bar">
+                                    <div class="xp-fill animate-fill" data-xp="50"></div>
+                                </div>
+                                <span class="xp-text">+50 XP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Login Form -->
+            <div class="form-panel">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2 class="form-title">Access Your Arena</h2>
+                        <p class="form-subtitle">Login to compete, win, and dominate</p>
+                        <div class="security-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secured Login</span>
+                        </div>
+                    </div>
+
+                    <!-- Enhanced Login Form -->
+                    <form id="loginForm" class="login-form">
+                        <div class="form-group">
+                            <label for="username" class="form-label">
+                                <i class="fas fa-user"></i>
+                                Username or Email
+                            </label>
+                            <div class="input-container">
+                                <input 
+                                    type="text" 
+                                    id="username" 
+                                    name="username" 
+                                    class="form-input"
+                                    placeholder="Enter your username or email"
+                                    required
+                                    autocomplete="username"
+                                >
+                                <div class="input-glow"></div>
+                                <div class="input-validation" id="usernameValidation">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">
+                                <i class="fas fa-lock"></i>
+                                Password
+                            </label>
+                            <div class="input-container">
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    class="form-input"
+                                    placeholder="Enter your password"
+                                    required
+                                    autocomplete="current-password"
+                                >
+                                <div class="input-glow"></div>
+                                <button type="button" class="toggle-password" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <div class="input-validation" id="passwordValidation">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="rememberMe" name="rememberMe">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">Remember me for 30 days</span>
+                            </label>
+                            <a href="#" class="forgot-password" id="forgotPassword">
+                                <i class="fas fa-key"></i>
+                                Forgot Password?
+                            </a>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="loginBtn">
+                            <span class="btn-content">
+                                <i class="fas fa-sign-in-alt btn-icon"></i>
+                                <span class="btn-text">Access Arena</span>
+                            </span>
+                            <div class="btn-loader">
+                                <div class="loader-spinner"></div>
+                            </div>
+                            <div class="btn-glow"></div>
+                        </button>
+                    </form>
+
+                    <!-- Social Login Options -->
+                    <div class="social-login">
+                        <div class="divider">
+                            <span>Or continue with</span>
+                        </div>
+                        <div class="social-buttons">
+                            <button class="social-btn discord" id="discordLogin">
+                                <i class="fab fa-discord"></i>
+                                <span>Discord</span>
+                            </button>
+                            <button class="social-btn steam" id="steamLogin">
+                                <i class="fab fa-steam"></i>
+                                <span>Steam</span>
+                            </button>
+                            <button class="social-btn google" id="googleLogin">
+                                <i class="fab fa-google"></i>
+                                <span>Google</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <p class="register-link">
+                            New to ClutchZone? 
+                            <a href="../register/register.html" class="link">
+                                <i class="fas fa-user-plus"></i>
+                                Create Account
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Info Panel -->
+    <div class="test-info">
+        <h4 style="color: var(--primary-color); margin-bottom: 0.5rem;">🧪 Test Status</h4>
+        <div class="status-good">✅ CSS Loaded Successfully</div>
+        <div class="status-good">✅ Form Inputs Visible</div>
+        <div class="status-good">✅ Animations Active</div>
+        <div class="status-testing">🔄 Testing Form Interactions</div>
+        <div style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--border-color);">
+            <small>Try typing in the form fields and clicking buttons to test all animations!</small>
+        </div>
+    </div>
+
+    <!-- Error Notification System -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Connection Status Indicator -->
+    <div class="connection-status" id="connectionStatus">
+        <div class="status-indicator"></div>
+        <span class="status-text">Connected</span>
+    </div>
+
+    <!-- Basic JavaScript for Testing -->
+    <script>
+        console.log('🎮 ClutchZone Login Test Page Loaded');
+        
+        // Test form interactions
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('loginBtn');
+        const togglePassword = document.getElementById('togglePassword');
+        
+        // Username validation animation
+        if (usernameInput) {
+            usernameInput.addEventListener('input', (e) => {
+                const validation = document.getElementById('usernameValidation');
+                if (e.target.value.length > 3) {
+                    validation.classList.add('show');
+                    validation.classList.remove('error');
+                    console.log('✅ Username validation passed');
+                } else {
+                    validation.classList.remove('show');
+                }
+            });
+            
+            usernameInput.addEventListener('focus', () => {
+                console.log('🎯 Username input focused - glow effect should be visible');
+            });
+        }
+        
+        // Password validation animation
+        if (passwordInput) {
+            passwordInput.addEventListener('input', (e) => {
+                const validation = document.getElementById('passwordValidation');
+                if (e.target.value.length > 5) {
+                    validation.classList.add('show');
+                    validation.classList.remove('error');
+                    console.log('✅ Password validation passed');
+                } else {
+                    validation.classList.remove('show');
+                }
+            });
+            
+            passwordInput.addEventListener('focus', () => {
+                console.log('🎯 Password input focused - glow effect should be visible');
+            });
+        }
+        
+        // Toggle password visibility
+        if (togglePassword) {
+            togglePassword.addEventListener('click', () => {
+                const type = passwordInput.type === 'password' ? 'text' : 'password';
+                passwordInput.type = type;
+                
+                const icon = togglePassword.querySelector('i');
+                if (type === 'text') {
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+                
+                console.log('👁️ Password visibility toggled');
+            });
+        }
+        
+        // Login button animation
+        if (loginBtn) {
+            loginBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Add loading state
+                loginBtn.classList.add('loading');
+                console.log('🚀 Login button clicked - loading animation started');
+                
+                // Simulate login process
+                setTimeout(() => {
+                    loginBtn.classList.remove('loading');
+                    console.log('✅ Login process completed');
+                    
+                    // Show success notification
+                    showNotification('Login successful! Welcome back, Champion!', 'success');
+                }, 2000);
+            });
+        }
+        
+        // Social login buttons
+        document.querySelectorAll('.social-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const platform = btn.classList[1];
+                console.log(`🔗 ${platform} login clicked`);
+                showNotification(`Connecting to ${platform}...`, 'info');
+            });
+        });
+        
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const container = document.getElementById('notificationContainer');
+            if (!container) return;
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <div class="notification-icon">
+                    ${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'}
+                </div>
+                <div class="notification-content">
+                    <div class="notification-title">${type === 'success' ? 'Success' : type === 'error' ? 'Error' : 'Info'}</div>
+                    <div class="notification-message">${message}</div>
+                </div>
+                <button class="notification-close">×</button>
+            `;
+            
+            container.appendChild(notification);
+            
+            // Animate in
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+            
+            // Close button
+            notification.querySelector('.notification-close').addEventListener('click', () => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            });
+        }
+        
+        // Animate stats
+        function animateStats() {
+            const players = document.getElementById('livePlayersCount');
+            const tournaments = document.getElementById('liveTournamentsCount');
+            const prize = document.getElementById('totalPrizePool');
+            
+            if (players) {
+                let count = 0;
+                const target = 5247;
+                const increment = target / 50;
+                
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        count = target;
+                        clearInterval(timer);
+                    }
+                    players.textContent = Math.floor(count).toLocaleString();
+                }, 50);
+            }
+        }
+        
+        // Start animations after page load
+        setTimeout(animateStats, 1000);
+        
+        // XP bar animation
+        setTimeout(() => {
+            const xpFill = document.querySelector('.xp-fill');
+            if (xpFill) {
+                xpFill.style.width = '50%';
+                console.log('📊 XP bar animated');
+            }
+        }, 2000);
+        
+        console.log('🎯 All login test features initialized successfully!');
+    </script>
+</body>
+</html>

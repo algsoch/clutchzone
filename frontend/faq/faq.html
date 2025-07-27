@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - ClutchZone</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="faq.css">
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <!-- <nav id="navbar"></nav> -->
+
+    <!-- Main Content -->
+    <main class="faq-main">
+        <!-- Header Section -->
+        <section class="faq-header">
+            <div class="container">
+                <div class="header-content">
+                    <h1 class="header-title">
+                        <span class="title-icon">❓</span>
+                        Frequently Asked Questions
+                    </h1>
+                    <p class="header-subtitle">Find quick answers to common questions about ClutchZone</p>
+                    
+                    <!-- Search Bar -->
+                    <div class="faq-search">
+                        <input type="text" id="faqSearch" placeholder="Search FAQ..." class="search-input">
+                        <button class="search-btn" title="Search FAQ">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Categories -->
+        <section class="faq-categories">
+            <div class="container">
+                <div class="category-tabs">
+                    <button class="tab-btn active" data-category="all">All Questions</button>
+                    <button class="tab-btn" data-category="account">Account</button>
+                    <button class="tab-btn" data-category="tournaments">Tournaments</button>
+                    <button class="tab-btn" data-category="payments">Payments</button>
+                    <button class="tab-btn" data-category="technical">Technical</button>
+                    <button class="tab-btn" data-category="gameplay">Gameplay</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Items -->
+        <section class="faq-content">
+            <div class="container">
+                <!-- Account Questions -->
+                <div class="faq-section" data-category="account">
+                    <h2 class="section-title">
+                        <i class="fas fa-user"></i>
+                        Account Questions
+                    </h2>
+                    
+                    <div class="faq-item" data-keywords="register signup account create">
+                        <div class="faq-question">
+                            <h3>How do I register for ClutchZone?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>Creating your ClutchZone account is quick and easy:</p>
+                                <ol>
+                                    <li><strong>Visit the Registration Page:</strong> Click the "Sign Up" button on our homepage</li>
+                                    <li><strong>Fill Your Information:</strong>
+                                        <ul>
+                                            <li>Choose a unique username (3-20 characters)</li>
+                                            <li>Enter a valid email address</li>
+                                            <li>Create a strong password (minimum 8 characters)</li>
+                                            <li>Select your favorite game</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Verify Your Email:</strong> Check your inbox for a verification email</li>
+                                    <li><strong>Complete Your Profile:</strong> Add your gaming preferences and avatar</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <strong>Pro Tip:</strong> Use a strong password with uppercase, lowercase, numbers, and special characters for maximum security.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-keywords="login signin password forgot">
+                        <div class="faq-question">
+                            <h3>I forgot my password. How can I reset it?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>No worries! You can easily reset your password:</p>
+                                <ol>
+                                    <li>Go to the login page and click "Forgot Password?"</li>
+                                    <li>Enter your registered email address</li>
+                                    <li>Check your email for a reset link (check spam folder too)</li>
+                                    <li>Click the link and create a new password</li>
+                                    <li>Login with your new password</li>
+                                </ol>
+                                <div class="warning-box">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <strong>Important:</strong> Reset links expire after 24 hours for security reasons.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-keywords="profile edit update change">
+                        <div class="faq-question">
+                            <h3>How can I update my profile information?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>You can update your profile anytime:</p>
+                                <ul>
+                                    <li>Navigate to your Profile page</li>
+                                    <li>Click the "Edit Profile" button</li>
+                                    <li>Update your information (avatar, bio, gaming preferences)</li>
+                                    <li>Save your changes</li>
+                                </ul>
+                                <p>You can change everything except your username (contact support for username changes).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tournament Questions -->
+                <div class="faq-section" data-category="tournaments">
+                    <h2 class="section-title">
+                        <i class="fas fa-trophy"></i>
+                        Tournament Questions
+                    </h2>
+                    
+                    <div class="faq-item" data-keywords="tournament join register participate">
+                        <div class="faq-question">
+                            <h3>How do I join a tournament?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>Joining tournaments is straightforward:</p>
+                                <ol>
+                                    <li><strong>Browse Tournaments:</strong> Visit the Tournaments page</li>
+                                    <li><strong>Check Requirements:</strong> Ensure you meet skill level and entry requirements</li>
+                                    <li><strong>Register:</strong> Click "Join Tournament" and pay entry fee (if applicable)</li>
+                                    <li><strong>Prepare:</strong> Check tournament rules and schedule</li>
+                                    <li><strong>Compete:</strong> Show up on time and give your best!</li>
+                                </ol>
+                                <div class="info-box">
+                                    <i class="fas fa-info-circle"></i>
+                                    <strong>Note:</strong> Some tournaments have skill-based matchmaking or require qualification rounds.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-keywords="prize money rewards payout">
+                        <div class="faq-question">
+                            <h3>How do tournament prizes work?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>Tournament prizes are distributed as follows:</p>
+                                <ul>
+                                    <li><strong>Cash Prizes:</strong> Directly added to your wallet</li>
+                                    <li><strong>XP Points:</strong> Boost your player level</li>
+                                    <li><strong>Achievements:</strong> Unlock special badges and titles</li>
+                                    <li><strong>Items:</strong> In-game cosmetics and upgrades</li>
+                                </ul>
+                                <p>Prize distribution typically occurs within 24-48 hours after tournament completion.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-keywords="rules regulations tournament guidelines">
+                        <div class="faq-question">
+                            <h3>What are the general tournament rules?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>All tournaments follow these basic rules:</p>
+                                <ul>
+                                    <li>No cheating, hacking, or exploiting</li>
+                                    <li>Respectful behavior towards other players</li>
+                                    <li>Punctuality - arrive on time for matches</li>
+                                    <li>Use only approved gaming software/hardware</li>
+                                    <li>Follow game-specific rules and formats</li>
+                                </ul>
+                                <div class="warning-box">
+                                    <i class="fas fa-ban"></i>
+                                    <strong>Violations may result in disqualification and account penalties.</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Questions -->
+                <div class="faq-section" data-category="payments">
+                    <h2 class="section-title">
+                        <i class="fas fa-credit-card"></i>
+                        Payment Questions
+                    </h2>
+                    
+                    <div class="faq-item" data-keywords="deposit money wallet fund payment">
+                        <div class="faq-question">
+                            <h3>How do I add money to my wallet?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>Adding funds to your ClutchZone wallet is secure and easy:</p>
+                                <ol>
+                                    <li>Go to your Wallet page</li>
+                                    <li>Click "Add Funds" or "Deposit"</li>
+                                    <li>Choose your payment method:
+                                        <ul>
+                                            <li>Credit/Debit Card</li>
+                                            <li>PayPal</li>
+                                            <li>Bank Transfer</li>
+                                            <li>Cryptocurrency (BTC, ETH)</li>
+                                        </ul>
+                                    </li>
+                                    <li>Enter the amount and complete payment</li>
+                                    <li>Funds appear instantly in most cases</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <strong>Security:</strong> All transactions are encrypted and PCI-DSS compliant.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-keywords="withdraw money cashout payout">
+                        <div class="faq-question">
+                            <h3>How do I withdraw my winnings?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>Withdrawing your earnings is straightforward:</p>
+                                <ol>
+                                    <li>Verify your account (required for first withdrawal)</li>
+                                    <li>Go to Wallet → Withdraw</li>
+                                    <li>Choose withdrawal method</li>
+                                    <li>Enter amount (minimum $10)</li>
+                                    <li>Confirm withdrawal request</li>
+                                </ol>
+                                <p><strong>Processing Times:</strong></p>
+                                <ul>
+                                    <li>PayPal: 1-2 business days</li>
+                                    <li>Bank Transfer: 3-5 business days</li>
+                                    <li>Cryptocurrency: 1-24 hours</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Technical Questions -->
+                <div class="faq-section" data-category="technical">
+                    <h2 class="section-title">
+                        <i class="fas fa-cogs"></i>
+                        Technical Questions
+                    </h2>
+                    
+                    <div class="faq-item" data-keywords="system requirements minimum specs hardware">
+                        <div class="faq-question">
+                            <h3>What are the system requirements?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p><strong>Minimum Requirements:</strong></p>
+                                <ul>
+                                    <li>OS: Windows 10/macOS 10.14/Ubuntu 18.04</li>
+                                    <li>Browser: Chrome 90+, Firefox 88+, Safari 14+</li>
+                                    <li>RAM: 4GB</li>
+                                    <li>Internet: Stable broadband connection (25+ Mbps)</li>
+                                    <li>Graphics: DirectX 11 compatible</li>
+                                </ul>
+                                <p><strong>Recommended for Best Performance:</strong></p>
+                                <ul>
+                                    <li>RAM: 8GB+</li>
+                                    <li>Internet: 100+ Mbps</li>
+                                    <li>Dedicated graphics card</li>
+                                    <li>Wired internet connection</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-keywords="lag latency connection slow">
+                        <div class="faq-question">
+                            <h3>I'm experiencing lag during games. What can I do?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>Try these troubleshooting steps to reduce lag:</p>
+                                <ol>
+                                    <li><strong>Check Internet Speed:</strong> Run a speed test (aim for 25+ Mbps)</li>
+                                    <li><strong>Use Wired Connection:</strong> Ethernet is more stable than Wi-Fi</li>
+                                    <li><strong>Close Background Apps:</strong> Free up system resources</li>
+                                    <li><strong>Lower Graphics Settings:</strong> Reduce visual quality for better performance</li>
+                                    <li><strong>Update Drivers:</strong> Keep graphics and network drivers current</li>
+                                    <li><strong>Choose Closer Servers:</strong> Select the nearest game server</li>
+                                </ol>
+                                <div class="tip-box">
+                                    <i class="fas fa-clock"></i>
+                                    <strong>Optimal Ping:</strong> Aim for under 50ms for competitive gaming.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gameplay Questions -->
+                <div class="faq-section" data-category="gameplay">
+                    <h2 class="section-title">
+                        <i class="fas fa-gamepad"></i>
+                        Gameplay Questions
+                    </h2>
+                    
+                    <div class="faq-item" data-keywords="ranking system skill level matchmaking">
+                        <div class="faq-question">
+                            <h3>How does the ranking system work?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>ClutchZone uses a skill-based ranking system:</p>
+                                <ol>
+                                    <li><strong>Placement Matches:</strong> Play 10 initial matches to determine starting rank</li>
+                                    <li><strong>Rank Progression:</strong> Win games to gain rank points, lose to lose points</li>
+                                    <li><strong>Skill Tiers:</strong>
+                                        <ul>
+                                            <li>Bronze (1000-1499 points)</li>
+                                            <li>Silver (1500-1999 points)</li>
+                                            <li>Gold (2000-2499 points)</li>
+                                            <li>Platinum (2500-2999 points)</li>
+                                            <li>Diamond (3000-3499 points)</li>
+                                            <li>Master (3500+ points)</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Seasonal Resets:</strong> Ranks reset every 3 months with rewards</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="faq-item" data-keywords="xp experience points level up">
+                        <div class="faq-question">
+                            <h3>How do I earn XP and level up?</h3>
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-content">
+                                <p>Earn XP through various activities:</p>
+                                <ul>
+                                    <li><strong>Playing Matches:</strong> 50-100 XP per match (more for wins)</li>
+                                    <li><strong>Tournament Participation:</strong> 200-500 XP</li>
+                                    <li><strong>Daily Challenges:</strong> 100-250 XP each</li>
+                                    <li><strong>Achievement Unlocks:</strong> 500-1000 XP</li>
+                                    <li><strong>Community Events:</strong> Bonus XP during special events</li>
+                                </ul>
+                                <p><strong>Level Benefits:</strong></p>
+                                <ul>
+                                    <li>Unlock new game modes</li>
+                                    <li>Access exclusive tournaments</li>
+                                    <li>Earn cosmetic rewards</li>
+                                    <li>Increase wallet limits</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Contact -->
+        <section class="faq-contact">
+            <div class="container">
+                <div class="contact-card">
+                    <h2>Didn't find your answer?</h2>
+                    <p>Our support team is here to help you 24/7</p>
+                    <div class="contact-actions">
+                        <button class="btn btn-primary" onclick="openLiveChat()">
+                            <i class="fas fa-comment"></i>
+                            Live Chat
+                        </button>
+                        <button class="btn btn-secondary" onclick="createTicket()">
+                            <i class="fas fa-ticket-alt"></i>
+                            Create Ticket
+                        </button>
+                        <a href="../contact/contact.html" class="btn btn-outline">
+                            <i class="fas fa-envelope"></i>
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ClutchZone</h4>
+                    <p>The ultimate gaming platform for competitive players.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../tournaments/tournaments.html">Tournaments</a></li>
+                        <li><a href="../leaderboard/leaderboard.html">Leaderboard</a></li>
+                        <li><a href="../support/support.html">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="../help/help.html">Help Center</a></li>
+                        <li><a href="../faq/faq.html">FAQ</a></li>
+                        <li><a href="../contact/contact.html">Contact</a></li>
+                        <li><a href="../terms/terms.html">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ClutchZone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../sounds/soundManager.js"></script>
+    <script src="../js/advancedNavbar.js"></script>
+    <script src="faq.js"></script>
+</body>
+</html>

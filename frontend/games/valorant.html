@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant Tournaments - ClutchZone</title>
+    <meta name="description" content="Join competitive Valorant tournaments on ClutchZone. Compete with the best players and win exciting prizes in our professional esports platform.">
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="css/game-pages.css">
+    <link rel="icon" href="../assets/logo.svg" type="image/x-icon">
+    
+    <!-- Valorant-specific meta -->
+    <meta property="og:title" content="Valorant Tournaments - ClutchZone">
+    <meta property="og:description" content="Join competitive Valorant tournaments and compete for prizes">
+    <meta property="og:image" content="../assets/valorant-banner.jpg">
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body class="game-page valorant-theme">
+    <!-- Advanced Gaming Navigation -->
+    <nav class="advanced-navbar" id="advancedNavbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../index.html" class="brand-link">
+                    <div class="brand-icon">
+                        <img src="../assets/logo.svg" alt="ClutchZone Logo" class="brand-logo">
+                    </div>
+                    <span class="brand-text">ClutchZone</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="../tournaments/tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i>
+                    <span>Tournaments</span>
+                </a>
+                <a href="../leaderboard/leaderboard.html" class="nav-link auth-required">
+                    <i class="fas fa-crown"></i>
+                    <span>Leaderboard</span>
+                </a>
+                <a href="../profile/profile.html" class="nav-link auth-required">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="auth-section" id="authSection">
+                    <!-- Content populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Game Hero Section -->
+    <section class="game-hero valorant-hero">
+        <div class="hero-background">
+            <div class="game-particles"></div>
+            <div class="hero-glow"></div>
+        </div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="game-badge">
+                    <span class="game-icon">🎯</span>
+                    <span class="badge-text">TACTICAL SHOOTER</span>
+                </div>
+                
+                <h1 class="game-title">
+                    <span class="game-name gradient-text">VALORANT</span>
+                    <span class="game-subtitle">Precision. Strategy. Victory.</span>
+                </h1>
+                
+                <p class="game-description">
+                    Master the art of tactical combat in Valorant's competitive arena. 
+                    Join ranked tournaments, showcase your skills, and climb to Radiant.
+                </p>
+                
+                <div class="game-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="847">0</span>
+                        <span class="stat-label">Active Players</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="23">0</span>
+                        <span class="stat-label">Live Tournaments</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-target="45000">0</span>
+                        <span class="stat-label">Prize Pool (₹)</span>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <a href="../tournaments/tournaments.html?game=valorant" class="btn btn-primary">
+                        <span class="btn-icon">⚔️</span>
+                        <span class="btn-text">Join Tournament</span>
+                    </a>
+                    <a href="#valorant-tournaments" class="btn btn-outline">
+                        <span class="btn-icon">📊</span>
+                        <span class="btn-text">View Statistics</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="game-showcase">
+                    <div class="weapon-display">
+                        <div class="weapon-icon">🔫</div>
+                        <div class="weapon-glow"></div>
+                    </div>
+                    <div class="ability-orbs">
+                        <div class="orb orb-1"></div>
+                        <div class="orb orb-2"></div>
+                        <div class="orb orb-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Features -->
+    <section class="game-features">
+        <div class="container">
+            <h2 class="section-title">Valorant Competition Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Ranked Matches</h3>
+                    <p>Compete in skill-based matchmaking tournaments with players of your rank.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚔️</div>
+                    <h3>Agent Mastery</h3>
+                    <p>Showcase your skills with different agents and prove your tactical superiority.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Pro Tournaments</h3>
+                    <p>Join professional-level tournaments with substantial prize pools and recognition.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Performance Analytics</h3>
+                    <p>Track your KDA, clutch rate, and overall performance with detailed statistics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Active Tournaments -->
+    <section class="game-tournaments" id="valorant-tournaments">
+        <div class="container">
+            <div class="tournaments-header">
+                <h2 class="section-title">Active Valorant Tournaments</h2>
+                <div class="tournament-filter">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="beginner">Beginner</button>
+                    <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+                    <button class="filter-btn" data-filter="pro">Professional</button>
+                </div>
+            </div>
+            
+            <div class="tournaments-grid" id="valorant-tournaments-grid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Statistics -->
+    <section class="game-statistics">
+        <div class="container">
+            <h2 class="section-title">Platform Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-content">
+                        <span class="stat-number">2,847</span>
+                        <span class="stat-label">Registered Players</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎮</div>
+                    <div class="stat-content">
+                        <span class="stat-number">1,256</span>
+                        <span class="stat-label">Matches Played</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-content">
+                        <span class="stat-number">₹2,45,000</span>
+                        <span class="stat-label">Total Prizes</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-content">
+                        <span class="stat-number">4.9/5</span>
+                        <span class="stat-label">Player Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="game-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Prove Your Worth?</h2>
+                <p>Join the Valorant competitive scene and show your tactical prowess</p>
+                <div class="cta-actions">
+                    <a href="../register/register.html" class="btn btn-primary">
+                        <span>Start Competing</span>
+                    </a>
+                    <a href="../contact/contact.html" class="btn btn-outline">
+                        <span>Get Support</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>ClutchZone</h3>
+                    <p>Elite gaming tournament platform</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Games</h4>
+                    <ul>
+                        <li><a href="valorant.html" class="active">Valorant</a></li>
+                        <li><a href="csgo.html">CS:GO</a></li>
+                        <li><a href="pubg.html">PUBG</a></li>
+                        <li><a href="cod.html">Call of Duty</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="../contact/contact.html">Contact Us</a></li>
+                        <li><a href="../help/help.html">Help Center</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ClutchZone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/clutchzone-api.js"></script>
+    <script src="js/game-pages.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize game page
+            initializeGamePage('valorant');
+            
+            // Animate statistics
+            animateCounters();
+            
+            // Load Valorant tournaments
+            loadGameTournaments('valorant');
+            
+            // Initialize filter functionality
+            initializeTournamentFilters();
+        });
+    </script>
+</body>
+</html>

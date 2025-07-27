@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutchZone - Support Center</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="support.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Advanced Navbar -->
+    <div id="navbar-container"></div>
+    
+    <!-- Welcome/Logout Animation Overlay -->
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="welcome-content">
+            <div class="welcome-icon">🎮</div>
+            <h2 id="welcomeMessage">Welcome to ClutchZone!</h2>
+            <p id="welcomeSubtext">Get ready for epic gaming battles</p>
+        </div>
+    </div>
+
+    <!-- Gaming Background Animation -->
+    <div class="gaming-bg-animation">
+        <div class="gaming-particles"></div>
+        <div class="gaming-grid"></div>
+    </div>
+
+    <div class="main-container">
+        <!-- Support Header -->
+        <section class="support-header">
+            <div class="support-hero">
+                <div class="hero-content">
+                    <div class="hero-animation">
+                        <div class="support-icon">🛠️</div>
+                        <div class="support-rings">
+                            <div class="ring ring-1"></div>
+                            <div class="ring ring-2"></div>
+                            <div class="ring ring-3"></div>
+                        </div>
+                    </div>
+                    <h1>Support Center</h1>
+                    <p>We're here to help you with all your gaming needs</p>
+                    <div class="support-stats">
+                        <div class="stat">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Support</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">< 2min</div>
+                            <div class="stat-label">Response</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-number">99%</div>
+                            <div class="stat-label">Satisfaction</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <div class="actions-container">
+                <h2>🚀 Quick Actions</h2>
+                <div class="action-cards">
+                    <div class="action-card live-chat">
+                        <div class="card-icon">💬</div>
+                        <h3>Live Chat</h3>
+                        <p>Get instant help from our support team</p>
+                        <button class="btn-primary" id="liveChatBtn">Start Chat</button>
+                    </div>
+                    <div class="action-card ticket">
+                        <div class="card-icon">🎫</div>
+                        <h3>Create Ticket</h3>
+                        <p>Submit a detailed support request</p>
+                        <button class="btn-secondary" id="createTicketBtn">New Ticket</button>
+                    </div>
+                    <div class="action-card knowledge">
+                        <div class="card-icon">📚</div>
+                        <h3>Knowledge Base</h3>
+                        <p>Find answers to common questions</p>
+                        <button class="btn-tertiary" id="knowledgeBtn">Browse</button>
+                    </div>
+                    <div class="action-card video">
+                        <div class="card-icon">🎥</div>
+                        <h3>Video Tutorials</h3>
+                        <p>Watch step-by-step guides</p>
+                        <button class="btn-quaternary" id="videoBtn">Watch</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Categories -->
+        <section class="support-categories">
+            <div class="categories-container">
+                <h2>📂 Support Categories</h2>
+                <div class="category-grid">
+                    <div class="category-card account">
+                        <div class="category-icon">👤</div>
+                        <h3>Account Issues</h3>
+                        <p>Login problems, profile updates, security</p>
+                        <ul class="category-topics">
+                            <li>Password reset</li>
+                            <li>Account verification</li>
+                            <li>Profile management</li>
+                            <li>Security settings</li>
+                        </ul>
+                        <button class="category-btn">Get Help</button>
+                    </div>
+                    <div class="category-card payment">
+                        <div class="category-icon">💳</div>
+                        <h3>Payment & Wallet</h3>
+                        <p>Deposits, withdrawals, transaction issues</p>
+                        <ul class="category-topics">
+                            <li>Failed payments</li>
+                            <li>Withdrawal delays</li>
+                            <li>Transaction history</li>
+                            <li>Refund requests</li>
+                        </ul>
+                        <button class="category-btn">Get Help</button>
+                    </div>
+                    <div class="category-card tournament">
+                        <div class="category-icon">🏆</div>
+                        <h3>Tournament Support</h3>
+                        <p>Registration, rules, match disputes</p>
+                        <ul class="category-topics">
+                            <li>Tournament rules</li>
+                            <li>Registration issues</li>
+                            <li>Match disputes</li>
+                            <li>Prize distribution</li>
+                        </ul>
+                        <button class="category-btn">Get Help</button>
+                    </div>
+                    <div class="category-card technical">
+                        <div class="category-icon">⚙️</div>
+                        <h3>Technical Issues</h3>
+                        <p>App bugs, performance, connectivity</p>
+                        <ul class="category-topics">
+                            <li>App crashes</li>
+                            <li>Connection issues</li>
+                            <li>Performance problems</li>
+                            <li>Feature requests</li>
+                        </ul>
+                        <button class="category-btn">Get Help</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Support Status -->
+        <section class="support-status">
+            <div class="status-container">
+                <h2>📊 Support Status</h2>
+                <div class="status-grid">
+                    <div class="status-card">
+                        <div class="status-indicator online"></div>
+                        <h3>Live Chat</h3>
+                        <p>Online - Average wait: 30 seconds</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-indicator online"></div>
+                        <h3>Email Support</h3>
+                        <p>Active - Response within 2 hours</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-indicator busy"></div>
+                        <h3>Phone Support</h3>
+                        <p>Busy - Callback available</p>
+                    </div>
+                    <div class="status-card">
+                        <div class="status-indicator online"></div>
+                        <h3>Community Forum</h3>
+                        <p>Active - 24/7 peer support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Updates -->
+        <section class="support-updates">
+            <div class="updates-container">
+                <h2>📢 Recent Updates</h2>
+                <div class="update-timeline">
+                    <div class="update-item">
+                        <div class="update-date">Dec 15, 2024</div>
+                        <div class="update-content">
+                            <h3>New Payment Gateway Integration</h3>
+                            <p>Added support for more payment methods including crypto payments.</p>
+                        </div>
+                    </div>
+                    <div class="update-item">
+                        <div class="update-date">Dec 12, 2024</div>
+                        <div class="update-content">
+                            <h3>Tournament Registration Fix</h3>
+                            <p>Resolved issues with tournament registration timeouts.</p>
+                        </div>
+                    </div>
+                    <div class="update-item">
+                        <div class="update-date">Dec 10, 2024</div>
+                        <div class="update-content">
+                            <h3>Mobile App Performance Update</h3>
+                            <p>Improved app loading speed and reduced crashes by 90%.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Live Chat Modal -->
+    <div class="modal" id="liveChatModal">
+        <div class="modal-content chat-modal">
+            <div class="chat-header">
+                <h3>💬 Live Chat Support</h3>
+                <div class="chat-status">
+                    <div class="status-dot online"></div>
+                    <span>Online</span>
+                </div>
+                <span class="close" id="closeChatModal">&times;</span>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot">
+                    <div class="message-avatar">🤖</div>
+                    <div class="message-content">
+                        <p>Hello! I'm Sarah from ClutchZone support. How can I help you today?</p>
+                        <span class="message-time">Just now</span>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type your message...">
+                <button id="sendChatBtn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ticket Creation Modal -->
+    <div class="modal" id="ticketModal">
+        <div class="modal-content ticket-modal">
+            <div class="ticket-header">
+                <h3>🎫 Create Support Ticket</h3>
+                <span class="close" id="closeTicketModal">&times;</span>
+            </div>
+            <form id="ticketForm" class="ticket-form">
+                <div class="form-group">
+                    <label for="ticketCategory">Category</label>
+                    <select id="ticketCategory" name="category" required>
+                        <option value="">Select Category</option>
+                        <option value="account">Account Issues</option>
+                        <option value="payment">Payment & Wallet</option>
+                        <option value="tournament">Tournament Support</option>
+                        <option value="technical">Technical Issues</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ticketPriority">Priority</label>
+                    <select id="ticketPriority" name="priority" required>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                        <option value="urgent">Urgent</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ticketSubject">Subject</label>
+                    <input type="text" id="ticketSubject" name="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticketDescription">Description</label>
+                    <textarea id="ticketDescription" name="description" rows="6" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="ticketAttachment">Attachments</label>
+                    <input type="file" id="ticketAttachment" name="attachment" multiple>
+                </div>
+                <button type="submit" class="btn-primary">Create Ticket</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Advanced Footer -->
+    <footer class="advanced-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ClutchZone</h3>
+                <p>India's premier esports platform for competitive gaming.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">💬</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../tournaments/tournaments.html">Tournaments</a></li>
+                    <li><a href="../leaderboard/leaderboard.html">Leaderboard</a></li>
+                    <li><a href="../profile/profile.html">Profile</a></li>
+                    <li><a href="../wallet/wallet.html">Wallet</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="../contact/contact.html">Contact Us</a></li>
+                    <li><a href="../help/help.html">Help Center</a></li>
+                    <li><a href="../faq/faq.html">FAQ</a></li>
+                    <li><a href="../terms/terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Games</h4>
+                <ul>
+                    <li><a href="../games/games.html#bgmi">BGMI</a></li>
+                    <li><a href="../games/games.html#valorant">Valorant</a></li>
+                    <li><a href="../games/games.html#csgo">CS:GO</a></li>
+                    <li><a href="../games/games.html#cod">Call of Duty</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ClutchZone. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="../terms/terms.html">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/advancedNavbar.js"></script>
+    <script src="support.js"></script>
+    
+    <!-- AI Chatbot Float Button -->
+    <div class="ai-chatbot-float" id="aiChatbotFloat">
+        <div class="ai-icon">🤖</div>
+        <span class="ai-text">AI Assistant</span>
+    </div>
+
+    <!-- Initialize Advanced Navbar -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAdvancedNavbar();
+        });
+    </script>
+</body>
+</html>

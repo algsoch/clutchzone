@@ -1,0 +1,51 @@
+<!-- Advanced Gaming Navigation -->
+<nav class="nav">
+    <div class="container">
+        <div class="nav-content">
+            <a href="/index.html" class="logo">ClutchZone</a>
+            
+            <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/tournaments/tournaments.html" class="nav-link">🏆 Tournaments</a></li>
+                <li><a href="/leaderboard/leaderboard.html" class="nav-link">🏅 Leaderboard</a></li>
+                <li><a href="/match/match.html" class="nav-link">⚔️ Match Center</a></li>
+                <li><a href="/replays/replays.html" class="nav-link">📹 Replays</a></li>
+                <li><a href="/ai/ai.html" class="nav-link">🤖 AI Assistant</a></li>
+                <li class="auth-only"><a href="/wallet/wallet.html" class="nav-link">💰 Wallet</a></li>
+                <li class="auth-only"><a href="/profile/profile.html" class="nav-link">👤 Profile</a></li>
+                <li class="auth-only"><a href="/admin/admin.html" class="nav-link admin-only">⚙️ Admin</a></li>
+                <li><a href="/contact/contact.html" class="nav-link">📞 Contact</a></li>
+            </ul>
+            
+            <div class="user-section">
+                <!-- Content will be populated by JavaScript based on auth state -->
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- AI Chat Bot Float Button -->
+<div class="ai-chat-float" id="aiChatFloat">
+    <button class="ai-chat-btn" id="aiChatBtn" title="AI Assistant">
+        <span class="ai-icon">🤖</span>
+        <span class="ai-pulse"></span>
+    </button>
+</div>
+
+<!-- Tournament Details Float Panel -->
+<div class="tournament-details-float" id="tournamentDetailsFloat">
+    <div class="tournament-details-content">
+        <div class="tournament-header">
+            <h3>Live Tournaments</h3>
+            <button class="close-btn" id="closeTournamentDetails">×</button>
+        </div>
+        <div class="tournament-list" id="liveTournamentsList">
+            <!-- Will be populated by JavaScript -->
+        </div>
+    </div>
+</div>

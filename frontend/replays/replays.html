@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutchZone - Replays</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="replays.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-text">ClutchZone</span>
+            </a>
+            <div class="nav-menu">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../tournaments/tournaments.html" class="nav-link">Tournaments</a>
+                <a href="../leaderboard/leaderboard.html" class="nav-link">Leaderboard</a>
+                <a href="../profile/profile.html" class="nav-link">Profile</a>
+                <a href="../replays/replays.html" class="nav-link active">Replays</a>
+                <a href="../admin/admin.html" class="nav-link admin-only">Admin</a>
+            </div>
+            <div class="nav-auth">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <img id="userAvatar" src="../assets/images/default-avatar.png" alt="User Avatar">
+                    </div>
+                    <span id="userName">Player</span>
+                </div>
+                <div class="wallet-info">
+                    <span id="walletBalance">₹0.00</span>
+                    <button class="wallet-btn" id="walletBtn">Wallet</button>
+                </div>
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Replays Header -->
+        <section class="replays-header">
+            <div class="replays-hero">
+                <div class="hero-content">
+                    <h1>🎬 Match Replays</h1>
+                    <p>Watch and analyze your best gaming moments</p>
+                    <div class="hero-stats">
+                        <div class="stat-card">
+                            <span class="stat-value" id="totalReplays">0</span>
+                            <span class="stat-label">Total Replays</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="totalViews">0</span>
+                            <span class="stat-label">Total Views</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="featuredReplays">0</span>
+                            <span class="stat-label">Featured</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Replays Navigation -->
+        <section class="replays-nav">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="all">All Replays</button>
+                <button class="nav-tab" data-tab="my-replays">My Replays</button>
+                <button class="nav-tab" data-tab="featured">Featured</button>
+                <button class="nav-tab" data-tab="upload">Upload</button>
+            </div>
+            <div class="replays-filters">
+                <select id="gameFilter">
+                    <option value="all">All Games</option>
+                    <option value="bgmi">BGMI</option>
+                    <option value="valorant">Valorant</option>
+                    <option value="csgo">CS:GO</option>
+                    <option value="pubg">PUBG</option>
+                    <option value="cod">Call of Duty</option>
+                </select>
+                <select id="sortFilter">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="popular">Most Popular</option>
+                    <option value="views">Most Viewed</option>
+                </select>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search replays...">
+                    <button id="searchBtn">🔍</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- All Replays Tab -->
+        <section class="tab-content active" id="all">
+            <div class="replays-grid" id="allReplaysGrid">
+                <!-- Replays will be populated here -->
+            </div>
+            <div class="load-more-container">
+                <button class="btn-secondary" id="loadMoreBtn">Load More</button>
+            </div>
+        </section>
+
+        <!-- My Replays Tab -->
+        <section class="tab-content" id="my-replays">
+            <div class="my-replays-header">
+                <h2>🎮 My Replays</h2>
+                <div class="upload-actions">
+                    <button class="btn-primary" id="uploadReplayBtn">Upload Replay</button>
+                    <button class="btn-secondary" id="bulkUploadBtn">Bulk Upload</button>
+                </div>
+            </div>
+            <div class="replays-grid" id="myReplaysGrid">
+                <!-- My replays will be populated here -->
+            </div>
+        </section>
+
+        <!-- Featured Replays Tab -->
+        <section class="tab-content" id="featured">
+            <div class="featured-header">
+                <h2>⭐ Featured Replays</h2>
+                <p>Top replays selected by the community and admins</p>
+            </div>
+            <div class="featured-replays-grid" id="featuredReplaysGrid">
+                <!-- Featured replays will be populated here -->
+            </div>
+        </section>
+
+        <!-- Upload Tab -->
+        <section class="tab-content" id="upload">
+            <div class="upload-section">
+                <h2>📤 Upload Replay</h2>
+                <form id="uploadForm" class="upload-form">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">📁</div>
+                        <h3>Drop your replay files here</h3>
+                        <p>or click to browse</p>
+                        <input type="file" id="replayFile" accept=".mp4,.avi,.mov,.mkv" multiple hidden>
+                    </div>
+                    
+                    <div class="upload-details" id="uploadDetails" style="display: none;">
+                        <div class="form-group">
+                            <label for="replayTitle">Title</label>
+                            <input type="text" id="replayTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="replayGame">Game</label>
+                            <select id="replayGame" required>
+                                <option value="">Select Game</option>
+                                <option value="bgmi">BGMI</option>
+                                <option value="valorant">Valorant</option>
+                                <option value="csgo">CS:GO</option>
+                                <option value="pubg">PUBG</option>
+                                <option value="cod">Call of Duty</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="replayDescription">Description</label>
+                            <textarea id="replayDescription" rows="4" placeholder="Describe your epic moment..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="replayTags">Tags (comma-separated)</label>
+                            <input type="text" id="replayTags" placeholder="clutch, headshot, ace, victory">
+                        </div>
+                        <div class="form-group">
+                            <label for="replayThumbnail">Thumbnail</label>
+                            <input type="file" id="replayThumbnail" accept="image/*">
+                        </div>
+                        <div class="upload-actions">
+                            <button type="button" class="btn-secondary" id="cancelUploadBtn">Cancel</button>
+                            <button type="submit" class="btn-primary">Upload Replay</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!-- Replay Player Modal -->
+    <div class="modal" id="replayPlayerModal">
+        <div class="modal-content player-modal">
+            <span class="close" id="closePlayerModal">&times;</span>
+            <div class="player-container">
+                <video id="replayPlayer" controls>
+                    <source src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="player-controls">
+                    <div class="player-info">
+                        <h3 id="playerTitle">Replay Title</h3>
+                        <p id="playerUploader">Uploaded by: <span></span></p>
+                    </div>
+                    <div class="player-actions">
+                        <button class="action-btn" id="likeBtn">👍 <span id="likeCount">0</span></button>
+                        <button class="action-btn" id="dislikeBtn">👎 <span id="dislikeCount">0</span></button>
+                        <button class="action-btn" id="shareBtn">📤 Share</button>
+                        <button class="action-btn" id="downloadBtn">💾 Download</button>
+                    </div>
+                </div>
+                <div class="player-description">
+                    <h4>Description</h4>
+                    <p id="playerDescription">No description available.</p>
+                </div>
+                <div class="player-tags">
+                    <h4>Tags</h4>
+                    <div id="playerTags"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div class="modal" id="shareModal">
+        <div class="modal-content">
+            <span class="close" id="closeShareModal">&times;</span>
+            <h2>📤 Share Replay</h2>
+            <div class="share-options">
+                <div class="share-link">
+                    <label for="shareUrl">Share Link</label>
+                    <div class="link-container">
+                        <input type="text" id="shareUrl" readonly>
+                        <button class="btn-secondary" id="copyLinkBtn">Copy</button>
+                    </div>
+                </div>
+                <div class="social-share">
+                    <h4>Share on Social Media</h4>
+                    <div class="social-buttons">
+                        <button class="social-btn facebook">📘 Facebook</button>
+                        <button class="social-btn twitter">🐦 Twitter</button>
+                        <button class="social-btn instagram">📷 Instagram</button>
+                        <button class="social-btn discord">💬 Discord</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Footer -->
+    <footer class="advanced-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ClutchZone</h3>
+                <p>India's premier esports platform for competitive gaming.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">💬</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../tournaments/tournaments.html">Tournaments</a></li>
+                    <li><a href="../leaderboard/leaderboard.html">Leaderboard</a></li>
+                    <li><a href="../profile/profile.html">Profile</a></li>
+                    <li><a href="../wallet/wallet.html">Wallet</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="../contact/contact.html">Contact Us</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Games</h4>
+                <ul>
+                    <li><a href="#">BGMI</a></li>
+                    <li><a href="#">Valorant</a></li>
+                    <li><a href="#">CS:GO</a></li>
+                    <li><a href="#">Call of Duty</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ClutchZone. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="replays.js"></script>
+</body>
+</html>

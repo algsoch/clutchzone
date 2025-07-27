@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutchZone - Admin Panel</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Advanced Gaming Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo">ClutchZone</a>
+                
+                <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="../tournaments/tournaments.html" class="nav-link">🏆 Tournaments</a></li>
+                    <li><a href="../leaderboard/leaderboard.html" class="nav-link">🏅 Leaderboard</a></li>
+                    <li><a href="../match/match.html" class="nav-link">⚔️ Match Center</a></li>
+                    <li><a href="../replays/replays.html" class="nav-link">📹 Replays</a></li>
+                    <li><a href="../ai/ai.html" class="nav-link">🤖 AI Assistant</a></li>
+                    <li class="auth-only"><a href="../wallet/wallet.html" class="nav-link">💰 Wallet</a></li>
+                    <li class="auth-only"><a href="../profile/profile.html" class="nav-link">👤 Profile</a></li>
+                    <li class="auth-only"><a href="../admin/admin.html" class="nav-link admin-only active">⚙️ Admin</a></li>
+                    <li><a href="../contact/contact.html" class="nav-link">📞 Contact</a></li>
+                </ul>
+                
+                <div class="user-section">
+                    <!-- Content will be populated by JavaScript based on auth state -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Admin Header -->
+        <section class="admin-header">
+            <div class="admin-hero">
+                <div class="hero-content">
+                    <h1>👑 Admin Control Panel</h1>
+                    <p>Manage tournaments, users, and system settings</p>
+                    <div class="admin-stats">
+                        <div class="stat-card">
+                            <span class="stat-value" id="totalUsers">0</span>
+                            <span class="stat-label">Total Users</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="activeTournaments">0</span>
+                            <span class="stat-label">Active Tournaments</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="totalRevenue">₹0</span>
+                            <span class="stat-label">Total Revenue</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-value" id="onlineUsers">0</span>
+                            <span class="stat-label">Online Users</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Navigation -->
+        <section class="admin-nav">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="dashboard">📊 Dashboard</button>
+                <button class="nav-tab" data-tab="tournaments">🏆 Tournaments</button>
+                <button class="nav-tab" data-tab="users">👥 Users</button>
+                <button class="nav-tab" data-tab="payments">💰 Payments</button>
+                <button class="nav-tab" data-tab="reports">📈 Reports</button>
+                <button class="nav-tab" data-tab="settings">⚙️ Settings</button>
+            </div>
+        </section>
+
+        <!-- Dashboard Tab -->
+        <section class="tab-content active" id="dashboard">
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>📊 System Overview</h3>
+                    <div class="system-stats">
+                        <div class="system-stat">
+                            <span class="stat-icon">🔥</span>
+                            <div class="stat-info">
+                                <span class="stat-number" id="serverLoad">65%</span>
+                                <span class="stat-text">Server Load</span>
+                            </div>
+                        </div>
+                        <div class="system-stat">
+                            <span class="stat-icon">💾</span>
+                            <div class="stat-info">
+                                <span class="stat-number" id="databaseSize">2.4GB</span>
+                                <span class="stat-text">Database Size</span>
+                            </div>
+                        </div>
+                        <div class="system-stat">
+                            <span class="stat-icon">📡</span>
+                            <div class="stat-info">
+                                <span class="stat-number" id="apiCalls">15.2k</span>
+                                <span class="stat-text">API Calls/Day</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>🚀 Quick Actions</h3>
+                    <div class="quick-actions">
+                        <button class="action-btn" id="createTournamentBtn">
+                            <span class="action-icon">🏆</span>
+                            <span class="action-text">Create Tournament</span>
+                        </button>
+                        <button class="action-btn" id="broadcastBtn">
+                            <span class="action-icon">📢</span>
+                            <span class="action-text">Send Broadcast</span>
+                        </button>
+                        <button class="action-btn" id="systemMaintenanceBtn">
+                            <span class="action-icon">🔧</span>
+                            <span class="action-text">System Maintenance</span>
+                        </button>
+                        <button class="action-btn" id="backupBtn">
+                            <span class="action-icon">💾</span>
+                            <span class="action-text">Database Backup</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>📈 Recent Activity</h3>
+                    <div class="activity-feed" id="activityFeed">
+                        <!-- Activity items will be populated here -->
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>⚠️ System Alerts</h3>
+                    <div class="alerts-list" id="alertsList">
+                        <!-- Alerts will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tournaments Tab -->
+        <section class="tab-content" id="tournaments">
+            <div class="tournaments-admin">
+                <div class="admin-actions">
+                    <button class="btn-primary" id="newTournamentBtn">
+                        <span>➕</span> Create New Tournament
+                    </button>
+                    <div class="search-filters">
+                        <input type="text" placeholder="Search tournaments..." id="tournamentSearch">
+                        <select id="statusFilter">
+                            <option value="">All Status</option>
+                            <option value="upcoming">Upcoming</option>
+                            <option value="active">Active</option>
+                            <option value="completed">Completed</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="tournaments-table">
+                    <table id="tournamentsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tournament Name</th>
+                                <th>Game</th>
+                                <th>Status</th>
+                                <th>Participants</th>
+                                <th>Prize Pool</th>
+                                <th>Start Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tournamentsTableBody">
+                            <!-- Tournament rows will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Users Tab -->
+        <section class="tab-content" id="users">
+            <div class="users-admin">
+                <div class="admin-actions">
+                    <div class="search-filters">
+                        <input type="text" placeholder="Search users..." id="userSearch">
+                        <select id="roleFilter">
+                            <option value="">All Roles</option>
+                            <option value="player">Player</option>
+                            <option value="admin">Admin</option>
+                            <option value="moderator">Moderator</option>
+                        </select>
+                        <select id="statusFilter">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="users-table">
+                    <table id="usersTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Level</th>
+                                <th>XP</th>
+                                <th>Status</th>
+                                <th>Joined</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersTableBody">
+                            <!-- User rows will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payments Tab -->
+        <section class="tab-content" id="payments">
+            <div class="payments-admin">
+                <div class="payment-stats">
+                    <div class="payment-stat">
+                        <span class="stat-label">Total Revenue</span>
+                        <span class="stat-value" id="totalRevenueDetail">₹0</span>
+                    </div>
+                    <div class="payment-stat">
+                        <span class="stat-label">Pending Payments</span>
+                        <span class="stat-value" id="pendingPayments">0</span>
+                    </div>
+                    <div class="payment-stat">
+                        <span class="stat-label">Completed Today</span>
+                        <span class="stat-value" id="todayPayments">₹0</span>
+                    </div>
+                    <div class="payment-stat">
+                        <span class="stat-label">Failed Payments</span>
+                        <span class="stat-value" id="failedPayments">0</span>
+                    </div>
+                </div>
+                <div class="payments-table">
+                    <table id="paymentsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>User</th>
+                                <th>Tournament</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th>Method</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentsTableBody">
+                            <!-- Payment rows will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reports Tab -->
+        <section class="tab-content" id="reports">
+            <div class="reports-admin">
+                <div class="report-cards">
+                    <div class="report-card">
+                        <h3>📊 User Analytics</h3>
+                        <div class="chart-container">
+                            <canvas id="userChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <h3>💰 Revenue Analytics</h3>
+                        <div class="chart-container">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <h3>🏆 Tournament Analytics</h3>
+                        <div class="chart-container">
+                            <canvas id="tournamentChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="report-card">
+                        <h3>📈 Performance Metrics</h3>
+                        <div class="metrics-list">
+                            <div class="metric">
+                                <span class="metric-label">Average Session Duration</span>
+                                <span class="metric-value">24m 32s</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Tournament Completion Rate</span>
+                                <span class="metric-value">87.5%</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">User Retention Rate</span>
+                                <span class="metric-value">73.2%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Settings Tab -->
+        <section class="tab-content" id="settings">
+            <div class="settings-admin">
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h3>⚙️ System Settings</h3>
+                        <form id="systemSettingsForm">
+                            <div class="form-group">
+                                <label for="siteName">Site Name</label>
+                                <input type="text" id="siteName" value="ClutchZone">
+                            </div>
+                            <div class="form-group">
+                                <label for="maxTournaments">Max Tournaments per User</label>
+                                <input type="number" id="maxTournaments" value="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="registrationFee">Default Registration Fee</label>
+                                <input type="number" id="registrationFee" value="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="maintenanceMode">Maintenance Mode</label>
+                                <label class="switch">
+                                    <input type="checkbox" id="maintenanceMode">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn-primary">Save Settings</button>
+                        </form>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>📧 Email Settings</h3>
+                        <form id="emailSettingsForm">
+                            <div class="form-group">
+                                <label for="smtpHost">SMTP Host</label>
+                                <input type="text" id="smtpHost" value="smtp-relay.brevo.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="smtpPort">SMTP Port</label>
+                                <input type="number" id="smtpPort" value="587">
+                            </div>
+                            <div class="form-group">
+                                <label for="smtpUser">SMTP User</label>
+                                <input type="email" id="smtpUser">
+                            </div>
+                            <div class="form-group">
+                                <label for="fromEmail">From Email</label>
+                                <input type="email" id="fromEmail" value="noreply@clutchzone.com">
+                            </div>
+                            <button type="submit" class="btn-primary">Save Email Settings</button>
+                        </form>
+                    </div>
+
+                    <div class="settings-card">
+                        <h3>🎮 Game Settings</h3>
+                        <form id="gameSettingsForm">
+                            <div class="form-group">
+                                <label for="supportedGames">Supported Games</label>
+                                <div class="game-list">
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" value="bgmi" checked>
+                                        <span>BGMI</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" value="valorant" checked>
+                                        <span>Valorant</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" value="csgo" checked>
+                                        <span>CS:GO</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" value="pubg">
+                                        <span>PUBG</span>
+                                    </label>
+                                    <label class="checkbox-item">
+                                        <input type="checkbox" value="cod">
+                                        <span>Call of Duty</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary">Save Game Settings</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Advanced Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ClutchZone</h3>
+                <p>The ultimate esports platform for competitive gamers. Join tournaments, climb leaderboards, and prove your skills!</p>
+                <div class="social-links">
+                    <a href="#" title="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="../tournaments/tournaments.html">Tournaments</a></li>
+                    <li><a href="../leaderboard/leaderboard.html">Leaderboard</a></li>
+                    <li><a href="../profile/profile.html">Profile</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="../contact/contact.html">Contact Us</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Rules & Regulations</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Games</h3>
+                <ul>
+                    <li><a href="#">BGMI</a></li>
+                    <li><a href="#">Valorant</a></li>
+                    <li><a href="#">CS:GO</a></li>
+                    <li><a href="#">Call of Duty</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 ClutchZone. All rights reserved. | Made with ❤️ for gamers</p>
+        </div>
+    </footer>
+
+    <!-- Admin Modals -->
+    <div class="modal" id="createTournamentModal">
+        <div class="modal-content">
+            <span class="close" id="closeCreateModal">&times;</span>
+            <h2>Create New Tournament</h2>
+            <form id="createTournamentForm">
+                <div class="form-group">
+                    <label for="tournamentName">Tournament Name</label>
+                    <input type="text" id="tournamentName" required>
+                </div>
+                <div class="form-group">
+                    <label for="tournamentGame">Game</label>
+                    <select id="tournamentGame" required>
+                        <option value="">Select Game</option>
+                        <option value="bgmi">BGMI</option>
+                        <option value="valorant">Valorant</option>
+                        <option value="csgo">CS:GO</option>
+                        <option value="pubg">PUBG</option>
+                        <option value="cod">Call of Duty</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="maxParticipants">Max Participants</label>
+                    <input type="number" id="maxParticipants" min="2" max="1000" required>
+                </div>
+                <div class="form-group">
+                    <label for="entryFee">Entry Fee (₹)</label>
+                    <input type="number" id="entryFee" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="prizePool">Prize Pool (₹)</label>
+                    <input type="number" id="prizePool" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="startDate">Start Date</label>
+                    <input type="datetime-local" id="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" rows="4"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelCreateBtn">Cancel</button>
+                    <button type="submit" class="btn-primary">Create Tournament</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/advancedNavbar.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html>

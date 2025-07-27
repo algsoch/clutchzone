@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutchZone - System Test</title>
+    <link rel="stylesheet" href="css/global.css">
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+        }
+        
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+        
+        .test-button {
+            margin: 10px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .test-button:hover {
+            background: #0056b3;
+        }
+        
+        .test-results {
+            margin-top: 20px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>ClutchZone System Test</h1>
+        
+        <div class="test-section">
+            <h2>Sound System Test</h2>
+            <button class="test-button" onclick="testSound('click')">Test Click</button>
+            <button class="test-button" onclick="testSound('success')">Test Success</button>
+            <button class="test-button" onclick="testSound('error')">Test Error</button>
+            <button class="test-button" onclick="testSound('notification')">Test Notification</button>
+            <button class="test-button" onclick="testSound('victory')">Test Victory</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>API Test</h2>
+            <button class="test-button" onclick="testAPI()">Test Tournaments API</button>
+            <button class="test-button" onclick="testAuth()">Test Auth API</button>
+        </div>
+        
+        <div class="test-section">
+            <h2>Navigation Test</h2>
+            <button class="test-button" onclick="testNavigation()">Test All Pages</button>
+        </div>
+        
+        <div class="test-results" id="testResults">
+            System ready for testing...
+        </div>
+    </div>
+
+    <script src="sounds/proceduralAudio.js"></script>
+    <script src="sounds/soundManager.js"></script>
+    <script src="js/utils.js"></script>
+    
+    <script>
+        // Initialize sound system
+        const soundManager = new SoundManager();
+        
+        function testSound(soundName) {
+            log(`Testing sound: ${soundName}`);
+            soundManager.playSound(soundName);
+        }
+        
+        function testAPI() {
+            log('Testing API endpoints...');
+            
+            // Test tournaments
+            fetch('/api/tournaments')
+                .then(response => {
+                    log(`Tournaments API: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    log(`Found ${data.length} tournaments`);
+                    if (data.length > 0) {
+                        log(`Sample: ${data[0].name}`);
+                    }
+                })
+                .catch(error => {
+                    log(`API Error: ${error.message}`);
+                });
+        }
+        
+        function testAuth() {
+            log('Testing Auth API...');
+            
+            fetch('/api/auth/check-username', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username: 'testuser' })
+            })
+                .then(response => {
+                    log(`Auth API: ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    log(`Username check result: ${JSON.stringify(data)}`);
+                })
+                .catch(error => {
+                    log(`Auth Error: ${error.message}`);
+                });
+        }
+        
+        function testNavigation() {
+            log('Testing navigation...');
+            
+            const pages = [
+                'tournaments/tournaments.html',
+                'leaderboard/leaderboard.html',
+                'profile/profile.html',
+                'wallet/wallet.html',
+                'admin/admin.html',
+                'ai/ai.html'
+            ];
+            
+            pages.forEach((page, index) => {
+                setTimeout(() => {
+                    fetch(page)
+                        .then(response => {
+                            log(`${page}: ${response.status}`);
+                        })
+                        .catch(error => {
+                            log(`${page}: Error - ${error.message}`);
+                        });
+                }, index * 500);
+            });
+        }
+        
+        function log(message) {
+            const results = document.getElementById('testResults');
+            const timestamp = new Date().toLocaleTimeString();
+            results.innerHTML += `[${timestamp}] ${message}\n`;
+            results.scrollTop = results.scrollHeight;
+        }
+        
+        // Auto-test on load
+        window.addEventListener('load', () => {
+            log('System loaded successfully');
+            log('Sound system initialized');
+            log('Ready for testing...');
+        });
+    </script>
+</body>
+</html>

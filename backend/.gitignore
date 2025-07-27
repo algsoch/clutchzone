@@ -1,0 +1,32 @@
+# ClutchZone Environment Variables
+
+# Database Configuration - SQLite for development
+DATABASE_URL=sqlite:///./clutchzone.db
+
+# JWT Configuration
+JWT_SECRET=your-super-secret-jwt-key-change-in-production-clutchzone-2024
+JWT_ALGORITHM=HS256
+
+# Email Configuration (Brevo/Sendinblue)
+BREVO_USER=9220c3001@smtp-brevo.com
+BREVO_SMTP_KEY=WcDQh3SgMVxjYZ8B
+FROM_EMAIL=noreply@clutchzone.com
+
+# Payment Configuration (PayU)
+PAYU_SECRET=your_payu_secret_key
+PAYU_MERCHANT_ID=your_payu_merchant_id
+PAYU_MERCHANT_KEY=your_payu_merchant_key
+
+# Discord Integration for notifications
+DISCORD_WEBHOOK=https://discord.com/api/webhooks/your_webhook_url
+
+# Server Configuration
+PORT=8000
+HOST=0.0.0.0
+DEBUG=True
+
+# CORS Configuration
+FRONTEND_URL=http://localhost:3000
+
+# AI Configuration (Gemini 1.5 Flash)
+GEMINI_API_KEY=AIzaSyDxYQ8CYXJAxlz6Stj72iTnokxWjleTgZI

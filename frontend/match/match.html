@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutchZone - Match Center</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="match.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+</head>
+<body>
+    
+        <!-- Match Navigation -->
+        <section class="match-nav">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="live">🔴 Live</button>
+                <button class="nav-tab" data-tab="upcoming">⏰ Upcoming</button>
+                <button class="nav-tab" data-tab="completed">✅ Completed</button>
+                <button class="nav-tab" data-tab="my-matches">👤 My Matches</button>
+            </div>
+            <div class="match-filters">
+                <select id="gameFilter">
+                    <option value="all">All Games</option>
+                    <option value="bgmi">BGMI</option>
+                    <option value="valorant">Valorant</option>
+                    <option value="csgo">CS:GO</option>
+                    <option value="pubg">PUBG</option>
+                    <option value="cod">Call of Duty</option>
+                </select>
+                <select id="tournamentFilter">
+                    <option value="all">All Tournaments</option>
+                    <option value="daily">Daily Tournaments</option>
+                    <option value="weekly">Weekly Tournaments</option>
+                    <option value="monthly">Monthly Tournaments</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Live Matches Tab -->
+        <section class="tab-content active" id="live">
+            <div class="live-matches-container">
+                <h2>🔴 Live Matches</h2>
+                <div class="matches-grid" id="liveMatchesGrid">
+                    <!-- Live matches will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Upcoming Matches Tab -->
+        <section class="tab-content" id="upcoming">
+            <div class="upcoming-matches-container">
+                <h2>⏰ Upcoming Matches</h2>
+                <div class="matches-grid" id="upcomingMatchesGrid">
+                    <!-- Upcoming matches will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Completed Matches Tab -->
+        <section class="tab-content" id="completed">
+            <div class="completed-matches-container">
+                <h2>✅ Completed Matches</h2>
+                <div class="matches-grid" id="completedMatchesGrid">
+                    <!-- Completed matches will be populated here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- My Matches Tab -->
+        <section class="tab-content" id="my-matches">
+            <div class="my-matches-container">
+                <h2>👤 My Matches</h2>
+                <div class="matches-grid" id="myMatchesGrid">
+                    <!-- My matches will be populated here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Match Details Modal -->
+    <div class="modal" id="matchDetailsModal">
+        <div class="modal-content match-modal">
+            <span class="close" id="closeMatchModal">&times;</span>
+            <div class="match-details" id="matchDetails">
+                <!-- Match details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Stream Modal -->
+    <div class="modal" id="liveStreamModal">
+        <div class="modal-content stream-modal">
+            <span class="close" id="closeStreamModal">&times;</span>
+            <div class="stream-container">
+                <div class="stream-player">
+                    <video id="liveStreamPlayer" controls autoplay>
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="stream-info">
+                    <h3 id="streamTitle">Live Match Stream</h3>
+                    <div class="stream-stats">
+                        <span id="streamViewers">0 viewers</span>
+                        <span id="streamDuration">00:00</span>
+                    </div>
+                </div>
+                <div class="stream-chat">
+                    <div class="chat-messages" id="streamChatMessages">
+                        <!-- Chat messages will be populated here -->
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Type a message...">
+                        <button id="sendChatBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Footer -->
+    <footer class="advanced-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>ClutchZone</h3>
+                <p>India's premier esports platform for competitive gaming.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">📷</a>
+                    <a href="#" class="social-link">💬</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="../tournaments/tournaments.html">Tournaments</a></li>
+                    <li><a href="../leaderboard/leaderboard.html">Leaderboard</a></li>
+                    <li><a href="../profile/profile.html">Profile</a></li>
+                    <li><a href="../wallet/wallet.html">Wallet</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="../contact/contact.html">Contact Us</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Games</h4>
+                <ul>
+                    <li><a href="#">BGMI</a></li>
+                    <li><a href="#">Valorant</a></li>
+                    <li><a href="#">CS:GO</a></li>
+                    <li><a href="#">Call of Duty</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ClutchZone. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="match.js"></script>
+</body>
+</html>

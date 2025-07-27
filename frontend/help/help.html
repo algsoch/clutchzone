@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Center - ClutchZone</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="help.css">
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <!-- <nav id="navbar"></nav> -->
+
+    <!-- Main Content -->
+    <main class="help-main">
+        <!-- Header Section -->
+        <section class="help-header">
+            <div class="container">
+                <div class="header-content">
+                    <div class="header-text">
+                        <h1 class="header-title">
+                            <span class="title-icon">🎮</span>
+                            ClutchZone Help Center
+                        </h1>
+                        <p class="header-subtitle">Get the help you need to dominate the gaming arena</p>
+                    </div>
+                    <div class="header-visual">
+                        <canvas id="help-canvas"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="quick-actions">
+            <div class="container">
+                <h2 class="section-title">Quick Actions</h2>
+                <div class="actions-grid">
+                    <div class="action-card" data-action="live-chat">
+                        <div class="action-icon">💬</div>
+                        <h3>Live Chat</h3>
+                        <p>Chat with our support team in real-time</p>
+                        <button class="action-btn">Start Chat</button>
+                    </div>
+                    <div class="action-card" data-action="create-ticket">
+                        <div class="action-icon">🎫</div>
+                        <h3>Create Ticket</h3>
+                        <p>Submit a detailed support request</p>
+                        <button class="action-btn">Create Ticket</button>
+                    </div>
+                    <div class="action-card" data-action="video-guides">
+                        <div class="action-icon">📹</div>
+                        <h3>Video Guides</h3>
+                        <p>Watch step-by-step tutorials</p>
+                        <button class="action-btn">Watch Now</button>
+                    </div>
+                    <div class="action-card" data-action="community">
+                        <div class="action-icon">👥</div>
+                        <h3>Community</h3>
+                        <p>Join discussions with other players</p>
+                        <button class="action-btn">Join Community</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Help Categories -->
+        <section class="help-categories">
+            <div class="container">
+                <h2 class="section-title">Browse by Category</h2>
+                <div class="categories-grid">
+                    <div class="category-card" data-category="getting-started">
+                        <div class="category-icon">🚀</div>
+                        <h3>Getting Started</h3>
+                        <p>New to ClutchZone? Start here!</p>
+                        <ul class="category-links">
+                            <li><a href="#guide-signup">How to Sign Up</a></li>
+                            <li><a href="#guide-profile">Setting Up Your Profile</a></li>
+                            <li><a href="#guide-first-match">Your First Match</a></li>
+                            <li><a href="#guide-navigation">Platform Navigation</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card" data-category="tournaments">
+                        <div class="category-icon">🏆</div>
+                        <h3>Tournaments</h3>
+                        <p>Everything about competitive gaming</p>
+                        <ul class="category-links">
+                            <li><a href="#tournament-join">How to Join Tournaments</a></li>
+                            <li><a href="#tournament-rules">Tournament Rules</a></li>
+                            <li><a href="#tournament-prizes">Prizes & Rewards</a></li>
+                            <li><a href="#tournament-schedule">Tournament Schedule</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card" data-category="wallet">
+                        <div class="category-icon">💰</div>
+                        <h3>Wallet & Payments</h3>
+                        <p>Manage your funds and transactions</p>
+                        <ul class="category-links">
+                            <li><a href="#wallet-deposit">Making Deposits</a></li>
+                            <li><a href="#wallet-withdraw">Withdrawing Funds</a></li>
+                            <li><a href="#wallet-security">Security Features</a></li>
+                            <li><a href="#wallet-history">Transaction History</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card" data-category="gameplay">
+                        <div class="category-icon">🎯</div>
+                        <h3>Gameplay</h3>
+                        <p>Master the games and improve your skills</p>
+                        <ul class="category-links">
+                            <li><a href="#game-modes">Game Modes</a></li>
+                            <li><a href="#game-settings">Settings & Configuration</a></li>
+                            <li><a href="#game-tips">Pro Tips & Strategies</a></li>
+                            <li><a href="#game-troubleshooting">Troubleshooting</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card" data-category="account">
+                        <div class="category-icon">👤</div>
+                        <h3>Account Management</h3>
+                        <p>Manage your account settings</p>
+                        <ul class="category-links">
+                            <li><a href="#account-settings">Account Settings</a></li>
+                            <li><a href="#account-security">Security & Privacy</a></li>
+                            <li><a href="#account-verification">Account Verification</a></li>
+                            <li><a href="#account-recovery">Account Recovery</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="category-card" data-category="technical">
+                        <div class="category-icon">⚙️</div>
+                        <h3>Technical Support</h3>
+                        <p>Resolve technical issues</p>
+                        <ul class="category-links">
+                            <li><a href="#tech-requirements">System Requirements</a></li>
+                            <li><a href="#tech-connection">Connection Issues</a></li>
+                            <li><a href="#tech-performance">Performance Optimization</a></li>
+                            <li><a href="#tech-bugs">Bug Reports</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Articles -->
+        <section class="popular-articles">
+            <div class="container">
+                <h2 class="section-title">Popular Articles</h2>
+                <div class="articles-grid">
+                    <article class="article-card" data-article="password-reset">
+                        <div class="article-meta">
+                            <span class="article-category">Account</span>
+                            <span class="article-views">12.5K views</span>
+                        </div>
+                        <h3 class="article-title">How to Reset Your Password</h3>
+                        <p class="article-excerpt">Step-by-step guide to resetting your ClutchZone password securely.</p>
+                        <div class="article-footer">
+                            <span class="article-date">Updated 2 days ago</span>
+                            <span class="article-rating">⭐ 4.8</span>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="tournament-registration">
+                        <div class="article-meta">
+                            <span class="article-category">Tournaments</span>
+                            <span class="article-views">8.2K views</span>
+                        </div>
+                        <h3 class="article-title">Tournament Registration Guide</h3>
+                        <p class="article-excerpt">Learn how to register for tournaments and increase your chances of winning.</p>
+                        <div class="article-footer">
+                            <span class="article-date">Updated 1 week ago</span>
+                            <span class="article-rating">⭐ 4.9</span>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="wallet-security">
+                        <div class="article-meta">
+                            <span class="article-category">Wallet</span>
+                            <span class="article-views">15.3K views</span>
+                        </div>
+                        <h3 class="article-title">Wallet Security Best Practices</h3>
+                        <p class="article-excerpt">Keep your funds safe with these essential security measures.</p>
+                        <div class="article-footer">
+                            <span class="article-date">Updated 3 days ago</span>
+                            <span class="article-rating">⭐ 5.0</span>
+                        </div>
+                    </article>
+
+                    <article class="article-card" data-article="game-optimization">
+                        <div class="article-meta">
+                            <span class="article-category">Technical</span>
+                            <span class="article-views">9.7K views</span>
+                        </div>
+                        <h3 class="article-title">Game Performance Optimization</h3>
+                        <p class="article-excerpt">Optimize your gaming experience for better performance and lower latency.</p>
+                        <div class="article-footer">
+                            <span class="article-date">Updated 5 days ago</span>
+                            <span class="article-rating">⭐ 4.7</span>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Tutorials -->
+        <section class="video-tutorials">
+            <div class="container">
+                <h2 class="section-title">Video Tutorials</h2>
+                <div class="videos-grid">
+                    <div class="video-card" data-video="getting-started">
+                        <div class="video-thumbnail">
+                            <div class="play-button">▶️</div>
+                            <div class="video-duration">5:32</div>
+                        </div>
+                        <h3>Getting Started with ClutchZone</h3>
+                        <p>Complete walkthrough for new players</p>
+                        <div class="video-stats">
+                            <span>👁️ 25.4K views</span>
+                            <span>👍 98%</span>
+                        </div>
+                    </div>
+
+                    <div class="video-card" data-video="tournament-guide">
+                        <div class="video-thumbnail">
+                            <div class="play-button">▶️</div>
+                            <div class="video-duration">8:15</div>
+                        </div>
+                        <h3>Tournament Strategies</h3>
+                        <p>Pro tips to dominate competitive matches</p>
+                        <div class="video-stats">
+                            <span>👁️ 18.7K views</span>
+                            <span>👍 96%</span>
+                        </div>
+                    </div>
+
+                    <div class="video-card" data-video="wallet-guide">
+                        <div class="video-thumbnail">
+                            <div class="play-button">▶️</div>
+                            <div class="video-duration">3:45</div>
+                        </div>
+                        <h3>Wallet Management</h3>
+                        <p>How to manage your funds safely</p>
+                        <div class="video-stats">
+                            <span>👁️ 12.1K views</span>
+                            <span>👍 99%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Support -->
+        <section class="contact-support">
+            <div class="container">
+                <div class="support-card">
+                    <div class="support-content">
+                        <h2>Still Need Help?</h2>
+                        <p>Our support team is available 24/7 to assist you with any questions or issues.</p>
+                        <div class="support-actions">
+                            <button class="btn btn-primary" onclick="openLiveChat()">
+                                <i class="fas fa-comment"></i>
+                                Live Chat
+                            </button>
+                            <button class="btn btn-secondary" onclick="createTicket()">
+                                <i class="fas fa-ticket-alt"></i>
+                                Create Ticket
+                            </button>
+                        </div>
+                    </div>
+                    <div class="support-visual">
+                        <div class="support-agents">
+                            <div class="agent-avatar">👨‍💼</div>
+                            <div class="agent-avatar">👩‍💼</div>
+                            <div class="agent-avatar">👨‍💻</div>
+                        </div>
+                        <div class="support-status">
+                            <span class="status-indicator online"></span>
+                            <span>3 agents online</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ClutchZone</h4>
+                    <p>The ultimate gaming platform for competitive players.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../tournaments/tournaments.html">Tournaments</a></li>
+                        <li><a href="../leaderboard/leaderboard.html">Leaderboard</a></li>
+                        <li><a href="../support/support.html">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="../help/help.html">Help Center</a></li>
+                        <li><a href="../faq/faq.html">FAQ</a></li>
+                        <li><a href="../contact/contact.html">Contact</a></li>
+                        <li><a href="../terms/terms.html">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ClutchZone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Live Chat Modal -->
+    <div id="liveChatModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Live Chat Support</h3>
+            <div class="chat-container">
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input">
+                    <input type="text" id="chatInput" placeholder="Type your message...">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/utils.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../sounds/soundManager.js"></script>
+    <script src="../js/advancedNavbar.js"></script>
+    <script src="help.js"></script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutchZone AI Assistant</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/welcome.css">
+    <link rel="stylesheet" href="ai.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+</head>
+<body>
+    <!-- Advanced Gaming Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-content">
+                <a href="../index.html" class="logo">ClutchZone</a>
+                
+                <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="../tournaments/tournaments.html" class="nav-link">🏆 Tournaments</a></li>
+                    <li><a href="../leaderboard/leaderboard.html" class="nav-link">🏅 Leaderboard</a></li>
+                    <li><a href="../match/match.html" class="nav-link">⚔️ Match Center</a></li>
+                    <li><a href="../replays/replays.html" class="nav-link">📹 Replays</a></li>
+                    <li><a href="../ai/ai.html" class="nav-link active">🤖 AI Assistant</a></li>
+                    <li class="auth-only"><a href="../wallet/wallet.html" class="nav-link">💰 Wallet</a></li>
+                    <li class="auth-only"><a href="../profile/profile.html" class="nav-link">👤 Profile</a></li>
+                    <li class="auth-only"><a href="../admin/admin.html" class="nav-link admin-only">⚙️ Admin</a></li>
+                    <li><a href="../contact/contact.html" class="nav-link">📞 Contact</a></li>
+                </ul>
+                
+                <div class="user-section">
+                    <!-- Content will be populated by JavaScript based on auth state -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="ai-header">
+                <h1 class="ai-title">🤖 ClutchZone AI Assistant</h1>
+                <p class="ai-subtitle">Your personal gaming strategist and tournament guide</p>
+            </div>
+
+            <div class="ai-container">
+                <!-- Quick Actions -->
+                <div class="ai-quick-actions">
+                    <h3>Quick Help</h3>
+                    <div class="quick-action-buttons">
+                        <button class="quick-btn" data-topic="tournaments">🏆 Tournaments</button>
+                        <button class="quick-btn" data-topic="profile">👤 Profile</button>
+                        <button class="quick-btn" data-topic="wallet">💰 Wallet</button>
+                        <button class="quick-btn" data-topic="matches">⚔️ Matches</button>
+                        <button class="quick-btn" data-topic="leaderboard">🥇 Leaderboard</button>
+                        <button class="quick-btn" data-topic="general">❓ General</button>
+                    </div>
+                </div>
+
+                <!-- AI Features -->
+                <div class="ai-features">
+                    <div class="ai-feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h4>Tournament Suggestions</h4>
+                        <p>Get personalized tournament recommendations based on your skill and preferences</p>
+                        <button class="feature-btn" id="getSuggestions">Get Suggestions</button>
+                    </div>
+                    
+                    <div class="ai-feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h4>Performance Analysis</h4>
+                        <p>Analyze your match performance and get improvement tips</p>
+                        <button class="feature-btn" id="analyzePerformance">Analyze Performance</button>
+                    </div>
+                    
+                    <div class="ai-feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h4>Leaderboard Insights</h4>
+                        <p>Understand your ranking and get strategies to climb higher</p>
+                        <button class="feature-btn" id="getInsights">Get Insights</button>
+                    </div>
+                </div>
+
+                <!-- Chat Interface -->
+                <div class="ai-chat-container">
+                    <div class="ai-chat-header">
+                        <div class="ai-status">
+                            <div class="ai-avatar">🤖</div>
+                            <div class="ai-info">
+                                <h4>ClutchZone AI</h4>
+                                <span class="ai-status-text">Online</span>
+                            </div>
+                        </div>
+                        <button class="chat-clear" id="clearChat">Clear Chat</button>
+                    </div>
+
+                    <div class="ai-chat-messages" id="chatMessages">
+                        <div class="ai-message">
+                            <div class="message-avatar">🤖</div>
+                            <div class="message-content">
+                                <p>Hello! I'm your ClutchZone AI Assistant. I can help you with:</p>
+                                <ul>
+                                    <li>🏆 Finding and joining tournaments</li>
+                                    <li>📊 Analyzing your performance</li>
+                                    <li>🥇 Improving your leaderboard ranking</li>
+                                    <li>💰 Managing your wallet and earnings</li>
+                                    <li>⚔️ Match strategies and tips</li>
+                                    <li>❓ Any other ClutchZone questions</li>
+                                </ul>
+                                <p>What would you like to know?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ai-chat-input">
+                        <div class="input-container">
+                            <input type="text" id="chatInput" placeholder="Ask me anything about ClutchZone..." maxlength="500">
+                            <button id="sendMessage" class="send-btn">
+                                <span class="send-icon">📤</span>
+                            </button>
+                        </div>
+                        <div class="input-suggestions" id="inputSuggestions">
+                            <button class="suggestion-btn">How do I join a tournament?</button>
+                            <button class="suggestion-btn">What's my current ranking?</button>
+                            <button class="suggestion-btn">How can I improve my gameplay?</button>
+                            <button class="suggestion-btn">Show me my match history</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p>AI is thinking...</p>
+    </div>
+
+    <!-- Advanced Footer -->
+    <footer class="advanced-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>ClutchZone</h4>
+                    <p>The ultimate gaming tournament platform for elite players.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">📷</a>
+                        <a href="#" class="social-link">🎮</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="../tournaments/tournaments.html" class="footer-link">Tournaments</a></li>
+                        <li><a href="../leaderboard/leaderboard.html" class="footer-link">Leaderboard</a></li>
+                        <li><a href="../profile/profile.html" class="footer-link">Profile</a></li>
+                        <li><a href="../contact/contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">Help Center</a></li>
+                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link">Terms of Service</a></li>
+                        <li><a href="ai.html" class="footer-link">AI Assistant</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Games</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">Fortnite</a></li>
+                        <li><a href="#" class="footer-link">CS:GO</a></li>
+                        <li><a href="#" class="footer-link">PUBG</a></li>
+                        <li><a href="#" class="footer-link">Call of Duty</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ClutchZone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../sounds/soundManager.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/advancedNavbar.js"></script>
+    <script src="../js/welcome.js"></script>
+    <script src="ai.js"></script>
+    
+    <!-- Mobile Navigation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.getElementById('navToggle');
+            const navLinks = document.getElementById('navLinks');
+            
+            if (navToggle && navLinks) {
+                navToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                    this.style.transform = navLinks.classList.contains('active') ? 'rotate(90deg)' : 'rotate(0deg)';
+                });
+                
+                navLinks.addEventListener('click', function(e) {
+                    if (e.target.tagName === 'A') {
+                        navLinks.classList.remove('active');
+                        navToggle.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

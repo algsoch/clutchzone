@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClutchZone - Elite Registration Portal</title>
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="../css/global.css" as="style">
+    <link rel="preload" href="register-enhanced.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap" as="style">
+    
+    <!-- CSS Imports -->
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="register-enhanced.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Advanced JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" defer></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- Meta Tags for Enhanced SEO -->
+    <meta name="description" content="Join ClutchZone - The ultimate gaming platform for esports champions. Create your elite gaming account and dominate the competition.">
+    <meta name="keywords" content="gaming, esports, tournaments, ClutchZone, register, gaming platform">
+    <meta name="author" content="ClutchZone">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="ClutchZone - Elite Registration Portal">
+    <meta property="og:description" content="Join the ultimate gaming platform for esports champions">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="../assets/images/clutchzone-og.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/apple-touch-icon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#00ff88">
+    
+    <!-- Performance and Security -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+</head>
+<body>
+    <!-- Ultra-Advanced Gaming Navigation
+    <nav class="advanced-navbar" id="advancedNavbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../index.html" class="brand-link">
+                    <div class="brand-icon">
+                        <img src="../assets/logo.svg" alt="ClutchZone Logo" class="brand-logo">
+                        <div class="brand-glow"></div>
+                    </div>
+                    <span class="brand-text">ClutchZone</span>
+                    <div class="brand-particles"></div>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                    <div class="nav-ripple"></div>
+                </a>
+                <a href="../tournaments/tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i>
+                    <span>Tournaments</span>
+                    <span class="nav-badge pulse" id="liveTournamentCount">0</span>
+                    <div class="nav-ripple"></div>
+                </a>
+                <a href="../leaderboard/leaderboard.html" class="nav-link">
+                    <i class="fas fa-crown"></i>
+                    <span>Leaderboard</span>
+                    <div class="nav-ripple"></div>
+                </a>
+                <a href="../match/match.html" class="nav-link auth-required">
+                    <i class="fas fa-crosshairs"></i>
+                    <span>Match Center</span>
+                    <div class="nav-ripple"></div>
+                </a>
+                <a href="../wallet/wallet.html" class="nav-link auth-required">
+                    <i class="fas fa-wallet"></i>
+                    <span>Wallet</span>
+                    <div class="nav-ripple"></div>
+                </a>
+                <a href="../profile/profile.html" class="nav-link auth-required">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Profile</span>
+                    <div class="nav-ripple"></div>
+                </a>
+                <a href="../contact/contact-redesigned.html" class="nav-link">
+                    <i class="fas fa-headset"></i>
+                    <span>Contact</span>
+                    <div class="nav-ripple"></div>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="auth-section" id="authSection">
+                    <a href="../login/login.html" class="btn btn-primary nav-btn">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>Login</span>
+                        <div class="btn-glow"></div>
+                    </a>
+                    <a href="../register/register.html" class="btn btn-secondary active nav-btn">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Register</span>
+                        <div class="btn-glow"></div>
+                    </a>
+                </div>
+                <button class="nav-toggle" id="navToggle" title="Toggle navigation menu" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+        <div class="nav-glow"></div>
+        <div class="nav-particles"></div>
+    </nav> -->
+<div class="nav-particles"></div>
+    <!-- Ultra-Advanced Main Content -->
+    <main class="main-content">
+        <!-- Advanced Gaming Background Effects -->
+        <div class="chess-background"></div>
+        <div class="tactical-grid"></div>
+        
+        <!-- Advanced Chess Game Animation -->
+        <div class="chess-game-animation">
+            <!-- Chess Board -->
+            <div class="animated-chess-board">
+                <div class="chess-square light"></div>
+                <div class="chess-square dark"></div>
+                <div class="chess-square light"></div>
+                <div class="chess-square dark"></div>
+                <div class="chess-square light"></div>
+                <div class="chess-square dark"></div>
+                <div class="chess-square light"></div>
+                <div class="chess-square dark"></div>
+            </div>
+            
+            <!-- Animated Chess Pieces -->
+            <div class="chess-piece animated-queen">♛</div>
+            <div class="chess-piece animated-king">♚</div>
+            <div class="chess-piece animated-rook">♜</div>
+            <div class="chess-piece animated-bishop">♝</div>
+            <div class="chess-piece animated-knight">♞</div>
+            <div class="chess-piece animated-pawn pawn-1">♟</div>
+            <div class="chess-piece animated-pawn pawn-2">♟</div>
+            <div class="chess-piece animated-pawn pawn-3">♟</div>
+            
+            <!-- Chess Move Trails -->
+            <div class="chess-move-trail trail-1"></div>
+            <div class="chess-move-trail trail-2"></div>
+            <div class="chess-move-trail trail-3"></div>
+            <div class="chess-move-trail trail-4"></div>
+        </div>
+        
+        <!-- Gun & Combat Gaming Elements -->
+        <div class="combat-elements">
+            <!-- Bullet Trail Effects -->
+            <div class="bullet-trail trail-top"></div>
+            <div class="bullet-trail trail-middle"></div>
+            <div class="bullet-trail trail-bottom"></div>
+            <div class="bullet-trail trail-diagonal"></div>
+            
+            <!-- Gun Scope Effects -->
+            <div class="gun-scope scope-primary"></div>
+            <div class="crosshair-effect crosshair-secondary"></div>
+            
+            <!-- Tactical Elements -->
+            <div class="tactical-marker marker-1">⚫</div>
+            <div class="tactical-marker marker-2">⚫</div>
+            <div class="tactical-marker marker-3">⚫</div>
+        </div>
+        
+        <!-- Ultra-Advanced ClutchZone Branding Section -->
+        <div class="clutchzone-branding-section">
+            <!-- ClutchZone Logo & Header -->
+            <div class="brand-showcase">
+                <div class="brand-logo-container">
+                    <div class="logo-wrapper">
+                        <img src="../assets/logo.svg" alt="ClutchZone Elite Gaming" class="brand-logo-main">
+                        <div class="logo-glow-ring"></div>
+                        <div class="logo-particles-system">
+                            <div class="logo-particle"></div>
+                            <div class="logo-particle"></div>
+                            <div class="logo-particle"></div>
+                            <div class="logo-particle"></div>
+                            <div class="logo-particle"></div>
+                        </div>
+                        <div class="logo-energy-field"></div>
+                    </div>
+                    
+                    <div class="brand-title-section">
+                        <div class="elite-badge">
+                            <span class="badge-icon">🏆</span>
+                            <span class="badge-text">#1 Gaming Platform</span>
+                            <div class="badge-glow"></div>
+                        </div>
+                        
+                        <h1 class="brand-main-title">
+                            <span class="title-clutch">ClutchZone</span>
+                            <div class="title-effects">
+                                <div class="title-hologram"></div>
+                                <div class="title-energy-waves"></div>
+                            </div>
+                        </h1>
+                        
+                        <h2 class="brand-subtitle">Elite Gaming Arena</h2>
+                        
+                        <div class="brand-description">
+                            <p class="description-text">
+                                Compete in real-time esports tournaments, climb the leaderboards, 
+                                and earn your place among the gaming elite. Your clutch moments start here.
+                            </p>
+                            <div class="description-glow"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Advanced Statistics Display -->
+                <div class="platform-stats">
+                    <div class="stats-grid">
+                        <div class="stat-card active-players">
+                            <div class="stat-header">
+                                <span class="stat-number counter-animation" data-target="5247">0</span>
+                                <span class="stat-unit">Active Players</span>
+                            </div>
+                            <div class="stat-icon">
+                                <span class="icon-symbol">👥</span>
+                                <div class="icon-pulse"></div>
+                            </div>
+                            <div class="stat-background">
+                                <div class="stat-glow"></div>
+                                <div class="stat-particles"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card live-tournaments">
+                            <div class="stat-header">
+                                <span class="stat-number counter-animation" data-target="156">0</span>
+                                <span class="stat-unit">Live Tournaments</span>
+                            </div>
+                            <div class="stat-icon">
+                                <span class="icon-symbol">🏆</span>
+                                <div class="icon-pulse"></div>
+                            </div>
+                            <div class="stat-background">
+                                <div class="stat-glow"></div>
+                                <div class="stat-particles"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card prize-pool">
+                            <div class="stat-header">
+                                <span class="stat-number counter-animation" data-target="89500">0</span>
+                                <span class="stat-unit">Prize Pool (₹)</span>
+                            </div>
+                            <div class="stat-icon">
+                                <span class="icon-symbol">💰</span>
+                                <div class="icon-pulse"></div>
+                            </div>
+                            <div class="stat-background">
+                                <div class="stat-glow"></div>
+                                <div class="stat-particles"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card games-supported">
+                            <div class="stat-header">
+                                <span class="stat-number counter-animation" data-target="24">0</span>
+                                <span class="stat-unit">Games Supported</span>
+                            </div>
+                            <div class="stat-icon">
+                                <span class="icon-symbol">🎮</span>
+                                <div class="icon-pulse"></div>
+                            </div>
+                            <div class="stat-background">
+                                <div class="stat-glow"></div>
+                                <div class="stat-particles"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Real-time Activity Feed -->
+                    <div class="activity-feed">
+                        <div class="feed-header">
+                            <span class="feed-title">🔴 Live Activity</span>
+                            <div class="live-indicator">
+                                <div class="live-pulse"></div>
+                            </div>
+                        </div>
+                        <div class="feed-items">
+                            <div class="feed-item">
+                                <span class="player-name">ProGamer_X</span>
+                                <span class="action">won</span>
+                                <span class="tournament">Valorant Championship</span>
+                                <div class="activity-glow"></div>
+                            </div>
+                            <div class="feed-item">
+                                <span class="player-name">EliteSniper</span>
+                                <span class="action">joined</span>
+                                <span class="tournament">CS2 Tournament</span>
+                                <div class="activity-glow"></div>
+                            </div>
+                            <div class="feed-item">
+                                <span class="player-name">ChessKing</span>
+                                <span class="action">leads</span>
+                                <span class="tournament">Strategy Masters</span>
+                                <div class="activity-glow"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ultra-Advanced Chess Animation Box -->
+        
+
+        <div class="container">
+            <div class="register-container">
+                <!-- Strategy Lines SVG -->
+                <svg class="strategy-lines" viewBox="0 0 800 600">
+                    <path class="strategy-line" d="M50,50 L200,150 L350,100 L500,200"></path>
+                    <path class="strategy-line" d="M100,300 L250,250 L400,350 L550,300"></path>
+                    <path class="strategy-line" d="M150,450 L300,400 L450,500 L600,450"></path>
+                    <path class="strategy-line" d="M750,100 L600,200 L450,150 L300,250"></path>
+                </svg>
+
+                <!-- Ultra-Advanced 3D Trophy Display -->
+                <div class="trophy-container">
+                    <canvas id="trophy-canvas"></canvas>
+                    <div class="trophy-effects">
+                        <div class="trophy-glow-ring"></div>
+                        <div class="trophy-particles"></div>
+                        <div class="trophy-rays"></div>
+                    </div>
+                </div>
+
+                <!-- Ultra-Enhanced Registration Card -->
+                <div class="register-card card animate-fadeInUp ultra-advanced" role="main" aria-labelledby="register-title">
+                    <!-- Animated Background Effects -->
+                    <div class="card-background-effects">
+                        <div class="card-glow-primary"></div>
+                        <div class="card-glow-secondary"></div>
+                        <div class="card-particles"></div>
+                        <div class="card-energy-field"></div>
+                        <div class="card-hologram-grid"></div>
+                    </div>
+                    
+                    <!-- Dynamic Header with Advanced Animations -->
+                    <header class="register-header ultra-header">
+                        <h1 id="register-title" class="title ultra-title">
+                            <span class="title-primary typing-effect">Join the</span>
+                            <span class="title-accent glow-pulse">Elite</span>
+                            <div class="title-effects">
+                                <div class="title-glow-ring"></div>
+                                <div class="title-particles-burst"></div>
+                                <div class="title-energy-waves"></div>
+                                <div class="title-hologram"></div>
+                            </div>
+                        </h1>
+                        <p class="subtitle ultra-subtitle slide-in-stagger">
+                            <span class="subtitle-text">Create your ClutchZone account and start your journey to gaming supremacy</span>
+                            <span class="subtitle-highlight pulse-glow">🎮</span>
+                            <div class="subtitle-underline animated-underline"></div>
+                        </p>
+                        
+                        <!-- Gaming Stats Preview -->
+                        <div class="gaming-stats-preview">
+                            <div class="stat-item animate-scale">
+                                <span class="stat-icon">🏆</span>
+                                <span class="stat-label">Tournaments</span>
+                                <span class="stat-value counter-animation">0</span>
+                            </div>
+                            <div class="stat-item animate-scale">
+                                <span class="stat-icon">⚡</span>
+                                <span class="stat-label">Win Rate</span>
+                                <span class="stat-value counter-animation">0%</span>
+                            </div>
+                            <div class="stat-item animate-scale">
+                                <span class="stat-icon">🎯</span>
+                                <span class="stat-label">Rank</span>
+                                <span class="stat-value">ROOKIE</span>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Ultra-Enhanced XP Preview System -->
+                    <div class="xp-preview ultra-xp" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Registration progress">
+                        <div class="xp-container advanced-container">
+                            <div class="xp-label ultra-label">
+                                <span class="xp-icon rotating-star">⭐</span>
+                                <span class="xp-text typing-text">Your Epic Journey Begins</span>
+                                <span class="xp-animation energy-pulse"></span>
+                            </div>
+                            <div class="xp-bar ultra-bar">
+                                <div class="xp-background gradient-bg"></div>
+                                <div class="xp-progress animated-progress" id="preview-xp">
+                                    <div class="xp-progress-shine rainbow-shine"></div>
+                                    <div class="xp-progress-glow neon-glow"></div>
+                                    <div class="xp-progress-particles floating-particles"></div>
+                                </div>
+                                <div class="xp-milestones">
+                                    <div class="xp-milestone pulse-milestone" data-value="25">25</div>
+                                    <div class="xp-milestone pulse-milestone" data-value="50">50</div>
+                                    <div class="xp-milestone pulse-milestone" data-value="75">75</div>
+                                    <div class="xp-milestone pulse-milestone" data-value="100">100</div>
+                                </div>
+                            </div>
+                            <div class="xp-display ultra-display">
+                                <span class="xp-current count-up">0</span>
+                                <span class="xp-separator glow-separator">/</span>
+                                <span class="xp-max">100</span>
+                                <span class="xp-unit glow-text">XP</span>
+                                <span class="xp-status status-glow">Ready to Start</span>
+                            </div>
+                        </div>
+                        
+                        <!-- XP Boost Indicators -->
+                        <div class="xp-boost-indicators">
+                            <div class="boost-item">
+                                <span class="boost-icon">🚀</span>
+                                <span class="boost-text">Registration Bonus: +100 XP</span>
+                            </div>
+                            <div class="boost-item">
+                                <span class="boost-icon">🎯</span>
+                                <span class="boost-text">First Match: +50 XP</span>
+                            </div>
+                            <div class="boost-item">
+                                <span class="boost-icon">🏅</span>
+                                <span class="boost-text">Tournament Entry: +25 XP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ultra-Advanced Registration Form -->
+                    <form id="registerForm" class="register-form" novalidate aria-label="Registration form">
+                        <!-- Personal Information Section -->
+                        <fieldset class="form-section" aria-labelledby="personal-info-legend">
+                            <legend id="personal-info-legend" class="section-legend">
+                                <span class="legend-icon">👤</span>
+                                <span class="legend-text">Personal Information</span>
+                                <div class="legend-line"></div>
+                            </legend>
+
+                            <!-- Enhanced Username Field -->
+                            <div class="form-group" data-animation-delay="0.1s">
+                                <label for="username" class="form-label">
+                                    <span class="label-icon">🎮</span>
+                                    <span class="label-text">Gamer Tag</span>
+                                    <span class="label-required" aria-label="required">*</span>
+                                    <div class="label-underline"></div>
+                                </label>
+                                <div class="input-container">
+                                    <input 
+                                        type="text" 
+                                        id="username" 
+                                        name="username" 
+                                        class="form-control" 
+                                        placeholder="Enter your unique gamer tag"
+                                        required 
+                                        autocomplete="username"
+                                        aria-describedby="username-help username-error"
+                                        maxlength="20"
+                                        pattern="[a-zA-Z0-9_-]+"
+                                    >
+                                    <div class="input-effects">
+                                        <div class="input-glow"></div>
+                                        <div class="input-ripple"></div>
+                                        <div class="input-particles"></div>
+                                    </div>
+                                    <div class="input-validation">
+                                        <div class="validation-icon"></div>
+                                    </div>
+                                </div>
+                                <div id="username-help" class="form-help">
+                                    3-20 characters, letters, numbers, underscore, and dash only
+                                </div>
+                                <div id="username-error" class="error-message" role="alert" aria-live="polite"></div>
+                            </div>
+
+                            <!-- Enhanced Email Field -->
+                            <div class="form-group" data-animation-delay="0.2s">
+                                <label for="email" class="form-label">
+                                    <span class="label-icon">📧</span>
+                                    <span class="label-text">Email Address</span>
+                                    <span class="label-required" aria-label="required">*</span>
+                                    <div class="label-underline"></div>
+                                </label>
+                                <div class="input-container">
+                                    <input 
+                                        type="email" 
+                                        id="email" 
+                                        name="email" 
+                                        class="form-control" 
+                                        placeholder="Enter your email address"
+                                        required 
+                                        autocomplete="email"
+                                        aria-describedby="email-help email-error"
+                                    >
+                                    <div class="input-effects">
+                                        <div class="input-glow"></div>
+                                        <div class="input-ripple"></div>
+                                        <div class="input-particles"></div>
+                                    </div>
+                                    <div class="input-validation">
+                                        <div class="validation-icon"></div>
+                                    </div>
+                                </div>
+                                <div id="email-help" class="form-help">
+                                    We'll send you tournament updates and important notifications
+                                </div>
+                                <div id="email-error" class="error-message" role="alert" aria-live="polite"></div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Security Section -->
+                        <fieldset class="form-section" aria-labelledby="security-legend">
+                            <legend id="security-legend" class="section-legend">
+                                <span class="legend-icon">🔐</span>
+                                <span class="legend-text">Security Setup</span>
+                                <div class="legend-line"></div>
+                            </legend>
+
+                            <!-- Enhanced Password Field -->
+                            <div class="form-group" data-animation-delay="0.3s">
+                                <label for="password" class="form-label">
+                                    <span class="label-icon">🔑</span>
+                                    <span class="label-text">Password</span>
+                                    <span class="label-required" aria-label="required">*</span>
+                                    <div class="label-underline"></div>
+                                </label>
+                                <div class="input-container">
+                                    <input 
+                                        type="password" 
+                                        id="password" 
+                                        name="password" 
+                                        class="form-control" 
+                                        placeholder="Create a strong password"
+                                        required 
+                                        autocomplete="new-password"
+                                        aria-describedby="password-help password-error password-strength"
+                                        minlength="8"
+                                    >
+                                    <div class="input-effects">
+                                        <div class="input-glow"></div>
+                                        <div class="input-ripple"></div>
+                                        <div class="input-particles"></div>
+                                    </div>
+                                    <div class="input-validation">
+                                        <div class="validation-icon"></div>
+                                    </div>
+                                    <button type="button" class="password-toggle" aria-label="Toggle password visibility">
+                                        <span class="toggle-icon">👁️</span>
+                                    </button>
+                                </div>
+                                <div id="password-help" class="form-help">
+                                    Minimum 8 characters with uppercase, lowercase, number, and special character
+                                </div>
+                                <div id="password-error" class="error-message" role="alert" aria-live="polite"></div>
+                                
+                                <!-- Advanced Password Strength Indicator -->
+                                <div class="password-strength" id="password-strength" aria-label="Password strength indicator">
+                                    <div class="strength-container">
+                                        <div class="strength-bar">
+                                            <div class="strength-progress" id="strength-progress">
+                                                <div class="strength-shine"></div>
+                                            </div>
+                                            <div class="strength-segments">
+                                                <div class="strength-segment"></div>
+                                                <div class="strength-segment"></div>
+                                                <div class="strength-segment"></div>
+                                                <div class="strength-segment"></div>
+                                            </div>
+                                        </div>
+                                        <div class="strength-info">
+                                            <span class="strength-text" id="strength-text">Enter password to check strength</span>
+                                            <div class="strength-requirements">
+                                                <div class="requirement" data-requirement="length">
+                                                    <span class="req-icon">○</span>
+                                                    <span class="req-text">8+ characters</span>
+                                                </div>
+                                                <div class="requirement" data-requirement="uppercase">
+                                                    <span class="req-icon">○</span>
+                                                    <span class="req-text">Uppercase letter</span>
+                                                </div>
+                                                <div class="requirement" data-requirement="lowercase">
+                                                    <span class="req-icon">○</span>
+                                                    <span class="req-text">Lowercase letter</span>
+                                                </div>
+                                                <div class="requirement" data-requirement="number">
+                                                    <span class="req-icon">○</span>
+                                                    <span class="req-text">Number</span>
+                                                </div>
+                                                <div class="requirement" data-requirement="special">
+                                                    <span class="req-icon">○</span>
+                                                    <span class="req-text">Special character</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Enhanced Confirm Password Field -->
+                            <div class="form-group" data-animation-delay="0.4s">
+                                <label for="confirmPassword" class="form-label">
+                                    <span class="label-icon">🔒</span>
+                                    <span class="label-text">Confirm Password</span>
+                                    <span class="label-required" aria-label="required">*</span>
+                                    <div class="label-underline"></div>
+                                </label>
+                                <div class="input-container">
+                                    <input 
+                                        type="password" 
+                                        id="confirmPassword" 
+                                        name="confirmPassword" 
+                                        class="form-control" 
+                                        placeholder="Confirm your password"
+                                        required 
+                                        autocomplete="new-password"
+                                        aria-describedby="confirmPassword-error"
+                                    >
+                                    <div class="input-effects">
+                                        <div class="input-glow"></div>
+                                        <div class="input-ripple"></div>
+                                        <div class="input-particles"></div>
+                                    </div>
+                                    <div class="input-validation">
+                                        <div class="validation-icon"></div>
+                                    </div>
+                                </div>
+                                <div id="confirmPassword-error" class="error-message" role="alert" aria-live="polite"></div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Gaming Preferences Section -->
+                        <fieldset class="form-section" aria-labelledby="gaming-legend">
+                            <legend id="gaming-legend" class="section-legend">
+                                <span class="legend-icon">🎯</span>
+                                <span class="legend-text">Gaming Preferences</span>
+                                <div class="legend-line"></div>
+                            </legend>
+
+                            <!-- Enhanced Game Selection -->
+                            <div class="form-group" data-animation-delay="0.5s">
+                                <label for="favoriteGame" class="form-label">
+                                    <span class="label-icon">🎮</span>
+                                    <span class="label-text">Primary Game</span>
+                                    <span class="label-required" aria-label="required">*</span>
+                                    <div class="label-underline"></div>
+                                </label>
+                                <div class="input-container">
+                                    <select 
+                                        id="favoriteGame" 
+                                        name="favoriteGame" 
+                                        class="form-control" 
+                                        required 
+                                        aria-describedby="favoriteGame-help favoriteGame-error"
+                                    >
+                                        <option value="" disabled selected>Select your main competitive game</option>
+                                        <optgroup label="🔫 FPS Games">
+                                            <option value="valorant">Valorant</option>
+                                            <option value="csgo">Counter-Strike: Global Offensive</option>
+                                            <option value="cs2">Counter-Strike 2</option>
+                                            <option value="cod">Call of Duty</option>
+                                            <option value="apex">Apex Legends</option>
+                                            <option value="overwatch">Overwatch 2</option>
+                                        </optgroup>
+                                        <optgroup label="🏰 Battle Royale">
+                                            <option value="pubg">PUBG</option>
+                                            <option value="fortnite">Fortnite</option>
+                                            <option value="warzone">Call of Duty: Warzone</option>
+                                        </optgroup>
+                                        <optgroup label="⚔️ MOBA Games">
+                                            <option value="lol">League of Legends</option>
+                                            <option value="dota2">Dota 2</option>
+                                            <option value="smite">Smite</option>
+                                        </optgroup>
+                                        <optgroup label="🏎️ Racing & Sports">
+                                            <option value="rocket-league">Rocket League</option>
+                                            <option value="fifa">FIFA</option>
+                                            <option value="f1">F1 Games</option>
+                                        </optgroup>
+                                        <optgroup label="🎯 Other">
+                                            <option value="other">Other Competitive Game</option>
+                                        </optgroup>
+                                    </select>
+                                    <div class="input-effects">
+                                        <div class="input-glow"></div>
+                                        <div class="input-ripple"></div>
+                                        <div class="select-arrow">
+                                            <div class="arrow-icon">▼</div>
+                                        </div>
+                                    </div>
+                                    <div class="input-validation">
+                                        <div class="validation-icon"></div>
+                                    </div>
+                                </div>
+                                <div id="favoriteGame-help" class="form-help">
+                                    Choose your primary competitive game to get personalized tournament recommendations
+                                </div>
+                                <div id="favoriteGame-error" class="error-message" role="alert" aria-live="polite"></div>
+                            </div>
+                        </fieldset>
+
+                        <!-- Terms and Agreements Section -->
+                        <fieldset class="form-section" aria-labelledby="agreements-legend">
+                            <legend id="agreements-legend" class="section-legend">
+                                <span class="legend-icon">📋</span>
+                                <span class="legend-text">Terms & Preferences</span>
+                                <div class="legend-line"></div>
+                            </legend>
+
+                            <!-- Enhanced Terms Checkbox -->
+                            <div class="form-group" data-animation-delay="0.6s">
+                                <label class="checkbox-container" for="terms">
+                                    <input type="checkbox" id="terms" name="terms" required aria-describedby="terms-error">
+                                    <span class="checkmark">
+                                        <div class="checkmark-icon">✓</div>
+                                        <div class="checkmark-glow"></div>
+                                    </span>
+                                    <span class="checkbox-text">
+                                        I agree to the 
+                                        <a href="#" class="terms-link" data-modal="terms">Terms of Service</a> 
+                                        and 
+                                        <a href="#" class="terms-link" data-modal="privacy">Privacy Policy</a>
+                                        <span class="required-indicator">*</span>
+                                    </span>
+                                </label>
+                                <div id="terms-error" class="error-message" role="alert" aria-live="polite"></div>
+                            </div>
+
+                            <!-- Enhanced Notifications Checkbox -->
+                            <div class="form-group" data-animation-delay="0.7s">
+                                <label class="checkbox-container" for="notifications">
+                                    <input type="checkbox" id="notifications" name="notifications" checked>
+                                    <span class="checkmark">
+                                        <div class="checkmark-icon">✓</div>
+                                        <div class="checkmark-glow"></div>
+                                    </span>
+                                    <span class="checkbox-text">
+                                        <span class="notification-icon">🔔</span>
+                                        Send me tournament notifications, updates, and exclusive gaming content
+                                    </span>
+                                </label>
+                            </div>
+
+                            <!-- Marketing Preferences -->
+                            <div class="form-group" data-animation-delay="0.8s">
+                                <label class="checkbox-container" for="marketing">
+                                    <input type="checkbox" id="marketing" name="marketing">
+                                    <span class="checkmark">
+                                        <div class="checkmark-icon">✓</div>
+                                        <div class="checkmark-glow"></div>
+                                    </span>
+                                    <span class="checkbox-text">
+                                        <span class="marketing-icon">📧</span>
+                                        I want to receive special offers, promotions, and gaming tips
+                                    </span>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <!-- Enhanced Submit Button -->
+                        <div class="form-actions" data-animation-delay="0.9s">
+                            <button type="submit" class="btn btn-register" aria-describedby="register-help">
+                                <span class="btn-background">
+                                    <div class="btn-gradient"></div>
+                                    <div class="btn-shine"></div>
+                                </span>
+                                <span class="btn-content">
+                                    <span class="btn-icon">🚀</span>
+                                    <span class="btn-text">Create Elite Account</span>
+                                    <span class="btn-loading-icon">⏳</span>
+                                </span>
+                                <span class="btn-effects">
+                                    <div class="btn-glow"></div>
+                                    <div class="btn-particles"></div>
+                                    <div class="btn-ripple"></div>
+                                </span>
+                            </button>
+                            <div id="register-help" class="form-help">
+                                By clicking "Create Elite Account", you'll join thousands of competitive gamers
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Enhanced Footer -->
+                    <footer class="register-footer">
+                        <div class="footer-content">
+                            <p class="footer-text">
+                                Already part of the elite? 
+                                <a href="../login/login.html" class="login-link">
+                                    <span class="link-icon">🔑</span>
+                                    <span class="link-text">Login here</span>
+                                    <span class="link-arrow">→</span>
+                                </a>
+                            </p>
+                            <div class="footer-social">
+                                <a href="#" class="social-link" aria-label="Follow us on Discord">
+                                    <span class="social-icon">🎮</span>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Follow us on Twitter">
+                                    <span class="social-icon">🐦</span>
+                                </a>
+                                <a href="#" class="social-link" aria-label="Follow us on YouTube">
+                                    <span class="social-icon">📺</span>
+                                </a>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+
+                <!-- Ultra-Advanced Success Modal -->
+                <div class="modal" id="successModal" role="dialog" aria-labelledby="success-title" aria-modal="true">
+                    <div class="modal-overlay" aria-hidden="true"></div>
+                    <div class="modal-content card">
+                        <button class="modal-close" aria-label="Close modal" onclick="closeModal()">
+                            <span class="close-icon">✕</span>
+                        </button>
+                        
+                        <header class="modal-header">
+                            <h2 id="success-title" class="modal-title">
+                                <span class="title-celebration">🎉</span>
+                                <span class="title-text">Welcome to the Elite!</span>
+                                <div class="title-sparkles">
+                                    <div class="sparkle"></div>
+                                    <div class="sparkle"></div>
+                                    <div class="sparkle"></div>
+                                </div>
+                            </h2>
+                        </header>
+                        
+                        <div class="modal-body">
+                            <div class="success-animation">
+                                <div class="trophy-display">
+                                    <div class="trophy-icon">🏆</div>
+                                    <div class="trophy-glow"></div>
+                                    <div class="trophy-rays">
+                                        <div class="ray"></div>
+                                        <div class="ray"></div>
+                                        <div class="ray"></div>
+                                        <div class="ray"></div>
+                                    </div>
+                                </div>
+                                <div class="confetti-container">
+                                    <div class="confetti">🎊</div>
+                                    <div class="confetti">🎉</div>
+                                    <div class="confetti">⭐</div>
+                                    <div class="confetti">💫</div>
+                                </div>
+                            </div>
+                            
+                            <div class="success-content">
+                                <p class="success-message">
+                                    Your elite gaming account has been created successfully! You're now part of the ClutchZone community.
+                                </p>
+                                <p class="success-details">
+                                    A welcome email with your account verification link has been sent to your inbox.
+                                </p>
+                            </div>
+                            
+                            <div class="xp-celebration">
+                                <div class="xp-gained">
+                                    <div class="xp-label">
+                                        <span class="xp-icon">⭐</span>
+                                        <span class="xp-text">Registration Bonus</span>
+                                    </div>
+                                    <div class="xp-amount">
+                                        <span class="xp-value">+100</span>
+                                        <span class="xp-unit">XP</span>
+                                    </div>
+                                    <div class="xp-bar">
+                                        <div class="xp-progress" id="modal-xp">
+                                            <div class="xp-shine"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="achievements-unlocked">
+                                    <h3 class="achievements-title">🏅 Achievements Unlocked</h3>
+                                    <div class="achievement-list">
+                                        <div class="achievement">
+                                            <span class="achievement-icon">🎯</span>
+                                            <span class="achievement-name">First Steps</span>
+                                        </div>
+                                        <div class="achievement">
+                                            <span class="achievement-icon">🚀</span>
+                                            <span class="achievement-name">Elite Recruit</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <footer class="modal-footer">
+                            <button class="btn btn-modal-primary" onclick="redirectToLogin()">
+                                <span class="btn-icon">🔑</span>
+                                <span class="btn-text">Continue to Login</span>
+                                <span class="btn-arrow">→</span>
+                            </button>
+                            <button class="btn btn-modal-secondary" onclick="exploreFeatures()">
+                                <span class="btn-icon">🌟</span>
+                                <span class="btn-text">Explore Features</span>
+                            </button>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+<div class="chess-animation-box">
+            <div class="chess-box-container">
+                <div class="chess-box-header">
+                    <span class="chess-title">🏆 Chess Masters</span>
+                    <div class="chess-timer">
+                        <span class="timer-white">05:30</span>
+                        <span class="timer-separator">VS</span>
+                        <span class="timer-black">04:15</span>
+                    </div>
+                </div>
+                
+                <div class="chess-board-box">
+                    <!-- Chess Board Grid -->
+                    <div class="chess-grid">
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                        <div class="chess-cell dark"></div>
+                        <div class="chess-cell light"></div>
+                    </div>
+                    
+                    <!-- Animated Chess Pieces in Icon Form -->
+                    <div class="chess-pieces-overlay">
+                        <!-- White Pieces -->
+                        <div class="chess-piece-icon white king" style="--position: 28;">♔</div>
+                        <div class="chess-piece-icon white queen" style="--position: 27;">♕</div>
+                        <div class="chess-piece-icon white rook" style="--position: 24;">♖</div>
+                        <div class="chess-piece-icon white rook" style="--position: 31;">♖</div>
+                        <div class="chess-piece-icon white bishop" style="--position: 26;">♗</div>
+                        <div class="chess-piece-icon white bishop" style="--position: 29;">♗</div>
+                        <div class="chess-piece-icon white knight" style="--position: 25;">♘</div>
+                        <div class="chess-piece-icon white knight" style="--position: 30;">♘</div>
+                        
+                        <!-- Black Pieces -->
+                        <div class="chess-piece-icon black king" style="--position: 4;">♚</div>
+                        <div class="chess-piece-icon black queen" style="--position: 3;">♛</div>
+                        <div class="chess-piece-icon black rook" style="--position: 0;">♜</div>
+                        <div class="chess-piece-icon black rook" style="--position: 7;">♜</div>
+                        <div class="chess-piece-icon black bishop" style="--position: 2;">♝</div>
+                        <div class="chess-piece-icon black bishop" style="--position: 5;">♝</div>
+                        <div class="chess-piece-icon black knight" style="--position: 1;">♞</div>
+                        <div class="chess-piece-icon black knight" style="--position: 6;">♞</div>
+                        
+                        <!-- Some Pawns -->
+                        <div class="chess-piece-icon white pawn" style="--position: 16;">♙</div>
+                        <div class="chess-piece-icon white pawn" style="--position: 17;">♙</div>
+                        <div class="chess-piece-icon white pawn" style="--position: 18;">♙</div>
+                        <div class="chess-piece-icon black pawn" style="--position: 8;">♟</div>
+                        <div class="chess-piece-icon black pawn" style="--position: 9;">♟</div>
+                        <div class="chess-piece-icon black pawn" style="--position: 10;">♟</div>
+                    </div>
+                    
+                    <!-- Chess Move Indicators -->
+                    <div class="chess-move-indicators">
+                        <div class="move-indicator active" style="--move-from: 16; --move-to: 24;"></div>
+                        <div class="move-indicator" style="--move-from: 3; --move-to: 19;"></div>
+                        <div class="move-indicator" style="--move-from: 25; --move-to: 10;"></div>
+                    </div>
+                </div>
+                
+                <div class="chess-status">
+                    <div class="player-status white-player">
+                        <span class="player-name">GrandMaster_X</span>
+                        <span class="player-elo">2,450 ELO</span>
+                    </div>
+                    <div class="game-status">
+                        <span class="status-text">White's Turn</span>
+                        <div class="turn-indicator white-turn"></div>
+                    </div>
+                    <div class="player-status black-player">
+                        <span class="player-name">ChessKing_Y</span>
+                        <span class="player-elo">2,380 ELO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Gaming HUD System - Repositioned to Left -->
+        <div class="gaming-hud-system">
+            <div class="hud-primary">
+                <div class="hud-item">
+                    <span class="hud-label">STATUS:</span>
+                    <span class="hud-value status-online">ONLINE</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">LEVEL:</span>
+                    <span class="hud-value level-rookie">ROOKIE</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">XP:</span>
+                    <span class="hud-value xp-counter">0/100</span>
+                </div>
+                <div class="hud-item">
+                    <span class="hud-label">RANK:</span>
+                    <span class="hud-value rank-display">UNRANKED</span>
+                </div>
+            </div>
+            
+            <!-- Weapon Arsenal Display -->
+            <div class="weapon-arsenal">
+                <div class="weapon-slot active">
+                    <span class="weapon-icon primary">🔫</span>
+                    <span class="weapon-name">ASSAULT</span>
+                </div>
+                <div class="weapon-slot">
+                    <span class="weapon-icon secondary">⚔️</span>
+                    <span class="weapon-name">MELEE</span>
+                </div>
+                <div class="weapon-slot">
+                    <span class="weapon-icon special">🏹</span>
+                    <span class="weapon-name">SNIPER</span>
+                </div>
+                <div class="weapon-slot">
+                    <span class="weapon-icon explosive">💣</span>
+                    <span class="weapon-name">EXPLOSIVE</span>
+                </div>
+            </div>
+        </div>
+    <!-- Enhanced Scripts -->
+    <script src="../js/utils.js" defer></script>
+    <script src="../js/advancedNavbar.js" defer></script>
+    <script src="enhanced-register.js" defer></script>
+    
+    <!-- Global Functions -->
+    <script>
+        function redirectToLogin() {
+            // Create transition effect before redirect
+            const overlay = document.createElement('div');
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+                z-index: 100000;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+            `;
+            
+            document.body.appendChild(overlay);
+            
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+            }, 100);
+            
+            setTimeout(() => {
+                window.location.href = '../login/login.html';
+            }, 600);
+        }
+
+        function exploreFeatures() {
+            window.location.href = '../features/features.html';
+        }
+    </script>
+</body>
+</html>

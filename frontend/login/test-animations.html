@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Animation Test - ClutchZone</title>
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="login.css">
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: var(--card-background);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+        }
+        
+        .test-section {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid var(--primary-color);
+            border-radius: var(--radius-md);
+        }
+        
+        .test-title {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-family: var(--font-mono);
+        }
+        
+        .demo-input {
+            width: 100%;
+            max-width: 300px;
+            margin: 10px 0;
+        }
+        
+        .demo-button {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1 style="color: var(--primary-color); text-align: center;">ClutchZone Login Animation Test</h1>
+        
+        <div class="test-section">
+            <h3 class="test-title">1. Form Input Animation Test</h3>
+            <div class="input-container">
+                <input type="text" class="form-input demo-input" placeholder="Test typing animations...">
+                <div class="input-glow"></div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3 class="test-title">2. Button Animation Test</h3>
+            <button class="submit-btn demo-button">
+                <span class="btn-content">
+                    <i class="fas fa-rocket btn-icon"></i>
+                    <span class="btn-text">Test Button</span>
+                </span>
+                <div class="btn-glow"></div>
+            </button>
+        </div>
+        
+        <div class="test-section">
+            <h3 class="test-title">3. Stats Animation Test</h3>
+            <div class="live-stats" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="stat-item">
+                    <div class="stat-icon pulse-effect">🎮</div>
+                    <div class="stat-value">1,337</div>
+                    <div class="stat-label">Test Stat</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon pulse-effect">⚡</div>
+                    <div class="stat-value">42</div>
+                    <div class="stat-label">Power Level</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3 class="test-title">4. Login Bonus Test</h3>
+            <div class="login-bonus">
+                <div class="bonus-header">
+                    <i class="fas fa-gift bonus-icon"></i>
+                    <span>Test Bonus</span>
+                </div>
+                <div class="xp-preview">
+                    <div class="xp-bar-container">
+                        <div class="xp-bar">
+                            <div class="xp-fill animate-fill" data-xp="75"></div>
+                        </div>
+                        <span class="xp-text">+75 XP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3 class="test-title">5. Floating Elements Test</h3>
+            <div style="position: relative; height: 200px; background: rgba(0,255,136,0.1); border-radius: 10px;">
+                <div class="floating-elements">
+                    <div class="floating-trophy">🏆</div>
+                    <div class="floating-star">⭐</div>
+                    <div class="floating-crown">👑</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3 class="test-title">6. Gradient Text Test</h3>
+            <h2 class="welcome-title">
+                <span class="text-glow">Test</span>
+                <span class="text-gradient gradient-animate">Gradient!</span>
+            </h2>
+        </div>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        console.log('Animation test page loaded');
+        
+        // Test XP fill animation
+        setTimeout(() => {
+            const xpFill = document.querySelector('.xp-fill');
+            if (xpFill) {
+                xpFill.style.width = '75%';
+                console.log('XP fill animated');
+            }
+        }, 1000);
+        
+        // Test typing simulation
+        const testInput = document.querySelector('.demo-input');
+        if (testInput) {
+            testInput.addEventListener('focus', () => {
+                console.log('Input focused - animations should trigger');
+            });
+        }
+        
+        // Test button hover
+        const testButton = document.querySelector('.demo-button');
+        if (testButton) {
+            testButton.addEventListener('mouseenter', () => {
+                console.log('Button hovered - glow should activate');
+            });
+        }
+    </script>
+</body>
+</html>

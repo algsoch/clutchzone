@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ClutchZone Elite Gaming Arena</title>
+    <link rel="stylesheet" href="../global.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/welcome.css">
+    <link rel="stylesheet" href="login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#00ff88">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="Login to ClutchZone - Elite Gaming Tournament Platform">
+    <meta property="og:title" content="ClutchZone Login">
+    <meta property="og:description" content="Access your gaming profile and compete in tournaments">
+</head>
+<body>
+    <!-- Advanced Gaming Navigation -->
+    <nav class="advanced-navbar" id="advancedNavbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="../index.html" class="brand-link">
+                    <div class="brand-icon">
+                        <img src="../assets/logo.svg" alt="ClutchZone Logo" class="brand-logo">
+                    </div>
+                    <span class="brand-text">ClutchZone</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="navMenu">
+                <a href="../index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+                <a href="../tournaments/tournaments.html" class="nav-link">
+                    <i class="fas fa-trophy"></i>
+                    <span>Tournaments</span>
+                </a>
+                <a href="../leaderboard/leaderboard.html" class="nav-link">
+                    <i class="fas fa-crown"></i>
+                    <span>Leaderboard</span>
+                </a>
+                <a href="../register/register.html" class="nav-link">
+                    <i class="fas fa-user-plus"></i>
+                    <span>Register</span>
+                </a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="nav-toggle" id="navToggle" title="Toggle navigation menu" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Advanced Background Effects -->
+    <div class="login-background">
+        <canvas id="loginCanvas"></canvas>
+        <div class="particles-overlay"></div>
+        <div class="cyber-grid"></div>
+    </div>
+
+    <div class="main-content">
+        <!-- Advanced Login Container -->
+        <div class="login-container">
+            <!-- Left Panel - Welcome Section -->
+            <div class="welcome-panel">
+                <div class="welcome-background">
+                    <canvas id="welcomeCanvas"></canvas>
+                    <div class="floating-elements">
+                        <div class="floating-trophy">🏆</div>
+                        <div class="floating-star">⭐</div>
+                        <div class="floating-crown">👑</div>
+                    </div>
+                </div>
+                
+                <div class="welcome-content">
+                    <div class="logo-section">
+                        <div class="login-logo">
+                            <img src="../assets/logo.svg" alt="ClutchZone" class="logo-img">
+                            <div class="logo-glow"></div>
+                        </div>
+                        <h1 class="welcome-title">
+                            <span class="text-glow">Welcome Back,</span>
+                            <span class="text-gradient gradient-animate">Champion!</span>
+                        </h1>
+                        <p class="welcome-subtitle">
+                            Continue your journey to esports greatness and dominate the leaderboards
+                        </p>
+                    </div>
+                    
+                    <!-- Live Stats Display -->
+                    <div class="live-stats">
+                        <div class="stat-item">
+                            <div class="stat-icon pulse-effect">👥</div>
+                            <div class="stat-value" id="livePlayersCount">5,247</div>
+                            <div class="stat-label">Players Online</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon pulse-effect">🏆</div>
+                            <div class="stat-value" id="liveTournamentsCount">12</div>
+                            <div class="stat-label">Live Tournaments</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-icon pulse-effect">💰</div>
+                            <div class="stat-value" id="totalPrizePool">₹89,500</div>
+                            <div class="stat-label">Prize Pool</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Daily Login Bonus Preview -->
+                    <div class="login-bonus">
+                        <div class="bonus-header">
+                            <i class="fas fa-gift bonus-icon"></i>
+                            <span>Daily Login Bonus</span>
+                        </div>
+                        <div class="xp-preview">
+                            <div class="xp-bar-container">
+                                <div class="xp-bar">
+                                    <div class="xp-fill animate-fill" data-xp="50"></div>
+                                </div>
+                                <span class="xp-text">+50 XP</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel - Login Form -->
+            <div class="form-panel">
+                <div class="form-container">
+                    <div class="form-header">
+                        <h2 class="form-title">Access Your Arena</h2>
+                        <p class="form-subtitle">Login to compete, win, and dominate</p>
+                        <div class="security-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Secured Login</span>
+                        </div>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="loginForm" class="login-form">
+                        <div class="form-group">
+                            <label for="username" class="form-label">
+                                <i class="fas fa-user"></i>
+                                Username or Email
+                            </label>
+                            <div class="input-container">
+                                <input 
+                                    type="text" 
+                                    id="username" 
+                                    name="username" 
+                                    class="form-input"
+                                    placeholder="Enter your username or email"
+                                    required
+                                    autocomplete="username"
+                                >
+                                <div class="input-glow"></div>
+                                <div class="input-validation" id="usernameValidation">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password" class="form-label">
+                                <i class="fas fa-lock"></i>
+                                Password
+                            </label>
+                            <div class="input-container">
+                                <input 
+                                    type="password" 
+                                    id="password" 
+                                    name="password" 
+                                    class="form-input"
+                                    placeholder="Enter your password"
+                                    required
+                                    autocomplete="current-password"
+                                >
+                                <div class="input-glow"></div>
+                                <button type="button" class="toggle-password" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <div class="input-validation" id="passwordValidation">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="rememberMe" name="rememberMe">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-text">Remember me for 30 days</span>
+                            </label>
+                            <a href="#" class="forgot-password" id="forgotPassword">
+                                <i class="fas fa-key"></i>
+                                Forgot Password?
+                            </a>
+                        </div>
+
+                        <button type="submit" class="submit-btn" id="loginBtn">
+                            <span class="btn-content">
+                                <i class="fas fa-sign-in-alt btn-icon"></i>
+                                <span class="btn-text">Access Arena</span>
+                            </span>
+                            <div class="btn-loader">
+                                <div class="loader-spinner"></div>
+                            </div>
+                            <div class="btn-glow"></div>
+                        </button>
+                    </form>
+
+                    <!-- Social Login Options -->
+                    <div class="social-login">
+                        <div class="divider">
+                            <span>Or continue with</span>
+                        </div>
+                        <div class="social-buttons">
+                            <button class="social-btn discord" id="discordLogin">
+                                <i class="fab fa-discord"></i>
+                                <span>Discord</span>
+                            </button>
+                            <button class="social-btn steam" id="steamLogin">
+                                <i class="fab fa-steam"></i>
+                                <span>Steam</span>
+                            </button>
+                            <button class="social-btn google" id="googleLogin">
+                                <i class="fab fa-google"></i>
+                                <span>Google</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <p class="register-link">
+                            New to ClutchZone? 
+                            <a href="../register/register.html" class="link">
+                                <i class="fas fa-user-plus"></i>
+                                Create Account
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advanced Loading Animation -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <img src="../assets/logo.svg" alt="ClutchZone" class="loading-logo-img">
+                <div class="loading-rings">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
+            </div>
+            <div class="loading-text">
+                <span class="loading-message" id="loadingMessage">Authenticating...</span>
+            </div>
+            <div class="loading-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="step active" id="step1">Verifying Credentials</div>
+                    <div class="step" id="step2">Loading Profile</div>
+                    <div class="step" id="step3">Preparing Arena</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal with Advanced Animation -->
+    <div class="modal-overlay" id="successModal">
+        <div class="modal">
+            <div class="modal-background">
+                <canvas id="modalCanvas"></canvas>
+                <div class="success-particles"></div>
+            </div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="success-icon-container">
+                        <div class="success-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="success-rings">
+                            <div class="ring ring-1"></div>
+                            <div class="ring ring-2"></div>
+                            <div class="ring ring-3"></div>
+                        </div>
+                    </div>
+                    <h3 class="modal-title">Welcome Back, Champion!</h3>
+                    <button class="modal-close" id="closeModal" title="Close modal">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="user-greeting">
+                        <div class="avatar-container">
+                            <div class="user-avatar" id="userAvatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="level-badge" id="userLevel">
+                                <span>LVL 1</span>
+                            </div>
+                        </div>
+                        <div class="greeting-text">
+                            <h4 class="username" id="welcomeUsername">Player</h4>
+                            <p class="last-seen" id="lastSeen">Last seen: Never</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bonus-section">
+                        <div class="bonus-header">
+                            <i class="fas fa-gift"></i>
+                            <span>Daily Login Bonus</span>
+                        </div>
+                        <div class="bonus-rewards">
+                            <div class="reward-item">
+                                <div class="reward-icon">⚡</div>
+                                <div class="reward-value">+50 XP</div>
+                            </div>
+                            <div class="reward-item">
+                                <div class="reward-icon">🪙</div>
+                                <div class="reward-value">+100 Coins</div>
+                            </div>
+                            <div class="reward-item">
+                                <div class="reward-icon">🎯</div>
+                                <div class="reward-value">Daily Streak</div>
+                            </div>
+                        </div>
+                        
+                        <div class="xp-gain-animation">
+                            <div class="xp-bar">
+                                <div class="xp-progress" id="xpProgress"></div>
+                            </div>
+                            <div class="level-up-notification" id="levelUpNotification">
+                                <span class="level-up-text">🎉 Level Up!</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn primary" id="continueBtn">
+                        <i class="fas fa-play"></i>
+                        <span>Enter Arena</span>
+                    </button>
+                    <button class="modal-btn secondary" id="profileBtn">
+                        <i class="fas fa-user-circle"></i>
+                        <span>View Profile</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Notification System -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Connection Status Indicator -->
+    <div class="connection-status" id="connectionStatus">
+        <div class="status-indicator"></div>
+        <span class="status-text">Connected</span>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="../sounds/soundManager.js"></script>
+    <script src="../js/api.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/utils.js"></script>
+    <script src="../js/advancedNavbar.js"></script>
+    <script src="../js/welcome.js"></script>
+    <script src="enhanced-login.js"></script>
+    <script src="login.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+/* Sound Controls Styling */
+.sound-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+.sound-toggle {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sound-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #00ffff;
+    transform: scale(1.1);
+    box-shadow: 0 5px 20px rgba(0, 255, 255, 0.3);
+}
+
+.sound-panel {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 1rem;
+    min-width: 200px;
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.sound-controls:hover .sound-panel {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.volume-control {
+    margin-bottom: 1rem;
+}
+
+.volume-control label {
+    display: block;
+    color: #fff;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.volume-control input[type="range"] {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.volume-control input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.7);
+}
+
+.volume-control input[type="range"]::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 10px rgba(0, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.music-toggle {
+    width: 100%;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    color: #fff;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.music-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #00ffff;
+}
+
+.music-toggle.active {
+    background: linear-gradient(135deg, #00ffff, #ff00ff);
+    border-color: #00ffff;
+    color: #000;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .sound-controls {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .sound-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .sound-panel {
+        min-width: 180px;
+        padding: 0.8rem;
+    }
+    
+    .volume-control {
+        margin-bottom: 0.8rem;
+    }
+}
+
+/* Animation for sound level indicator */
+@keyframes soundWave {
+    0%, 100% { transform: scaleY(1); }
+    50% { transform: scaleY(1.5); }
+}
+
+.sound-toggle.playing::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background: linear-gradient(90deg, #00ffff, #ff00ff);
+    border-radius: 2px;
+    animation: soundWave 0.5s ease-in-out infinite;
+}
+
+/* Accessibility */
+.sound-controls button:focus {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
+}
+
+.volume-control input[type="range"]:focus {
+    outline: 2px solid #00ffff;
+    outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .sound-toggle,
+    .sound-panel,
+    .volume-control input[type="range"]::-webkit-slider-thumb,
+    .volume-control input[type="range"]::-moz-range-thumb,
+    .music-toggle {
+        transition: none;
+    }
+    
+    .sound-toggle:hover {
+        transform: none;
+    }
+    
+    .sound-toggle.playing::after {
+        animation: none;
+    }
+}
